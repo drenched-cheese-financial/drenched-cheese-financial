@@ -14,7 +14,6 @@ function ListOrder() {
 
   return (
     <div>
-      {'hey theree'}
       <p>{orderList}</p>
     </div>
   );

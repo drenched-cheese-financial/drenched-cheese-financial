@@ -23,7 +23,7 @@ app.get('/listorder', (req, res) => {
 
   connection.query(
     'SELECT orderId,orderDate, ordersummary.customerId, customer.firstName,customer.lastName, totalAmount from ordersummary left join customer on ordersummary.customerId = customer.customerId order by orderId',
-    (error, results, fields) => {
+    (error, results) => {
       if (error) throw error;
       console.log('The solution is: ', results);
       res.send(results);
