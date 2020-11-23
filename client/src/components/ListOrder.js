@@ -7,13 +7,14 @@ function ListOrder() {
 
   useEffect(() => {
     // Fetch the data on load
-    axios.get('https://localhost:3001/listorder').then((response) => {
+    axios.get('localhost:3001/listorder').then((response) => {
       setOrderList(response);
     });
   }, []);
 
   return (
     <div>
+      {'hey there'}
       <p>{orderList}</p>
     </div>
   );
