@@ -1,8 +1,8 @@
 import { Switch, Route } from 'react-router-dom';
-import Home from '../../views/Home/Home';
+import Home from '../../views/home/Home';
 
-import ListOrder from '../../views/ListOrder/ListOrder';
-import LoadData from '../../views/LoadData';
+import ListOrder from '../../views/list-order/ListOrder';
+import LoadData from '../../views/load-data/LoadData';
 
 function Main() {
 	return (
