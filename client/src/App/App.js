@@ -1,6 +1,6 @@
-import Main from '../components/Main/Main';
-import NavBar from '../components/NavBar/NavBar';
-import './App.css';
+import Main from '../components/main/Main';
+import NavBar from '../components/navbar/NavBar';
+import './App.scss';
 
 function App() {
 	return (
