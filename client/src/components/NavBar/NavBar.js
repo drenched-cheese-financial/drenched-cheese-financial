@@ -14,7 +14,6 @@ function NavBar() {
 				<li>
 					<NavLink to="/listprod">Begin Shopping</NavLink>
 				</li>
-
 				<li>
 					<NavLink to="/listorder">List Orders</NavLink>
 				</li>
