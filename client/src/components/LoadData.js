@@ -8,15 +8,20 @@ function LoadData() {
   useEffect(() => {
     // Fetch the data on load
     axios.get('http://localhost:3001/loaddata', {}).then((response) => {
-      setLoadedData(response);
+      setLoadedData(JSON.stringify(response));
     });
   }, []);
 
-  return (
-    <div>
-      <p>{loadedData}</p>
-    </div>
-  );
+  if (loadedData) {
+    return (
+      <div>
+        <p>Data loaded!</p>
+        <p>{loadedData}</p>
+      </div>
+    );
+  } else {
+    return <p>Data is loading... This make take some time, please wait.</p>;
+  }
 }
 
 export default LoadData;
