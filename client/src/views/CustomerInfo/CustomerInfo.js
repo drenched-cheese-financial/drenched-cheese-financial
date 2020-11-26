@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function getNaturalCaseFromCamel(camelCaseString) {
-  return camelCaseString;
-}
-
 function CustomerInfo() {
   // TODO: get this from auth
   // TODO: add routing to login if this is null
