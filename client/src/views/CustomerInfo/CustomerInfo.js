@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 function CustomerInfo() {
-  // TODO: get this from auth
-  // TODO: add routing to login if this is null
-  const customerId = '1';
-
   const [customerInfo, setCustomerInfo] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     // Fetch the data on load
     axios
-      .get('http://localhost:3001/customer?custId=' + customerId)
+      .get('http://localhost:3001/customer', {
+        withCredentials: true,
+      })
       .then((response) => {
-        setCustomerInfo(response.data.recordset[0]);
+        if (response.data === 'unauthenticated') {
+          history.push('/login');
+        } else {
+          setCustomerInfo(response.data.recordset[0]);
+        }
       });
-  }, []);
+  }, [history]);
 
   if (customerInfo) {
     return (

@@ -5,14 +5,14 @@ import dbConfig from '../dbconfig.js';
 const router = express.Router();
 
 router.get('/', function (req, res) {
-  /** Create connection, and validate that it connected successfully **/
+  const authenticatedUserId = req.session.authenticatedUser;
   const getData = async () => {
     try {
       let pool = await sql.connect(dbConfig);
 
       let orderResults = await pool
         .request()
-        .input('customerId', sql.Int, req.query.custId)
+        .input('customerId', sql.Int, authenticatedUserId)
         .query(
           'SELECT customerId, firstName, lastName, email, phonenum, address, city, state, postalCode, country, userid FROM customer WHERE customerId = @customerId'
         );
@@ -30,7 +30,12 @@ router.get('/', function (req, res) {
     }
   };
 
-  getData();
+  if (authenticatedUserId) {
+    getData();
+  } else {
+    res.write('unauthenticated');
+    res.end();
+  }
 });
 
 export default router;
