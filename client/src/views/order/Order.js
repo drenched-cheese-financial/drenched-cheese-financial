@@ -10,7 +10,7 @@ function Order() {
 
   const fetchOrder = () => {
     let params = new URLSearchParams('customerId=' + customerId);
-    axios.get('http://localhost:3001/order?' + params).then((res) => {
+    axios.get('http://localhost:3001/order?' + params, { withCredentials: true }).then((res) => {
       setOrder(res.data);
     });
   };
