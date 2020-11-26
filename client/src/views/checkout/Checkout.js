@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function Checkout() {
-  let history = useHistory();
-  let [customerId, setCustomerId] = useState('');
+  const history = useHistory();
+  const [customerId, setCustomerId] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
