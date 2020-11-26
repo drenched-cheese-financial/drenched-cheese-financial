@@ -13,7 +13,9 @@ router.get('/', function (req, res) {
       let orderResults = await pool
         .request()
         .input('customerId', sql.Int, req.query.custId)
-        .query('SELECT * FROM customer WHERE customerId = @customerId');
+        .query(
+          'SELECT customerId, firstName, lastName, email, phonenum, address, city, state, postalCode, country, userid FROM customer WHERE customerId = @customerId'
+        );
 
       res.write(JSON.stringify(orderResults));
       res.end();
