@@ -53,6 +53,7 @@ app.get('/listorder', (req, res) => {
 	getData();
 });
 
+
 app.get('/listprod', (req, res) => {
 	/** Create connection, and validate that it connected successfully **/
 	const keyword = '%' + req.query.keyword + '%';
