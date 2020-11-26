@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import order from './routes/order.js';
 import loaddata from './routes/loaddata.js';
 import listorder from './routes/listorder.js';
+import customer from './routes/customer.js';
 
 // Setup express
 const app = express();
@@ -29,6 +30,7 @@ app.use(
 app.use('/order', order);
 app.use('/loaddata', loaddata);
 app.use('/listorder', listorder);
+app.use('/customer', customer);
 
 // Setup server on port
 app.listen(3001, () => {
