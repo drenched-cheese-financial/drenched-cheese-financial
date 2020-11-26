@@ -30,7 +30,7 @@ function ListOrder() {
 										<th>Customer Name</th>
 										<th>Total Amount</th>
 									</tr>
-									<tr className={index % 2 === 0 ? 'rowPrimary' : ''}>
+									<tr>
 										<td key={index}>{value[0][0].orderId}</td>
 										<td key={index}>{value[0][0].orderDate}</td>
 										<td key={index}>{value[0][0].customerId}</td>
@@ -46,7 +46,7 @@ function ListOrder() {
 									</tr>
 									{value[1].map((product, index) => {
 										return (
-											<tr>
+											<tr className={index % 2 !== 0 ? 'rowPrimary' : ''}>
 												<td key={index}>{product.productId}</td>
 												<td key={index}>{product.quantity}</td>
 												<td key={index}>{product.price}</td>
