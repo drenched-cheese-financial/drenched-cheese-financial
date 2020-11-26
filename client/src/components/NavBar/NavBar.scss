@@ -1,5 +1,7 @@
 $background :  rgb(36, 36, 32);
-$links: rgb(167, 166, 138);
+$links: rgb(71, 71, 60);
+$money: #30663b;
+$onHover: rgb(151, 138, 104);
 
 .rightLinks li{
   margin-left:20px;
@@ -16,6 +18,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   background-color: $background;
+  box-shadow: 0px 1px 3px $onHover;
 }
 
 
