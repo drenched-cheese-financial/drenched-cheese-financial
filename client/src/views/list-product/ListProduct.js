@@ -47,7 +47,7 @@ function ListProduct() {
 
 									<td key={index}>{value.productName}</td>
 
-									<td key={index}>{value.productPrice}</td>
+									<td key={index}>${value.productPrice.toFixed(2)}</td>
 								</tr>
 							);
 						})}
