@@ -5,9 +5,17 @@ function NavBar() {
 	return (
 		<nav>
 			<ul>
-				<li>
-					<NavLink to="/">Home</NavLink>
+				<li className="logo">
+					<NavLink to="/">
+						{' '}
+						<span className="emojis">💰 🧀</span>{' '}
+						<span className="tallLetter">D</span>renched{' '}
+						<span className="tallLetter">C</span>heese{' '}
+						<span className="tallLetter">F</span>inancial{' '}
+						<span className="emojis">🧀 💰</span>
+					</NavLink>
 				</li>
+
 				<div className="rightLinks">
 					<li>
 						<NavLink to="/login">Customer Login</NavLink>
