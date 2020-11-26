@@ -2,11 +2,14 @@ $backgroundPrimary :  rgb(58, 58, 52);
 $backgroundSecondary :   rgb(66, 66, 60);
 $backgroundTertiary :rgb(77, 77, 65);
 $backgroundQuaternary:  rgb(85, 85, 76);
+$boxShadowBlend:   rgb(39, 39, 35);
+
 $primary:  rgb(160, 160, 97);
 $secondary:  rgb(119, 119, 99);
 $headerText: rgb(236, 235, 191);
 $money: #30663b;
 $onHover: rgb(204, 177, 109);
+
 
 .App {
   text-align: center;
@@ -29,7 +32,37 @@ a:hover {
   color: $onHover;
 }
 
+button{
 
+  color:$primary;
+  background-color: $backgroundPrimary;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin: 5px 10px;
+  border-color: $backgroundPrimary;
+  box-shadow: 2px 2px 2px $boxShadowBlend;
+  outline:none;
+  
+}
+
+button:hover{
+  transform: translateY(4px);
+  transform: translateX(4px);
+  background-color: $backgroundSecondary;
+  box-shadow: 2px 2px 2px $onHover;
+  cursor: pointer;
+}
+
+button:active{
+  
+  color: $onHover;
+}
+
+button:active:after{
+  color: $onHover;
+
+
+}
 
 
 table{

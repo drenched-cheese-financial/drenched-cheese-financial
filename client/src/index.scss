@@ -1,6 +1,10 @@
 $background : rgb(15, 15, 14);
-$primary: rgb(236, 235, 191);
+$primary: rgb(209, 208, 159);
 $secondary: rgb(167, 166, 138);
+$money: #30663b;
+$onHover: rgb(204, 177, 109);
+$backgroundPrimary :  rgb(58, 58, 52);
+
 @import url('https://fonts.googleapis.com/css?family=Roboto:300');
 
 body {
@@ -10,7 +14,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $primary;
+  color: $secondary;
   text-align: center;
   margin-top:0px ;
   background-color: $background ;
@@ -21,6 +25,10 @@ body {
   margin-bottom: 2rem;
 }
 
+h1{
+  color: $primary;
+  text-shadow: 2px 2px 2px $backgroundPrimary;
+}
 
 
 body::after{
