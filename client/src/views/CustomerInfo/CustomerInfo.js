@@ -20,10 +20,10 @@ function CustomerInfo() {
   if (customerInfo) {
     const listItems = Object.entries(customerInfo)
       .slice(0, -1)
-      .map((number) => (
-        <tr key={number[0]}>
-          <th>{number[0]}</th>
-          <td>{number[1]}</td>
+      .map((row) => (
+        <tr key={row[0]}>
+          <th>{row[0]}</th>
+          <td>{row[1]}</td>
         </tr>
       ));
     return (
