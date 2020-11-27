@@ -22,6 +22,7 @@ function Shipment() {
   return (
     <div>
       {JSON.stringify(orderIsValid)}
+      <br />
       <input onChange={handleChange} />
       <button onClick={addToShipment}>add to shipment</button>
     </div>
