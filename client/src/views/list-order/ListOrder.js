@@ -68,47 +68,6 @@ function ListOrder() {
 						);
 				  })
 				: ''}
-
-			{/* <div>
-				<table>
-					{orderList.map((value, index) => {
-						return (
-							<div>
-								<table>
-									<tr>
-										<th>Order ID</th>
-										<th>Order Date</th>
-										<th>Customer ID</th>
-										<th>Customer Name</th>
-										<th>Total Amount</th>
-									</tr>
-									<tr className={index % 2 === 0 ? 'rowPrimary' : ''}>
-										<td key={index}>{value.orderId}</td>
-										<td key={index}>{value.orderDate}</td>
-										<td key={index}>{value.customerId}</td>
-										<td key={index}>
-											{value.firstName + ' ' + value.lastName}
-										</td>
-										<td key={index}>{'$' + value.totalAmount.toFixed(2)}</td>
-									</tr>
-								</table>
-								<table>
-									<tr>
-										<th>Product ID</th>
-										<th>Quantity</th>
-										<th>Price</th>
-									</tr>
-									<tr>
-										<td key={index}>{value.productId}</td>
-										<td></td>
-										<td></td>
-									</tr>
-								</table>
-							</div>
-						);
-					})}
-				</table>
-			</div> */}
 		</div>
 	);
 }

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './listProduct.scss';
+import { useHistory } from 'react-router-dom';
 
 function ListProduct() {
 	// Declare a new state variable, which we'll call "count"
+	const history = useHistory();
 	const [productList, setProductList] = useState();
 	const [keyword, setKeyword] = useState('');
-	let addToCartString = 'http://localhost:3001/addcart?id=';
 	let productInfoString = '/product?id=';
 
 	useEffect(() => {
@@ -20,6 +22,29 @@ function ListProduct() {
 			.get(`http://localhost:3001/listprod?keyword=${keyword}`)
 			.then((response) => {
 				setProductList(response);
+			});
+	}
+
+	function addCart(event) {
+		let product = productList.data.recordsets[0][event.target.value];
+
+		console.log(product);
+		axios
+			.post(
+				`http://localhost:3001/addcart`,
+				{
+					id: product.productID,
+					name: product.productName,
+					price: product.productPrice,
+				},
+				{ withCredentials: true }
+			)
+			.then(() => {
+				console.log('we here');
+				history.push('/showcart');
+			})
+			.catch((err) => {
+				console.log(err);
 			});
 	}
 
@@ -64,17 +89,9 @@ function ListProduct() {
 										<td>{'$' + value.productPrice.toFixed(2)}</td>
 
 										<td>
-											<a
-												href={addToCartString.concat(
-													value.productID,
-													'&name=',
-													value.productName,
-													'&price=',
-													value.productPrice
-												)}
-											>
+											<button value={index} onClick={addCart}>
 												Add To Cart
-											</a>
+											</button>
 										</td>
 									</tr>
 								);
