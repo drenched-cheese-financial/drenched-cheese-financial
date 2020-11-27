@@ -36,22 +36,16 @@ function ListProduct() {
 			{typeof productList !== 'undefined' ? (
 				<div>
 					<table>
-						<tr>
-							<th>Product ID</th>
-							<th>Product Name</th>
-							<th>Price</th>
-							<th>Add To Cart</th>
-						</tr>
 						{productList.data.recordsets[0].map((value, index) => {
 							return (
-								<tr className={index % 2 === 0 ? 'rowPrimary' : ''}>
-									<td key={index}>{value.productID}</td>
+								<tr key={index} className={index % 2 === 0 ? 'rowPrimary' : ''}>
+									<td>{value.productID}</td>
 
-									<td key={index}>{value.productName}</td>
+									<td>{value.productName}</td>
 
-									<td key={index}>{'$' + value.productPrice.toFixed(2)}</td>
+									<td>{'$' + value.productPrice.toFixed(2)}</td>
 
-									<td key={index}>
+									<td>
 										<a
 											href={str1.concat(
 												value.productID,
@@ -67,6 +61,29 @@ function ListProduct() {
 								</tr>
 							);
 						})}
+						<thead>
+							<tr>
+								<th>Product ID</th>
+								<th>Product Name</th>
+								<th>Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							{productList.data.recordsets[0].map((value, productIndex) => {
+								return (
+									<tr
+										key={productIndex}
+										className={productIndex % 2 === 0 ? 'rowPrimary' : ''}
+									>
+										<td>{value.productID}</td>
+
+										<td>{value.productName}</td>
+
+										<td>${value.productPrice.toFixed(2)}</td>
+									</tr>
+								);
+							})}
+						</tbody>
 					</table>
 				</div>
 			) : (
