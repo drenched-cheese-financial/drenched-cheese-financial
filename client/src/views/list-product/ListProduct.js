@@ -5,8 +5,9 @@ function ListProduct() {
 	// Declare a new state variable, which we'll call "count"
 	const [productList, setProductList] = useState();
 	const [keyword, setKeyword] = useState('');
-	let str1 = 'http://localhost:3001/addcart?id=';
-
+	let addToCartString = "http://localhost:3001/addcart?id="
+	let productInfoString = "/product?id="
+	
 	useEffect(() => {
 		// Fetch the data on load
 		axios.get('http://localhost:3001/listprod?keyword=').then((response) => {
@@ -36,29 +37,29 @@ function ListProduct() {
 			{typeof productList !== 'undefined' ? (
 				<div>
 					<table>
-						<thead>
-							<tr>
-								<th>Product ID</th>
-								<th>Product Name</th>
-								<th>Price</th>
-							</tr>
-						</thead>
-						<tbody>
-							{productList.data.recordsets[0].map((value, index) => {
-								return (
-									<tr
-										key={index}
-										className={index % 2 === 0 ? 'rowPrimary' : ''}
-									>
-										<td>{value.productID}</td>
+						<tr>
+							<th>Product ID</th>
+							<th>Product Name</th>
+							<th>Price</th>
+							<th>Add To Cart</th>
+						</tr>
+						{productList.data.recordsets[0].map((value, index) =>{
+							return (
+								<tr className={index % 2 === 0 ? 'rowPrimary' : ''}>
+									<td key={index}>{value.productID}</td>
 
-										<td>{value.productName}</td>
+									<td key={index}><a href={productInfoString.concat(value.productID)}> {value.productName} </a>
+									</td>
 
-										<td>${value.productPrice.toFixed(2)}</td>
-									</tr>
-								);
-							})}
-						</tbody>
+									<td key={index}>{"$" + value.productPrice.toFixed(2)}</td>
+
+									<td key={index}><a href={addToCartString.concat(value.productID, "&name=", 
+									value.productName, "&price=", value.productPrice)}>Add To Cart</a>
+									</td>
+								</tr>
+								
+							);
+						})}
 					</table>
 				</div>
 			) : (
