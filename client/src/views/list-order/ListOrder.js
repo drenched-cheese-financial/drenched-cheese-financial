@@ -53,8 +53,8 @@ function ListOrder() {
 										{value[1].map((product, productIndex) => {
 											return (
 												<tr
+													className={productIndex % 2 === 0 ? 'rowPrimary' : ''}
 													key={productIndex}
-													className={index % 2 !== 0 ? 'rowPrimary' : ''}
 												>
 													<td>{product.productId}</td>
 													<td>{product.quantity}</td>
