@@ -4,25 +4,27 @@ import dbConfig from '../dbconfig.js';
 
 const router = express.Router();
 
-router.get('/', function (req, res) {
-  getOrderSummaryWithOrderId(req.query.orderId)
-    .then((response) => {
-      res.send(response.recordset.length > 0);
-    })
-    .catch(() => {
-      res.end();
-    });
+router.get('/', async function (req, res) {
+  const orderContent = await getOrderContent(req.query.orderId);
+  if (orderContent.length === 0) {
+    res.send('order empty');
+    res.end();
+  } else {
+    // TODO
+  }
 });
 
-function getOrderSummaryWithOrderId(orderId) {
+function getOrderContent(orderId) {
   return new Promise((resolve, reject) => {
     sql.connect(dbConfig).then((conn) => {
       conn
         .request()
         .input('orderId', sql.Int, orderId)
-        .query('SELECT orderId FROM orderSummary WHERE orderId = @orderId')
+        .query(
+          'SELECT productId FROM orderproduct op WHERE op.orderId = @orderId'
+        )
         .then((result) => {
-          resolve(result);
+          resolve(result.recordset);
         })
         .catch((err) => {
           reject(err);
