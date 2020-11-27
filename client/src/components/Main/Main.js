@@ -5,17 +5,19 @@ import ListOrder from '../../views/list-order/ListOrder';
 import LoadData from '../../views/load-data/LoadData';
 import Checkout from '../../views/checkout/Checkout';
 import Order from '../../views/order/Order';
+import Shipment from '../../views/shipment/Shipment';
 
 function Main() {
-	return (
-		<Switch>
-			<Route exact path="/" component={Home} />
-			<Route exact path="/listorder" component={ListOrder} />
-			<Route exact path="/loaddata" component={LoadData} />
-			<Route exact path="/checkout" component={Checkout} />
-			<Route exact path="/order/:customerId" component={Order} />
-		</Switch>
-	);
+  return (
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/listorder" component={ListOrder} />
+      <Route exact path="/loaddata" component={LoadData} />
+      <Route exact path="/checkout" component={Checkout} />
+      <Route exact path="/order/:customerId" component={Order} />
+      <Route exact path="/ship" component={Shipment} />
+    </Switch>
+  );
 }
 
 export default Main;
