@@ -8,6 +8,7 @@ import listorder from './routes/listorder.js';
 import login from './routes/login.js';
 import logout from './routes/logout.js';
 import shop from './routes/shop.js';
+import admin from './routes/admin.js';
 
 // Setup express
 const app = express();
@@ -40,6 +41,7 @@ app.use('/listorder', listorder);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/shop', shop);
+app.use('/admin', admin);
 
 // Setup server on port
 app.listen(3001, () => {

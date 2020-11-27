@@ -6,6 +6,7 @@ import Checkout from '../../views/checkout/Checkout';
 import Order from '../../views/order/Order';
 import Login from '../../views/login/Login';
 import Logout from '../../views/logout/Logout';
+import Admin from '../../views/admin/Admin';
 
 function Main() {
 	return (
@@ -17,6 +18,7 @@ function Main() {
 			<Route exact path="/order/:customerId" component={Order} />
 			<Route exact path="/login" component={Login} />
 			<Route exact path="/logout" component={Logout} />
+			<Route exact path="/admin" component={Admin} />
 		</Switch>
 	);
 }
