@@ -194,6 +194,7 @@ app.get('/addcart', function (req, res, next) {
 	}
 
 	req.session.productList = productList;
+	console.log(req.session.productList);
 	res.redirect('http://localhost:3000/showcart');
 });
 
