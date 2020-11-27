@@ -6,7 +6,7 @@ import Checkout from '../../views/checkout/Checkout';
 import Order from '../../views/order/Order';
 import Login from '../../views/login/Login';
 import Logout from '../../views/logout/Logout';
-import CustomerInfo from '../../views/CustomerInfo/CustomerInfo';
+import CustomerInfo from '../../views/customer-info/CustomerInfo';
 
 function Main() {
   return (
