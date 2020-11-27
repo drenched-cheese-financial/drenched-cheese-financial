@@ -9,6 +9,7 @@ import customer from './routes/customer.js';
 import login from './routes/login.js';
 import logout from './routes/logout.js';
 import shop from './routes/shop.js';
+import ship from './routes/ship.js';
 
 // Setup express
 const app = express();
@@ -42,6 +43,7 @@ app.use('/customer', customer);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/shop', shop);
+app.use('/ship', ship);
 
 // Setup server on port
 app.listen(3001, () => {
