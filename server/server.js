@@ -148,6 +148,7 @@ app.get('/addcart', function (req, res, next) {
 		price = req.query.price;
 	} else {
 		res.redirect('http://localhost:3000/listprod');
+		return;
 	}
 
 	// Update quantity if add same item to order again
