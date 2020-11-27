@@ -1,43 +1,50 @@
 import cors from 'cors';
 import express from 'express';
+import session from 'express-session';
 import bodyParser from 'body-parser';
-import fs from 'fs';
-import sql from 'mssql';
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const session = require('express-session');
 
+import order from './routes/order.js';
+import loaddata from './routes/loaddata.js';
+import listorder from './routes/listorder.js';
+import login from './routes/login.js';
+import logout from './routes/logout.js';
+import shop from './routes/shop.js';
+import admin from './routes/admin.js';
+
+// Setup express
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
 app.use(bodyParser.json());
 
-// Setting up the session.
-// This uses MemoryStorage which is not
-// recommended for production use.
+// Setup session variable
 app.use(
-	session({
-		secret: 'COSC 304 Rules!',
-		resave: false,
-		saveUninitialized: false,
-		cookie: {
-			httpOnly: false,
-			secure: false,
-			maxAge: 60000,
-		},
-	})
+  session({
+    secret: 'COSC 304 Rules!',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: false,
+      secure: false,
+      maxAge: 600000,
+    },
+  })
 );
 
-const dbConfig = {
-	user: 'jabadir',
-	password: '35589738',
-	server: 'sql04.ok.ubc.ca',
-	database: 'db_jabadir',
-	options: {
-		enableArithAbort: true,
-		encrypt: false,
-	},
-};
+// Setup routes
+app.use('/order', order);
+app.use('/loaddata', loaddata);
+app.use('/listorder', listorder);
+app.use('/login', login);
+app.use('/logout', logout);
+app.use('/shop', shop);
+app.use('/admin', admin);
 
+// Setup server on port
 app.listen(3001, () => {
 	console.log('Server started on port 3001');
 });
