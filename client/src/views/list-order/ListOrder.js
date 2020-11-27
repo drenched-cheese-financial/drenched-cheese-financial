@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './listOrder.scss';
 
 function ListOrder() {
 	// Declare a new state variable, which we'll call "count"
-	const [orderList, setOrderList] = useState(null);
+	const [orderList, setOrderList] = useState();
 
 	useEffect(() => {
 		// Fetch the data on load
 		axios.get('http://localhost:3001/listorder').then((response) => {
-			setOrderList(response);
+			setOrderList(response.data);
 		});
 	}, []);
 
@@ -52,8 +53,8 @@ function ListOrder() {
 										{value[1].map((product, productIndex) => {
 											return (
 												<tr
-													className={productIndex % 2 === 0 ? 'rowPrimary' : ''}
 													key={productIndex}
+													className={index % 2 !== 0 ? 'rowPrimary' : ''}
 												>
 													<td>{product.productId}</td>
 													<td>{product.quantity}</td>
