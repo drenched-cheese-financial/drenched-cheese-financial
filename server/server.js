@@ -5,10 +5,19 @@ import bodyParser from 'body-parser';
 import order from './routes/order.js';
 import loaddata from './routes/loaddata.js';
 import listorder from './routes/listorder.js';
+import customer from './routes/customer.js';
+import login from './routes/login.js';
+import logout from './routes/logout.js';
+import shop from './routes/shop.js';
 
 // Setup express
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
 app.use(bodyParser.json());
 
 // Setup session variable
@@ -20,7 +29,7 @@ app.use(
     cookie: {
       httpOnly: false,
       secure: false,
-      maxAge: 60000,
+      maxAge: 600000,
     },
   })
 );
@@ -29,6 +38,10 @@ app.use(
 app.use('/order', order);
 app.use('/loaddata', loaddata);
 app.use('/listorder', listorder);
+app.use('/customer', customer);
+app.use('/login', login);
+app.use('/logout', logout);
+app.use('/shop', shop);
 
 // Setup server on port
 app.listen(3001, () => {
