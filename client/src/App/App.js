@@ -1,14 +1,14 @@
 import Main from '../components/main/Main';
 import NavBar from '../components/navbar/NavBar';
-import './App.css';
+import './app.scss';
 
 function App() {
-	return (
-		<div className="App">
-			<NavBar />
-			<Main />
-		</div>
-	);
+  return (
+    <div className='App'>
+      <NavBar />
+      <Main />
+    </div>
+  );
 }
 
 export default App;
