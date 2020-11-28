@@ -1,138 +1,49 @@
 import cors from 'cors';
 import express from 'express';
+import session from 'express-session';
 import bodyParser from 'body-parser';
-import fs from 'fs';
-import sql from 'mssql';
+import order from './routes/order.js';
+import loaddata from './routes/loaddata.js';
+import listorder from './routes/listorder.js';
+import login from './routes/login.js';
+import logout from './routes/logout.js';
+import shop from './routes/shop.js';
+import admin from './routes/admin.js';
 
+// Setup express
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
 app.use(bodyParser.json());
 
-const dbConfig = {
-	user: 'jabadir',
-	password: '35589738',
-	server: 'sql04.ok.ubc.ca',
-	database: 'db_jabadir',
-	options: {
-		enableArithAbort: true,
-		encrypt: false,
-	},
-};
+// Setup session variable
+app.use(
+  session({
+    secret: 'COSC 304 Rules!',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: false,
+      secure: false,
+      maxAge: 600000,
+    },
+  })
+);
 
+// Setup routes
+app.use('/order', order);
+app.use('/loaddata', loaddata);
+app.use('/listorder', listorder);
+app.use('/login', login);
+app.use('/logout', logout);
+app.use('/shop', shop);
+app.use('/admin', admin);
+
+// Setup server on port
 app.listen(3001, () => {
 	console.log('Server started on port 3001');
-});
-
-app.get('/listorder', (req, res) => {
-	var allData = [];
-
-	const getOrderData = async function () {
-		try {
-			//get db connection
-			let pool = await sql.connect(dbConfig);
-
-			let orderResults = await pool
-				.request()
-				.query(
-					'  SELECT orderId,orderDate, ordersummary.customerId, customer.firstName,customer.lastName, totalAmount ' +
-						'from ordersummary left join customer on ordersummary.customerId = customer.customerId order by orderId'
-				);
-
-			for (let i = 0; i < orderResults.recordset.length; i++) {
-				var orderData = [];
-				let record = orderResults.recordset[i];
-				orderData.push({
-					orderId: record.orderId,
-					orderDate: record.orderDate,
-					customerId: record.customerId,
-					customerName: record.firstName + ' ' + record.lastName,
-					totalAmount: '$' + record.totalAmount.toFixed(2),
-				});
-
-				let productResults = await pool
-					.request()
-					.input('safeOrderId', sql.VarChar, record.orderId)
-					.query(
-						`select productId, quantity, price from orderproduct where orderId=@safeOrderId order by productId`
-					);
-
-				var productData = [];
-				productResults.recordset.forEach((productRecord) => {
-					productData.push({
-						productId: productRecord.productId,
-						quantity: productRecord.quantity,
-						price: '$' + productRecord.price.toFixed(2),
-					});
-				});
-
-				allData.push([orderData, productData]);
-			}
-		} catch {
-			(error) => {
-				console.log(error);
-				res.write(error);
-				console.dir(err);
-
-				res.end();
-			};
-		}
-	};
-
-	getOrderData().then(function () {
-		res.send(allData);
-	});
-});
-
-app.get('/listprod', (req, res) => {
-	/** Create connection, and validate that it connected successfully **/
-	const keyword = '%' + req.query.keyword + '%';
-
-	const getData = async () => {
-		try {
-			//get db connection
-			let pool = await sql.connect(dbConfig);
-
-			let productResults = await pool
-				.request()
-				.input('pname', sql.VarChar, keyword)
-				.query(
-					`SELECT productID, productName, productPrice FROM product WHERE productName LIKE @pname`
-				);
-			// console.log(JSON.stringify(productResults));
-
-			res.write(JSON.stringify(productResults));
-			res.end();
-		} catch {
-			(error) => {
-				console.log(error);
-				res.write(error);
-				console.dir(err);
-
-				res.end();
-			};
-		}
-	};
-
-	getData();
-});
-
-app.get('/loaddata', (req, res) => {
-	(async function () {
-		try {
-			let pool = await sql.connect(dbConfig);
-
-			let data = fs.readFileSync('./data/data.ddl', { encoding: 'utf8' });
-			let commands = data.split(';');
-			for (let i = 0; i < commands.length; i++) {
-				let command = commands[i];
-				let result = await pool.request().query(command);
-				res.write(JSON.stringify(result));
-			}
-
-			res.end();
-		} catch (err) {
-			console.dir(err);
-			res.send(err);
-		}
-	})();
 });
