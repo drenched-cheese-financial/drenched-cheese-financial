@@ -7,6 +7,7 @@ import Checkout from '../../views/checkout/Checkout';
 import Order from '../../views/order/Order';
 import Login from '../../views/login/Login';
 import Logout from '../../views/logout/Logout';
+import CustomerInfo from '../../views/customer-info/CustomerInfo';
 import Admin from '../../views/admin/Admin';
 
 function Main() {
@@ -21,6 +22,7 @@ function Main() {
       <Route exact path='/login' component={Login} />
       <Route exact path='/logout' component={Logout} />
       <Route exact path='/admin' component={Admin} />
+      <Route exact path='/customer' component={CustomerInfo} />
     </Switch>
   );
 }
