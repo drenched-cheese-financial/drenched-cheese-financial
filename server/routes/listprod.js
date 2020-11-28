@@ -4,7 +4,7 @@ import dbConfig from '../dbconfig.js';
 
 const router = express.Router();
 
-router.get('/listprod', (req, res) => {
+router.get('/', (req, res) => {
 	/** Create connection, and validate that it connected successfully **/
 	const keyword = '%' + req.query.keyword + '%';
 
