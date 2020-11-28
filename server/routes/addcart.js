@@ -20,7 +20,6 @@ router.post('/', function (req, res) {
 			req.session.productList.push(product);
 		}
 	}
-
 	res.end();
 });
 

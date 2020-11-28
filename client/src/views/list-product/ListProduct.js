@@ -12,14 +12,14 @@ function ListProduct() {
 
 	useEffect(() => {
 		// Fetch the data on load
-		axios.get('http://localhost:3001/listprod?keyword=').then((response) => {
+		axios.get('http://localhost:3001/listprod?keyword=', { withCredentials: true }).then((response) => {
 			setProductList(response);
 		});
 	}, []);
 
 	function search() {
 		axios
-			.get(`http://localhost:3001/listprod?keyword=${keyword}`)
+			.get(`http://localhost:3001/listprod?keyword=${keyword}`, { withCredentials: true })
 			.then((response) => {
 				setProductList(response);
 			});
@@ -27,7 +27,6 @@ function ListProduct() {
 
 	function addCart(event) {
 		let product = productList.data.recordsets[0][event.target.value];
-
 		axios
 			.post(
 				`http://localhost:3001/addcart`,
@@ -39,7 +38,6 @@ function ListProduct() {
 				{ withCredentials: true }
 			)
 			.then(() => {
-				console.log('we hereasdfasdfsadf');
 				history.push('/showcart');
 			});
 	}

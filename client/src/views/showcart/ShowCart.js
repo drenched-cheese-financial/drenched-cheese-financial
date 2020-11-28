@@ -23,7 +23,7 @@ function ShowCart() {
 	const updateCart = () => {
 		axios.post(
 			'http://localhost:3001/updatecart',
-			{ productList: productList },
+			{ productList: productList},
 			{
 				withCredentials: true,
 			}
@@ -58,7 +58,7 @@ function ShowCart() {
 	const handleDelete = (event) => {
 		let rowIndex = Number(event.target.value);
 		setProductList((productList) => {
-			productList.filter((p, index) => {
+			return productList.filter((p, index) => {
 				return index !== rowIndex;
 			});
 		});
