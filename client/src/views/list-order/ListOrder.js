@@ -3,114 +3,70 @@ import axios from 'axios';
 import './listOrder.scss';
 
 function ListOrder() {
-	// Declare a new state variable, which we'll call "count"
-	const [orderList, setOrderList] = useState();
+  // Declare a new state variable, which we'll call "count"
+  const [orderList, setOrderList] = useState();
 
-	useEffect(() => {
-		// Fetch the data on load
-		axios.get('http://localhost:3001/listorder').then((response) => {
-			setOrderList(response.data);
-		});
-	}, []);
+  useEffect(() => {
+    // Fetch the data on load
+    axios.get('http://localhost:3001/listorder', { withCredentials: true }).then((response) => {
+      setOrderList(response.data);
+    });
+  }, []);
 
-	return (
-		<div>
-			<h1>Orders</h1>
+  return (
+    <div>
+      <h1>Orders</h1>
 
-			{typeof orderList !== 'undefined'
-				? orderList.map((value, index) => {
-						return (
-							<div key={index} className="tablesDiv">
-								<table>
-									<thead>
-										<tr>
-											<th>Order ID</th>
-											<th>Order Date</th>
-											<th>Customer ID</th>
-											<th>Customer Name</th>
-											<th>Total Amount</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>{value[0][0].orderId}</td>
-											<td>{value[0][0].orderDate}</td>
-											<td>{value[0][0].customerId}</td>
-											<td>{value[0][0].customerName}</td>
-											<td>{value[0][0].totalAmount}</td>
-										</tr>
-									</tbody>
-								</table>
-								<table className="productTable">
-									<thead>
-										<tr>
-											<th>Product ID</th>
-											<th>Quantity</th>
-											<th>Price</th>
-										</tr>
-									</thead>
-									<tbody>
-										{value[1].map((product, productIndex) => {
-											return (
-												<tr
-													key={productIndex}
-													className={index % 2 !== 0 ? 'rowPrimary' : ''}
-												>
-													<td>{product.productId}</td>
-													<td>{product.quantity}</td>
-													<td>{product.price}</td>
-												</tr>
-											);
-										})}
-									</tbody>
-								</table>
-							</div>
-						);
-				  })
-				: ''}
-
-			{/* <div>
-				<table>
-					{orderList.map((value, index) => {
-						return (
-							<div>
-								<table>
-									<tr>
-										<th>Order ID</th>
-										<th>Order Date</th>
-										<th>Customer ID</th>
-										<th>Customer Name</th>
-										<th>Total Amount</th>
-									</tr>
-									<tr className={index % 2 === 0 ? 'rowPrimary' : ''}>
-										<td key={index}>{value.orderId}</td>
-										<td key={index}>{value.orderDate}</td>
-										<td key={index}>{value.customerId}</td>
-										<td key={index}>
-											{value.firstName + ' ' + value.lastName}
-										</td>
-										<td key={index}>{'$' + value.totalAmount.toFixed(2)}</td>
-									</tr>
-								</table>
-								<table>
-									<tr>
-										<th>Product ID</th>
-										<th>Quantity</th>
-										<th>Price</th>
-									</tr>
-									<tr>
-										<td key={index}>{value.productId}</td>
-										<td></td>
-										<td></td>
-									</tr>
-								</table>
-							</div>
-						);
-					})}
-				</table>
-			</div> */}
-		</div>
-	);
+      {orderList
+        ? orderList.map((value, index) => {
+            return (
+              <div key={index} className='tablesDiv'>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Order Date</th>
+                      <th>Customer ID</th>
+                      <th>Customer Name</th>
+                      <th>Total Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{value[0][0].orderId}</td>
+                      <td>{value[0][0].orderDate}</td>
+                      <td>{value[0][0].customerId}</td>
+                      <td>{value[0][0].customerName}</td>
+                      <td>{value[0][0].totalAmount}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table className='productTable'>
+                  <thead>
+                    <tr>
+                      <th>Product ID</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {value[1].map((product, productIndex) => {
+                      return (
+                        <tr key={productIndex} className={index % 2 !== 0 ? 'rowPrimary' : ''}>
+                          <td>{product.productId}</td>
+                          <td>{product.quantity}</td>
+                          <td>{product.price}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            );
+          })
+        : ''}
+    </div>
+  );
 }
 
 export default ListOrder;
