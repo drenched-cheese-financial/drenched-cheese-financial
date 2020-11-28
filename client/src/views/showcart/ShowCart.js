@@ -1,74 +1,102 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './showCart.scss';
+import { useHistory } from 'react-router-dom';
+import CartTable from './cart-table/CartTable';
 
 function ShowCart() {
+	const history = useHistory();
 	// Declare a new state variable, which we'll call "count"
-	const [productList, setProductList] = useState();
+	const [productList, setProductList] = useState([]);
 
-	useEffect(() => {
-		// Fetch the data on load
-		axios.get('http://localhost:3001/showcart').then((response) => {
-			console.log(response.data);
-			setProductList(response.data);
+	//will have error message or table component
+	const [tableJSX, setTableJSX] = useState();
+
+	const fetchProductList = () => {
+		axios
+			.get('http://localhost:3001/showcart', { withCredentials: true })
+			.then((response) => {
+				setProductList(response.data);
+			});
+	};
+
+	const updateCart = () => {
+		axios.post(
+			'http://localhost:3001/updatecart',
+			{ productList: productList },
+			{
+				withCredentials: true,
+			}
+		);
+	};
+
+	const handleIncrement = (event) => {
+		let rowIndex = Number(event.target.value);
+		setProductList((productList) =>
+			productList.map((p, index) => {
+				if (index === rowIndex) {
+					return { ...p, quantity: p.quantity + 1 };
+				} else {
+					return p;
+				}
+			})
+		);
+	};
+	const handleDecrement = (event) => {
+		let rowIndex = Number(event.target.value);
+		setProductList((productList) =>
+			productList.map((p, index) => {
+				if (index === rowIndex && p.quantity > 1) {
+					return { ...p, quantity: p.quantity - 1 };
+				} else {
+					return p;
+				}
+			})
+		);
+	};
+
+	const handleDelete = (event) => {
+		let rowIndex = Number(event.target.value);
+		setProductList((productList) => {
+			productList.filter((p, index) => {
+				return index !== rowIndex;
+			});
 		});
-	}, []);
+	};
+
+	const renderTableJSX = () => {
+		if (productList) {
+			setTableJSX(
+				<CartTable
+					products={productList}
+					onIncrement={handleIncrement}
+					onDecrement={handleDecrement}
+					onDelete={handleDelete}
+				/>
+			);
+		} else {
+			setTableJSX(<h1>Cart Empty</h1>);
+		}
+	};
+
+	const handleBack = () => {
+		history.push('/listprod');
+	};
+
+	const handleCheckout = () => {
+		history.push('/checkout');
+	};
+
+	useEffect(fetchProductList, []);
+	useEffect(updateCart, [productList]);
+	useEffect(renderTableJSX, [productList]);
 
 	return (
 		<div>
 			<h1>Your Shopping Cart</h1>
-		{productList}
-			{/* {typeof productList !== 'undefined'
-				? productList.map((value, index) => {
-						return (
-							<div key={index} className="tablesDiv">
-								<table>
-									<thead>
-										<tr>
-											<th>Order ID</th>
-											<th>Order Date</th>
-											<th>Customer ID</th>
-											<th>Customer Name</th>
-											<th>Total Amount</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>{value[0][0].orderId}</td>
-											<td>{value[0][0].orderDate}</td>
-											<td>{value[0][0].customerId}</td>
-											<td>{value[0][0].customerName}</td>
-											<td>{value[0][0].totalAmount}</td>
-										</tr>
-									</tbody>
-								</table>
-								<table className="productTable">
-									<thead>
-										<tr>
-											<th>Product ID</th>
-											<th>Quantity</th>
-											<th>Price</th>
-										</tr>
-									</thead>
-									<tbody>
-										{value[1].map((product, productIndex) => {
-											return (
-												<tr
-													key={productIndex}
-													className={index % 2 !== 0 ? 'rowPrimary' : ''}
-												>
-													<td>{product.productId}</td>
-													<td>{product.quantity}</td>
-													<td>{product.price}</td>
-												</tr>
-											);
-										})}
-									</tbody>
-								</table>
-							</div>
-						);
-				  })
-				: ''} */}
+			{tableJSX}
+			<button onClick={handleBack}>Back to Shop</button>
+			<button onClick={handleCheckout}>Checkout</button>
 		</div>
 	);
 }

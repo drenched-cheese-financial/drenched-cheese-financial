@@ -28,7 +28,6 @@ function ListProduct() {
 	function addCart(event) {
 		let product = productList.data.recordsets[0][event.target.value];
 
-		console.log(product);
 		axios
 			.post(
 				`http://localhost:3001/addcart`,
@@ -40,11 +39,8 @@ function ListProduct() {
 				{ withCredentials: true }
 			)
 			.then(() => {
-				console.log('we here');
+				console.log('we hereasdfasdfsadf');
 				history.push('/showcart');
-			})
-			.catch((err) => {
-				console.log(err);
 			});
 	}
 

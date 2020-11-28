@@ -12,6 +12,7 @@ import shop from './routes/shop.js';
 import admin from './routes/admin.js';
 import addcart from './routes/addcart.js';
 import showcart from './routes/showcart.js';
+import updatecart from './routes/updatecart.js';
 
 // Setup express
 const app = express();
@@ -48,6 +49,7 @@ app.use('/shop', shop);
 app.use('/admin', admin);
 app.use('/addcart', addcart);
 app.use('/showcart', showcart);
+app.use('/updatecart', updatecart);
 
 // Setup server on port
 app.listen(3001, () => {
