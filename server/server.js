@@ -4,6 +4,7 @@ import session from 'express-session';
 import bodyParser from 'body-parser';
 import order from './routes/order.js';
 import loaddata from './routes/loaddata.js';
+import listprod from './routes/listprod.js';
 import listorder from './routes/listorder.js';
 import login from './routes/login.js';
 import logout from './routes/logout.js';
@@ -37,6 +38,7 @@ app.use(
 // Setup routes
 app.use('/order', order);
 app.use('/loaddata', loaddata);
+app.use('/listprod', listprod);
 app.use('/listorder', listorder);
 app.use('/login', login);
 app.use('/logout', logout);

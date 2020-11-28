@@ -1,6 +1,56 @@
-ul{
+$background :  rgb(36, 36, 32);
+$links: rgb(71, 71, 60);
+$money: #30663b;
+$onHover: rgb(153, 137, 97);
+$logo: rgb(163, 134, 60);
 
-  padding: 0px;
-  list-style-type: none;
+.rightLinks li{
+  margin-left:20px;
 }
 
+.logo a{
+  color: $logo;
+  font-weight:bold;
+  
+}
+
+.rightLinks a{
+  color: #cfceaa;
+}
+
+.logo a:hover{
+  color: $logo;
+  font-weight:bold;
+  text-shadow: 2px 2px 2px rgb(33, 80, 80);
+}
+
+.emojis {
+  opacity: 0.6;
+}
+
+.tallLetter{
+  font-size: large;
+  font-weight: bold;
+  
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+  text-decoration: none;
+  text-decoration: none;
+  padding: 20px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $background;
+  box-shadow: 0px 1px 3px $onHover;
+}
+
+
+li{
+  text-decoration: none;
+  
+  float: left;
+}
