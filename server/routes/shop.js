@@ -10,11 +10,13 @@ router.get('/', function (req, res) {
     return;
   }
 
-  getCustomer(req.session.authenticatedUser).then((customer) => {
-    res.send(customer.userId);
-  }).catch(() => {
-    res.end();
-  });
+  getCustomer(req.session.authenticatedUser)
+    .then((customer) => {
+      res.send(customer.userId);
+    })
+    .catch(() => {
+      res.end();
+    });
 });
 
 function getCustomer(customerId) {
