@@ -48,7 +48,7 @@ function ListProduct() {
 		<div>
 			<h1>Search for Products</h1>
 			<input
-				key="random1"
+				key='random1'
 				value={keyword}
 				placeholder={'search products'}
 				onChange={(e) => setKeyword(e.target.value)}
@@ -63,7 +63,7 @@ function ListProduct() {
 								<th>Product ID</th>
 								<th>Product Name</th>
 								<th>Price</th>
-								<th className="noBackground"></th>
+								<th className='noBackground'></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -86,7 +86,7 @@ function ListProduct() {
 
 										<td>
 											<button value={index} onClick={addCart}>
-												Add To Cart
+												🛒
 											</button>
 										</td>
 									</tr>
