@@ -8,11 +8,6 @@ router.get('/', (req, res) => {
 	/** Create connection, and validate that it connected successfully **/
 	const keyword = '%' + req.query.keyword + '%';
 
-	// if (!req.session.authenticatedUser) {
-	//     res.end();
-	//     return;
-	//   }
-
 	const getData = async () => {
 		try {
 			//get db connection

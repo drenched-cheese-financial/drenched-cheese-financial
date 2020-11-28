@@ -8,19 +8,21 @@ function ListOrder() {
 
 	useEffect(() => {
 		// Fetch the data on load
-		axios.get('http://localhost:3001/listorder').then((response) => {
-			setOrderList(response.data);
-		});
+		axios
+			.get('http://localhost:3001/listorder', { withCredentials: true })
+			.then((response) => {
+				setOrderList(response.data);
+			});
 	}, []);
 
 	return (
 		<div>
 			<h1>Orders</h1>
 
-			{typeof orderList !== 'undefined'
+			{orderList
 				? orderList.map((value, index) => {
 						return (
-							<div key={index} className="tablesDiv">
+							<div key={index} className='tablesDiv'>
 								<table>
 									<thead>
 										<tr>
@@ -41,7 +43,7 @@ function ListOrder() {
 										</tr>
 									</tbody>
 								</table>
-								<table className="productTable">
+								<table className='productTable'>
 									<thead>
 										<tr>
 											<th>Product ID</th>

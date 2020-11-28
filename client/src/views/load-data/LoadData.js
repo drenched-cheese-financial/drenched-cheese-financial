@@ -20,7 +20,7 @@ function LoadData() {
       </div>
     );
   } else {
-    return <p>Data is loading... This make take some time, please wait.</p>;
+    return <p>Data is loading... This may take some time, please wait.</p>;
   }
 }
 
