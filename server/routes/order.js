@@ -215,9 +215,13 @@ async function updateInventory(conn, products) {
     let transaction = new sql.Transaction(conn);
     transaction.begin(sql.REPEATABLE_READ, async () => {
       for (var product of products) {
-        let prevInventory = await getProductInventory(conn, product.id);
+        let result = await transaction
+          .request()
+          .input('productId', sql.Int, product.id)
+          .query(`SELECT quantity FROM productinventory WHERE productId = @productId AND warehouseId = 1`);
+        let prevInventory = result.recordset[0].quantity;
         let newInventory = prevInventory - product.quantity;
-  
+
         if (newInventory < 0) {
           transaction.rollback();
           update.push({
@@ -231,8 +235,12 @@ async function updateInventory(conn, products) {
           resolve(update);
           return;
         }
-  
-        await updateProductInventory(conn, product.id, newInventory);
+
+        await transaction
+          .request()
+          .input('productId', sql.Int, product.id)
+          .input('quantity', sql.Int, newInventory)
+          .query(`UPDATE productinventory SET quantity = @quantity WHERE productId = @productId AND warehouseId = 1`);
         update.push({
           success: true,
           productId: product.id,
@@ -242,35 +250,10 @@ async function updateInventory(conn, products) {
           newInventory: newInventory,
         });
       }
-  
+
       transaction.commit();
       resolve(update);
     });
-  })
-}
-
-function getProductInventory(conn, productId) {
-  return new Promise((resolve) => {
-    conn
-      .request()
-      .input('productId', sql.Int, productId)
-      .query(`SELECT quantity FROM productinventory WHERE productId = @productId AND warehouseId = 1`)
-      .then((result) => {
-        resolve(result.recordset[0].quantity);
-      });
-  });
-}
-
-function updateProductInventory(conn, productId, newInventory) {
-  return new Promise((resolve) => {
-    conn
-      .request()
-      .input('productId', sql.Int, productId)
-      .input('quantity', sql.Int, newInventory)
-      .query(`UPDATE productinventory SET quantity = @quantity WHERE productId = @productId AND warehouseId = 1`)
-      .then(() => {
-        resolve();
-      });
   });
 }
 
