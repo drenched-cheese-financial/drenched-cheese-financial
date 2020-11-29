@@ -21,7 +21,7 @@ function Main() {
       <Route exact path='/loaddata' component={LoadData} />
       <Route exact path='/checkout' component={Checkout} />
       <Route exact path='/order/:customerId' component={Order} />
-      <Route exact path='/login' component={Login} />
+      <Route exact path='/login/:comingFrom' component={Login} />
       <Route exact path='/logout' component={Logout} />
       <Route exact path='/admin' component={Admin} />
       <Route exact path='/customer' component={CustomerInfo} />
