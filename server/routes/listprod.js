@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
 				.query(
 					`SELECT productID, productName, productPrice FROM product WHERE productName LIKE @pname`
 				);
-			// console.log(JSON.stringify(productResults));
 
 			res.write(JSON.stringify(productResults));
 			res.end();

@@ -13,10 +13,11 @@ function ListProduct() {
 
 	useEffect(() => {
 		// Fetch the data on load
-
-		axios.get('http://localhost:3001/listprod?keyword=').then((response) => {
-			setProductList(response.data.recordsets[0]);
-		});
+		axios
+			.get('http://localhost:3001/listprod?keyword=', { withCredentials: true })
+			.then((response) => {
+				setProductList(response.data.recordsets[0]);
+			});
 	}, []);
 
 	useEffect(() => {
@@ -27,7 +28,9 @@ function ListProduct() {
 
 	function search() {
 		axios
-			.get(`http://localhost:3001/listprod?keyword=${keyword}`)
+			.get(`http://localhost:3001/listprod?keyword=${keyword}`, {
+				withCredentials: true,
+			})
 			.then((response) => {
 				setProductList(response);
 			});
