@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './order.scss';
 
-function OrderTable(props) {
+function OrderSummaryTable(props) {
   const [tableData, setTableData] = useState([]);
 
   const generateTableData = () => {
@@ -38,4 +38,4 @@ function OrderTable(props) {
   );
 }
 
-export default OrderTable;
+export default OrderSummaryTable;
