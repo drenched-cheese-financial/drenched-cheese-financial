@@ -6,7 +6,7 @@ import Box from '../../assets/images/box.png';
 import './order.scss';
 
 function Order() {
-	let { customerId } = useParams();
+	const { customerId } = useParams();
 	const [order, setOrder] = useState();
 	const [orderJSX, setOrderJSX] = useState();
 
@@ -26,7 +26,7 @@ function Order() {
 					<div>
 						<OrderTable products={order.products}></OrderTable>
 						<p>Order completed. Will be shipped soon...</p>
-						<img src={Box} />
+						<img alt='box' src={Box} />
 						<p>
 							Order reference number:{' '}
 							<span className='enlighten'>{order.id}</span>

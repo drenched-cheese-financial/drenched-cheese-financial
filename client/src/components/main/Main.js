@@ -26,7 +26,7 @@ function Main() {
 			<Route exact path='/admin' component={Admin} />
 			<Route exact path='/customer' component={CustomerInfo} />
 			<Route exact path='/showcart' component={ShowCart} />
-			<Route exact path='/product' component={SingleProduct} />
+			<Route exact path='/product/:productId' component={SingleProduct} />
 		</Switch>
 	);
 }

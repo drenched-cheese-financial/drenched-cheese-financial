@@ -1,93 +1,84 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './singleProduct.scss';
-import { useHistory } from 'react-router-dom';
 
 function SingleProduct() {
-	const history = useHistory();
-	const [product, setProduct] = useState();
+  const { productId } = useParams();
+  const history = useHistory();
+  const [product, setProduct] = useState();
 
-	function addCart() {
-		axios
-			.post(
-				`http://localhost:3001/addcart`,
-				{
-					id: product.productId,
-					name: product.productName,
-					price: product.productPrice,
-				},
-				{ withCredentials: true }
-			)
-			.then(() => {
-				history.push('/showcart');
-			});
-	}
+  const fetchProduct = () => {
+    let params = new URLSearchParams('id=' + productId);
+    axios
+      .get('http://localhost:3001/product?' + params, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setProduct(res.data);
+      });
+  };
 
-	const fetchProduct = () => {
-		let params = new URLSearchParams(document.location.search.substring(1));
-		let productId = params.get('id');
+  const handleContinue = () => {
+    history.push('/listprod');
+  };
 
-		axios
-			.get('http://localhost:3001/product?id=' + productId, {
-				withCredentials: true,
-			})
-			.then((res) => {
-				setProduct(res.data);
-			});
-	};
+  const handleAddCart = () => {
+    axios
+      .post(
+        `http://localhost:3001/addcart`,
+        {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+        },
+        { withCredentials: true }
+      )
+      .then(() => {
+        history.push('/showcart');
+      });
+  };
 
-	function continueShopping() {
-		history.push('/listprod');
-	}
+  useEffect(fetchProduct, [productId]);
 
-	useEffect(fetchProduct, [history]);
-
-	return (
-		<div>
-			{product ? (
-				<div>
-					<h1>{product.productName}</h1>
-					{product.productImageURL ? (
-						<img
-							alt={product.productImage}
-							src={`./products/${product.productImageURL}`}
-						/>
-					) : (
-						<img alt='photos coming soon' />
-					)}
-					{product.productImage ? (
-						<img
-							alt={product.productImage}
-							src={`http://localhost:3001/displayimage?id=${product.productId}`}
-						/>
-					) : (
-						''
-					)}
-
-					<table>
-						<thead>
-							<tr>
-								<th>ID </th>
-
-								<td> {product.productId}</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th>Price </th>
-								<td>${product.productPrice.toFixed(2)}</td>
-							</tr>
-						</tbody>
-					</table>
-					<br />
-					<button onClick={continueShopping}>Continue Shopping</button>
-					<button onClick={addCart}>Add to Cart 🛒</button>
-				</div>
-			) : (
-				' '
-			)}
-		</div>
-	);
+  return (
+    <div>
+      {product ? (
+        <div>
+          <h1>{product.name}</h1>
+          {product.imageURL ? (
+            <img alt={product.image} src={`/products/${product.imageURL}`} />
+          ) : (
+            <img alt='Photo not found.' />
+          )}
+          {product.image ? (
+            <img alt={product.image} src={`http://localhost:3001/displayimage?id=${product.id}`} />
+          ) : (
+            <img alt='Photo not found.' />
+          )}
+          <table>
+            <thead>
+              <tr>
+                <th>ID </th>
+                <td>{product.id}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Price </th>
+                <td>${product.price.toFixed(2)}</td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <button onClick={handleContinue}>Continue Shopping</button>
+          <button onClick={handleAddCart}>Add to Cart 🛒</button>
+        </div>
+      ) : (
+        <p>Product not found.</p>
+      )}
+    </div>
+  );
 }
 
 export default SingleProduct;

@@ -4,42 +4,22 @@ import dbConfig from '../dbconfig.js';
 
 const router = express.Router();
 
-router.get('/', function (req, res, next) {
-	let id = req.query.id;
-	let idVal = parseInt(id);
-	if (isNaN(idVal)) {
-		res.end();
-		return;
-	}
+router.get('/', function (req, res) {
+  (async function () {
+    try {
+      let pool = await sql.connect(dbConfig);
 
-	(async function () {
-		try {
-			let pool = await sql.connect(dbConfig);
+      let result = await pool
+        .request()
+        .input('pid', sql.Int, req.query.id)
+        .query('SELECT productImage FROM product WHERE productId=@pid');
 
-			('// TODO: Modify SQL to retrieve productImage given productId');
-
-			let result = await pool
-				.request()
-				.input('pid', sql.Int, idVal)
-				.query('  SELECT productImage FROM product WHERE productId=@pid ');
-
-			if (result.recordset.length === 0) {
-				console.log('No image record');
-				res.end();
-				return;
-			} else {
-				let productImage = result.recordset[0].productImage;
-
-				res.send(productImage);
-			}
-
-			res.end();
-		} catch (err) {
-			console.dir(err);
-			res.write(err + '');
-			res.end();
-		}
-	})();
+      res.send(result.recordset[0].productImage);
+    } catch (err) {
+      console.dir(err);
+      res.end();
+    }
+  })();
 });
 
 export default router;
