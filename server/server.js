@@ -11,29 +11,32 @@ import login from './routes/login.js';
 import logout from './routes/logout.js';
 import shop from './routes/shop.js';
 import admin from './routes/admin.js';
+import addcart from './routes/addcart.js';
+import showcart from './routes/showcart.js';
+import updatecart from './routes/updatecart.js';
 
 // Setup express
 const app = express();
 app.use(
-  cors({
-    origin: 'http://localhost:3000',
-    credentials: true,
-  })
+	cors({
+		origin: 'http://localhost:3000',
+		credentials: true,
+	})
 );
 app.use(bodyParser.json());
 
 // Setup session variable
 app.use(
-  session({
-    secret: 'COSC 304 Rules!',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      httpOnly: false,
-      secure: false,
-      maxAge: 600000,
-    },
-  })
+	session({
+		secret: 'COSC 304 Rules!',
+		resave: false,
+		saveUninitialized: false,
+		cookie: {
+			httpOnly: false,
+			secure: false,
+			maxAge: 600000,
+		},
+	})
 );
 
 // Setup routes
@@ -46,6 +49,9 @@ app.use('/login', login);
 app.use('/logout', logout);
 app.use('/shop', shop);
 app.use('/admin', admin);
+app.use('/addcart', addcart);
+app.use('/showcart', showcart);
+app.use('/updatecart', updatecart);
 
 // Setup server on port
 app.listen(3001, () => {

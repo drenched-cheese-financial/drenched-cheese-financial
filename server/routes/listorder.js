@@ -1,7 +1,8 @@
 import express from 'express';
 import sql from 'mssql';
 import dbConfig from '../dbconfig.js';
-
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 const router = express.Router();
 
 router.get('/', (req, res) => {
