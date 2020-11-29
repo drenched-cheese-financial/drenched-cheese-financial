@@ -18,25 +18,25 @@ import updatecart from './routes/updatecart.js';
 // Setup express
 const app = express();
 app.use(
-	cors({
-		origin: 'http://localhost:3000',
-		credentials: true,
-	})
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
 );
 app.use(bodyParser.json());
 
 // Setup session variable
 app.use(
-	session({
-		secret: 'COSC 304 Rules!',
-		resave: false,
-		saveUninitialized: false,
-		cookie: {
-			httpOnly: false,
-			secure: false,
-			maxAge: 600000,
-		},
-	})
+  session({
+    secret: 'COSC 304 Rules!',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: false,
+      secure: false,
+      maxAge: 600000,
+    },
+  })
 );
 
 // Setup routes
