@@ -1,56 +1,31 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import ValidationForm from '../../components/validation/ValidationForm';
 
 function Login() {
+  const { comingFrom } = useParams();
   const history = useHistory();
-  const [credentials, setCredentials] = useState({
-    username: '',
-    password: '',
-  });
-  const [errorJSX, setErrorJSX] = useState();
+  const [showError, setShowError] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    axios
-      .post(
-        'http://localhost:3001/login',
-        {
-          username: credentials.username,
-          password: credentials.password,
-        },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        let validated = res.data;
-        if (validated) {
-          history.push('/');
-        } else {
-          setErrorJSX(<p>Failed to connect using entered credentials.</p>);
-        }
-      });
+  const handleValidate = () => {
+    history.push('/');
   };
 
-  const handleChange = (event) => {
-    setCredentials((credentials) => ({
-      ...credentials,
-      [event.target.name]: event.target.value,
-    }));
+  const fetchError = () => {
+    let params = new URLSearchParams('route=' + comingFrom);
+    setShowError(params.get('route') === 'custInfo');
   };
+
+  useEffect(fetchError, [comingFrom]);
 
   return (
     <div>
-      <h1>Enter your credentials to login:</h1>
-      {errorJSX}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username: <input type='text' name='username' value={credentials.username} onChange={handleChange} />
-          <br />
-          Password: <input type='password' name='password' value={credentials.password} onChange={handleChange} />
-          <br />
-        </label>
-        <input type='submit' value='Login' />
-      </form>
+      <h1>Customer Login</h1>
+      {showError && (
+        <h6>Credentials required for access to customer info page</h6>
+      )}
+
+      <ValidationForm onValidate={handleValidate} />
     </div>
   );
 }
