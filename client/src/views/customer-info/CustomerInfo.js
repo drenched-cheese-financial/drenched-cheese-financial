@@ -25,7 +25,7 @@ function CustomerInfo() {
     return (
       <div>
         <h3>Customer Profile</h3>
-        <table border="1">
+        <table border='1'>
           <tbody>
             <tr>
               <th>Id</th>

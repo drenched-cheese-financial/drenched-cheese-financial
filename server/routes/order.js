@@ -144,7 +144,9 @@ function getCustomer(conn, customerId) {
     conn
       .request()
       .input('customerId', sql.Int, customerId)
-      .query('SELECT customerId AS id, firstName, lastName FROM customer WHERE customerId = @customerId')
+      .query(
+        'SELECT customerId AS id, firstName, lastName FROM customer WHERE customerId = @customerId'
+      )
       .then((result) => {
         resolve(result.recordset[0]);
       })

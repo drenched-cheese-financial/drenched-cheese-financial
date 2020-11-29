@@ -4,11 +4,16 @@ import session from 'express-session';
 import bodyParser from 'body-parser';
 import order from './routes/order.js';
 import loaddata from './routes/loaddata.js';
+import listprod from './routes/listprod.js';
 import listorder from './routes/listorder.js';
 import customer from './routes/customer.js';
 import login from './routes/login.js';
 import logout from './routes/logout.js';
 import shop from './routes/shop.js';
+import admin from './routes/admin.js';
+import addcart from './routes/addcart.js';
+import showcart from './routes/showcart.js';
+import updatecart from './routes/updatecart.js';
 import ship from './routes/ship.js';
 
 // Setup express
@@ -38,11 +43,16 @@ app.use(
 // Setup routes
 app.use('/order', order);
 app.use('/loaddata', loaddata);
+app.use('/listprod', listprod);
 app.use('/listorder', listorder);
 app.use('/customer', customer);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/shop', shop);
+app.use('/admin', admin);
+app.use('/addcart', addcart);
+app.use('/showcart', showcart);
+app.use('/updatecart', updatecart);
 app.use('/ship', ship);
 
 // Setup server on port
