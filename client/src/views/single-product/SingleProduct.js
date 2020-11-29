@@ -53,7 +53,7 @@ function SingleProduct() {
 							src={`./products/${product.productImageURL}`}
 						/>
 					) : (
-						<img alt="photos coming soon' />
+						<img alt='photos coming soon' />
 					)}
 					{product.productImage ? (
 						<img
