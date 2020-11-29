@@ -10,15 +10,12 @@ function Order() {
 	const [order, setOrder] = useState();
 	const [orderJSX, setOrderJSX] = useState();
 
-	const fetchOrder = () => {
-		let params = new URLSearchParams('customerId=' + customerId);
-
-		axios
-			.get('http://localhost:3001/order?' + params, { withCredentials: true })
-			.then((res) => {
-				setOrder(res.data);
-			});
-	};
+  const completeOrder = () => {
+    let params = new URLSearchParams('customerId=' + customerId);
+    axios.get('http://localhost:3001/order?' + params, { withCredentials: true }).then((res) => {
+      setOrder(res.data);
+    });
+  };
 
 	const renderOrder = () => {
 		if (order) {
@@ -51,10 +48,10 @@ function Order() {
 		} else {
 			setOrderJSX(<div>Failed to load order!</div>);
 		}
-	};
-
-	useEffect(fetchOrder, [customerId]);
-	useEffect(renderOrder, [order]);
+  };
+  
+  useEffect(completeOrder, [customerId]);
+  useEffect(renderOrder, [order]);
 
 	return (
 		<div>
