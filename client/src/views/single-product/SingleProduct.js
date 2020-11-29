@@ -46,15 +46,14 @@ function SingleProduct() {
       {product ? (
         <div>
           <h1>{product.name}</h1>
-          {product.imageURL ? (
-            <img alt='product example' src={`/products/${product.imageURL}`} />
-          ) : (
-            <img alt='failed to load' />
+          {product.imageURL && (
+            <img alt="product example" src={`/products/${product.imageURL}`} />
           )}
-          {product.image ? (
-            <img alt='product example' src={`http://localhost:3001/displayimage?id=${product.id}`} />
-          ) : (
-            <img alt='failed to load' />
+          {product.image && (
+            <img
+              alt="product example"
+              src={`http://localhost:3001/displayimage?id=${product.id}`}
+            />
           )}
           <table>
             <thead>
