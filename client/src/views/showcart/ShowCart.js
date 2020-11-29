@@ -59,7 +59,7 @@ function ShowCart() {
 		let rowIndex = Number(event.target.value);
 
 		setProductList((productList) => {
-			productList.filter((p, index) => {
+			return productList.filter((p, index) => {
 				return index !== rowIndex;
 			});
 		});
