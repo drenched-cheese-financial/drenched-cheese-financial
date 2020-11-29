@@ -32,7 +32,7 @@ a:hover {
   color: $onHover;
 }
 
-button{
+button,input{
 
   color:$primary;
   background-color: $backgroundPrimary;
@@ -45,12 +45,16 @@ button{
   
 }
 
-button:hover{
-  transform: translateY(4px);
-  transform: translateX(4px);
+button:hover,input:hover{
+
   background-color: $backgroundSecondary;
   box-shadow: 2px 2px 2px $onHover;
   cursor: pointer;
+}
+
+button:hover{
+  transform: translateY(4px);
+  transform: translateX(4px);
 }
 
 button:active{
