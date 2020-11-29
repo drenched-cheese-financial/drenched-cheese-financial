@@ -18,8 +18,7 @@ Viewing pictures of the band and event dates
 To run the website locally, complete the following steps:
 1. [Install Node.js](https://nodejs.org/en/) (version v14.15.1)
 2. Clone this repo locally
-3. Open the repo in VS Code
-4. Open two terminal windows:
+3. Open two terminal windows:
     1. In the first window do the following commands:
     ```cmd
     cd client
@@ -32,9 +31,9 @@ To run the website locally, complete the following steps:
     npm install
     npm start
     ```
-5. Connect to UBCO network via VPN
-6. Go to http://localhost:3000
-7. Profit
+4. Connect to UBCO network via VPN
+5. Go to http://localhost:3000
+6. Profit
 
 ## Our Team
 Jean-Philippe Abadir, Jaden Balogh, Shawn Mountenay, Jordan Pike
