@@ -11,17 +11,21 @@ function OrderShipment(props) {
       if (entry.success) {
         entries.push(
           <p key={entry.productId}>
-            Successfully ordered product <span className='enlighten'>{entry.productId}</span>:{' '}
-            <span className='enlighten'>{entry.productName}</span> (x<span className='enlighten'>{entry.quantity}</span>
-            ) | Existing Stock: <span className='enlighten'>{entry.prevInventory}</span> | New Stock:{' '}
-            <span className='enlighten'>{entry.newInventory}</span>
+            Successfully ordered product{' '}
+            <span className='enlighten'>{entry.productId}</span>:{' '}
+            <span className='enlighten'>{entry.productName}</span> (x
+            <span className='enlighten'>{entry.quantity}</span>) | Existing
+            Stock: <span className='enlighten'>{entry.prevInventory}</span> |
+            New Stock: <span className='enlighten'>{entry.newInventory}</span>
           </p>
         );
       } else {
         entries.push(
           <p key={entry.productId}>
-            Failed to order product <span className='enlighten'>{entry.productId}</span>:{' '}
-            <span className='enlighten'>{entry.productName}</span>. Insufficient inventory in warehouse.
+            Failed to order product{' '}
+            <span className='enlighten'>{entry.productId}</span>:{' '}
+            <span className='enlighten'>{entry.productName}</span>. Insufficient
+            inventory in warehouse.
           </p>
         );
         success = false;
@@ -42,9 +46,8 @@ function OrderShipment(props) {
 
   return (
     <div>
-      <h2>Shipment Details</h2>
+      <h1>Shipment Details</h1>
       <div>{updateJSX}</div>
-      <hr />
     </div>
   );
 }

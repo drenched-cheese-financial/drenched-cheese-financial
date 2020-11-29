@@ -15,9 +15,11 @@ function Order() {
 
   const completeOrder = () => {
     let params = new URLSearchParams('customerId=' + customerId);
-    axios.get('http://localhost:3001/order?' + params, { withCredentials: true }).then((res) => {
-      setOrder(res.data);
-    });
+    axios
+      .get('http://localhost:3001/order?' + params, { withCredentials: true })
+      .then((res) => {
+        setOrder(res.data);
+      });
   };
 
   const renderOrder = () => {
@@ -58,10 +60,9 @@ function Order() {
   return (
     <div>
       <h1>Your Order Summary</h1>
-      <hr />
       {orderJSX}
       {errorJSX}
-      <hr />
+      <br />
       {shipmentJSX}
       <button onClick={handleFinish}>Finish</button>
     </div>
