@@ -8,7 +8,7 @@ function Order() {
   const [order, setOrder] = useState();
   const [orderJSX, setOrderJSX] = useState();
 
-  const fetchOrder = () => {
+  const completeOrder = () => {
     let params = new URLSearchParams('customerId=' + customerId);
     axios.get('http://localhost:3001/order?' + params, { withCredentials: true }).then((res) => {
       setOrder(res.data);
@@ -36,7 +36,7 @@ function Order() {
     }
   };
 
-  useEffect(fetchOrder, [customerId]);
+  useEffect(completeOrder, [customerId]);
   useEffect(renderOrder, [order]);
 
   return (

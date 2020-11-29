@@ -7,12 +7,10 @@ const router = express.Router();
 router.get('/', (req, res) => {
   try {
     let customerId = req.query.customerId;
-    let productList = null;
-    if (req.session.productList && req.session.productList.length > 0) {
-      productList = req.session.productList;
-    }
+    let productList = req.session.productList;
 
     order(customerId, productList).then((summary) => {
+      req.session.productList = [];
       res.send(summary);
     });
   } catch (err) {
@@ -25,7 +23,7 @@ async function order(customerId, productList) {
   try {
     let order = {};
 
-    if (!productList) {
+    if (!productList || productList.length === 0) {
       order.err = 'The shopping cart is empty.';
       return order;
     }
