@@ -34,7 +34,7 @@ a:hover {
 }
 
 button{
-
+  
   color:$primary;
   background-color: $backgroundPrimary;
   padding: 5px 10px;
@@ -52,6 +52,7 @@ button:hover{
   background-color: $backgroundSecondary;
   box-shadow: 2px 2px 2px $onHover;
   cursor: pointer;
+  filter:sepia(20%);
 }
 
 button:active{
