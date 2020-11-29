@@ -47,11 +47,14 @@ function SingleProduct() {
 			{product ? (
 				<div>
 					<h1>{product.productName}</h1>
-
-					<img
-						alt={product.productImage}
-						src={`./products/${product.productImageURL}`}
-					/>
+					{product.productImageURL ? (
+						<img
+							alt={product.productImage}
+							src={`./products/${product.productImageURL}`}
+						/>
+					) : (
+						<img alt="photos coming soon' />
+					)}
 					{product.productImage ? (
 						<img
 							alt={product.productImage}
