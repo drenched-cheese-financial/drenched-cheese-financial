@@ -14,7 +14,7 @@ function CustomerInfo() {
       })
       .then((response) => {
         if (response.data === 'unauthenticated') {
-          history.push('/login');
+          history.push('/login/custInfo');
         } else {
           setCustomerInfo(response.data.recordset[0]);
         }
