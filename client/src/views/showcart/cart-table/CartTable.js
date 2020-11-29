@@ -5,7 +5,7 @@ function CartTable(props) {
 
 	const generateTableData = () => {
 		let generatedData = [];
-		console.log(props.products);
+
 		for (var i = 0; i < props.products.length; i++) {
 			let product = props.products[i];
 			generatedData.push(
@@ -24,7 +24,9 @@ function CartTable(props) {
 					<td>${product.price.toFixed(2)}</td>
 					<td>${(product.price * product.quantity).toFixed(2)}</td>
 					<td>
-						<button onClick={props.onDelete}>x</button>
+						<button value={i} onClick={props.onDelete}>
+							x
+						</button>
 					</td>
 				</tr>
 			);

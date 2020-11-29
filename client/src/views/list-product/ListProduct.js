@@ -8,14 +8,22 @@ function ListProduct() {
 	const history = useHistory();
 	const [productList, setProductList] = useState();
 	const [keyword, setKeyword] = useState('');
-	let productInfoString = '/product?id=';
+	const [productPageProduct, setProductPageProduct] = useState();
+	// let productInfoString = '/product?id=';
 
 	useEffect(() => {
 		// Fetch the data on load
+
 		axios.get('http://localhost:3001/listprod?keyword=').then((response) => {
-			setProductList(response);
+			setProductList(response.data.recordsets[0]);
 		});
 	}, []);
+
+	useEffect(() => {
+		productPageProduct
+			? history.push('/product?id=' + productPageProduct)
+			: console.log('nada');
+	}, [history, productPageProduct]);
 
 	function search() {
 		axios
@@ -26,7 +34,7 @@ function ListProduct() {
 	}
 
 	function addCart(event) {
-		let product = productList.data.recordsets[0][event.target.value];
+		let product = productList[event.target.value];
 
 		axios
 			.post(
@@ -39,7 +47,6 @@ function ListProduct() {
 				{ withCredentials: true }
 			)
 			.then(() => {
-				console.log('we hereasdfasdfsadf');
 				history.push('/showcart');
 			});
 	}
@@ -55,7 +62,7 @@ function ListProduct() {
 			/>
 
 			<button onClick={search}>Search</button>
-			{typeof productList !== 'undefined' ? (
+			{productList ? (
 				<div>
 					<table>
 						<thead>
@@ -67,7 +74,7 @@ function ListProduct() {
 							</tr>
 						</thead>
 						<tbody>
-							{productList.data.recordsets[0].map((value, index) => {
+							{productList.map((value, index) => {
 								return (
 									<tr
 										key={index}
@@ -76,10 +83,15 @@ function ListProduct() {
 										<td>{value.productID}</td>
 
 										<td>
-											<a href={productInfoString.concat(value.productID)}>
-												{' '}
-												{value.productName}{' '}
-											</a>
+											<span
+												className='product'
+												value={value.productID}
+												onClick={() => {
+													setProductPageProduct(value.productID);
+												}}
+											>
+												{value.productName}
+											</span>
 										</td>
 
 										<td>{'$' + value.productPrice.toFixed(2)}</td>

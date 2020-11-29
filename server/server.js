@@ -14,6 +14,7 @@ import admin from './routes/admin.js';
 import addcart from './routes/addcart.js';
 import showcart from './routes/showcart.js';
 import updatecart from './routes/updatecart.js';
+import product from './routes/product.js';
 
 // Setup express
 const app = express();
@@ -52,8 +53,9 @@ app.use('/admin', admin);
 app.use('/addcart', addcart);
 app.use('/showcart', showcart);
 app.use('/updatecart', updatecart);
+app.use('/product', product);
 
 // Setup server on port
 app.listen(3001, () => {
-  console.log('Server started on port 3001');
+	console.log('Server started on port 3001');
 });
