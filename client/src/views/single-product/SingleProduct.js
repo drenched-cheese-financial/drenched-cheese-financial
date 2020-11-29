@@ -7,16 +7,15 @@ function SingleProduct() {
 	const history = useHistory();
 	const [product, setProduct] = useState();
 
-	function addCart(event) {
-		let prod = event.target.value;
-		console.log('prod is: ' + prod);
+	function addCart() {
+		console.log(product + ' is prod');
 		axios
 			.post(
 				`http://localhost:3001/addcart`,
 				{
-					id: prod.productId,
-					name: prod.productName,
-					price: prod.productPrice,
+					id: product.productId,
+					name: product.productName,
+					price: product.productPrice,
 				},
 				{ withCredentials: true }
 			)
@@ -35,7 +34,7 @@ function SingleProduct() {
 			})
 			.then((res) => {
 				setProduct(res.data);
-			})
+			});
 	};
 
 	function continueShopping() {
@@ -49,10 +48,20 @@ function SingleProduct() {
 			{product ? (
 				<div>
 					<h1>{product.productName}</h1>
+
 					<img
 						alt={product.productImage}
-						src={`localhost:3001/displayimage?id=1`}
+						src={`./products/${product.productImageURL}`}
 					/>
+					{product.productImage ? (
+						<img
+							alt={product.productImage}
+							src={`http://localhost:3001/displayimage?id=${product.productId}`}
+						/>
+					) : (
+						''
+					)}
+
 					<table>
 						<thead>
 							<tr>
@@ -70,9 +79,7 @@ function SingleProduct() {
 					</table>
 					<br />
 					<button onClick={continueShopping}>Continue Shopping</button>
-					<button value={product} onClick={addCart}>
-						Add to Cart 🛒
-					</button>
+					<button onClick={addCart}>Add to Cart 🛒</button>
 				</div>
 			) : (
 				' '
