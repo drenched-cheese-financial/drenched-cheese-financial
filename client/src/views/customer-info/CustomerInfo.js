@@ -24,13 +24,9 @@ function CustomerInfo() {
   if (customerInfo) {
     return (
       <div>
-        <h3>Customer Profile</h3>
+        <h1>Customer Profile</h1>
         <table border='1'>
           <tbody>
-            <tr>
-              <th>Id</th>
-              <td>{customerInfo.customerId}</td>
-            </tr>
             <tr>
               <th>First Name</th>
               <td>{customerInfo.firstName}</td>
@@ -38,6 +34,10 @@ function CustomerInfo() {
             <tr>
               <th>Last Name</th>
               <td>{customerInfo.lastName}</td>
+            </tr>
+            <tr>
+              <th>Id</th>
+              <td>{customerInfo.customerId}</td>
             </tr>
             <tr>
               <th>Email</th>
