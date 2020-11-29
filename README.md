@@ -16,7 +16,7 @@ Viewing pictures of the band and event dates
 
 ## Installation Instructions
 To run the website locally, complete the following steps:
-1. [Install Node.js](https://nodejs.org/en/)
+1. [Install Node.js](https://nodejs.org/en/) (version v14.15.1)
 2. Clone this repo locally
 3. Open the repo in VS Code
 4. Open two terminal windows:
