@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import OrderTable from './OrderTable';
+import Box from '../../assets/images/box.png';
+import './order.scss';
 
 function Order() {
-  let { customerId } = useParams();
+  const { customerId } = useParams();
   const [order, setOrder] = useState();
   const [orderJSX, setOrderJSX] = useState();
 
-  const fetchOrder = () => {
+  const completeOrder = () => {
     let params = new URLSearchParams('customerId=' + customerId);
     axios.get('http://localhost:3001/order?' + params, { withCredentials: true }).then((res) => {
       setOrder(res.data);
@@ -23,10 +25,21 @@ function Order() {
         setOrderJSX(
           <div>
             <OrderTable products={order.products}></OrderTable>
-            <p>Order completed. Product will be shipped shortly.</p>
-            <p>Order reference number: {order.id}</p>
+            <p>Order completed. Will be shipped soon...</p>
+            <img alt='box' src={Box} />
             <p>
-              Shipped to {order.customer.firstName} {order.customer.lastName} (id {order.customer.id})
+              Order reference number: <span className='enlighten'>{order.id}</span>
+            </p>
+            <p>
+              Customer id: &nbsp;
+              <span className='enlighten'>{order.customer.id} </span>
+            </p>
+            <p>
+              Shipped to{' '}
+              <span className='enlighten'>
+                {order.customer.firstName} {order.customer.lastName}{' '}
+              </span>
+              <br />{' '}
             </p>
           </div>
         );
@@ -36,7 +49,7 @@ function Order() {
     }
   };
 
-  useEffect(fetchOrder, [customerId]);
+  useEffect(completeOrder, [customerId]);
   useEffect(renderOrder, [order]);
 
   return (

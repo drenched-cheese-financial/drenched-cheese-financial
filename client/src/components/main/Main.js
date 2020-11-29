@@ -11,6 +11,7 @@ import Login from '../../views/login/Login';
 import Logout from '../../views/logout/Logout';
 import CustomerInfo from '../../views/customer-info/CustomerInfo';
 import Admin from '../../views/admin/Admin';
+import SingleProduct from '../../views/single-product/SingleProduct';
 
 function Main() {
   return (
@@ -27,6 +28,7 @@ function Main() {
       <Route exact path='/admin' component={Admin} />
       <Route exact path='/customer' component={CustomerInfo} />
       <Route exact path='/showcart' component={ShowCart} />
+      <Route exact path='/product/:productId' component={SingleProduct} />
     </Switch>
   );
 }

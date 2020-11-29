@@ -5,35 +5,32 @@ import dbConfig from '../dbconfig.js';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-	/** Create connection, and validate that it connected successfully **/
-	const keyword = '%' + req.query.keyword + '%';
-
-	const getData = async () => {
-		try {
-			//get db connection
-			let pool = await sql.connect(dbConfig);
-
-			let productResults = await pool
-				.request()
-				.input('pname', sql.VarChar, keyword)
-				.query(
-					`SELECT productID, productName, productPrice FROM product WHERE productName LIKE @pname`
-				);
-
-			res.write(JSON.stringify(productResults));
-			res.end();
-		} catch {
-			(error) => {
-				console.log(error);
-				res.write(error);
-				console.dir(err);
-
-				res.end();
-			};
-		}
-	};
-
-	getData();
+  const filter = '%' + req.query.filter + '%';
+  getFilteredProducts(filter)
+    .then((products) => {
+      res.send(products);
+    })
+    .catch((err) => {
+      console.dir(err);
+      res.end();
+    });
 });
+
+const getFilteredProducts = async (filter) => {
+  try {
+    let conn = await sql.connect(dbConfig);
+    let productsData = await conn.request().input('filter', sql.VarChar, filter).query(
+      `SELECT
+					productID AS id,
+					productName AS name,
+					productPrice AS price
+				FROM product
+				WHERE productName LIKE @filter`
+    );
+    return productsData.recordset;
+  } catch (err) {
+    throw err;
+  }
+};
 
 export default router;

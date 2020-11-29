@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './order.scss';
 
 function OrderTable(props) {
   const [tableData, setTableData] = useState([]);
@@ -9,10 +10,10 @@ function OrderTable(props) {
       generatedData.push(
         <tr key={product.id}>
           <td>{product.id}</td>
-          <td>{product.name}</td>
+          <td className='productNames'>{product.name}</td>
           <td>{product.quantity}</td>
-          <td>{product.price}</td>
-          <td>{product.subtotal}</td>
+          <td>${product.price.toFixed(2)}</td>
+          <td>${product.subtotal.toFixed(2)}</td>
         </tr>
       );
     }
