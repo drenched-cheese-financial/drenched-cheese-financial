@@ -41,6 +41,10 @@ async function order(customerId, productList) {
     order.customer = await getCustomer(conn, customerId);
     order.products = await getProducts(conn, order.id);
 
+    let shipmentId = await saveShipment(conn, order.id);
+    order.shipment = await getShipment(conn, shipmentId);
+    order.shipment.update = await updateInventory(conn, order.products);
+
     return order;
   } catch (err) {
     console.log(err);
@@ -90,7 +94,6 @@ function saveOrder(conn, customerId, productList) {
 function saveProducts(conn, orderId, productList) {
   return new Promise((resolve, reject) => {
     let completedCount = 0;
-    let totalCount = productList.filter((x) => x != null).length;
     for (var product of productList) {
       if (product) {
         conn
@@ -105,7 +108,7 @@ function saveProducts(conn, orderId, productList) {
           )
           .then(() => {
             completedCount++;
-            if (completedCount == totalCount) {
+            if (completedCount == productList.length) {
               resolve();
             }
           })
@@ -142,9 +145,7 @@ function getCustomer(conn, customerId) {
     conn
       .request()
       .input('customerId', sql.Int, customerId)
-      .query(
-        'SELECT customerId AS id, firstName, lastName FROM customer WHERE customerId = @customerId'
-      )
+      .query('SELECT customerId AS id, firstName, lastName FROM customer WHERE customerId = @customerId')
       .then((result) => {
         resolve(result.recordset[0]);
       })
@@ -162,6 +163,98 @@ function calculateTotal(productList) {
     }
   }
   return total;
+}
+
+function saveShipment(conn, orderId) {
+  return new Promise((resolve, reject) => {
+    conn
+      .request()
+      .input('shipDate', sql.DateTime, new Date().toISOString())
+      .input('shipDesc', sql.VarChar, `Shipment for order ${orderId}`)
+      .query(
+        'INSERT INTO shipment (shipmentDate, shipmentDesc, warehouseId) \
+        OUTPUT INSERTED.shipmentId \
+        VALUES (@shipDate, @shipDesc, 1)'
+      )
+      .then((result) => {
+        resolve(result.recordset[0].shipmentId);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+function getShipment(conn, shipmentId) {
+  return new Promise((resolve, reject) => {
+    conn
+      .request()
+      .input('shipmentId', sql.Int, shipmentId)
+      .query(
+        `SELECT
+          shipmentId AS id,
+          shipmentDate AS shipDate,
+          shipmentDesc AS shipDesc,
+          warehouseName AS warehouse
+        FROM shipment s
+        JOIN warehouse w ON s.warehouseId = w.warehouseId
+        WHERE shipmentId = @shipmentId`
+      )
+      .then((result) => {
+        resolve(result.recordset[0]);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+async function updateInventory(conn, products) {
+  return new Promise((resolve) => {
+    let update = [];
+    let transaction = new sql.Transaction(conn);
+    transaction.begin(sql.REPEATABLE_READ, async () => {
+      for (var product of products) {
+        let result = await transaction
+          .request()
+          .input('productId', sql.Int, product.id)
+          .query(`SELECT quantity FROM productinventory WHERE productId = @productId AND warehouseId = 1`);
+        let prevInventory = result.recordset[0].quantity;
+        let newInventory = prevInventory - product.quantity;
+
+        if (newInventory < 0) {
+          transaction.rollback();
+          update.push({
+            success: false,
+            productId: product.id,
+            productName: product.name,
+            quantity: product.quantity,
+            prevInventory: prevInventory,
+            newInventory: newInventory,
+          });
+          resolve(update);
+          return;
+        }
+
+        await transaction
+          .request()
+          .input('productId', sql.Int, product.id)
+          .input('quantity', sql.Int, newInventory)
+          .query(`UPDATE productinventory SET quantity = @quantity WHERE productId = @productId AND warehouseId = 1`);
+        update.push({
+          success: true,
+          productId: product.id,
+          productName: product.name,
+          quantity: product.quantity,
+          prevInventory: prevInventory,
+          newInventory: newInventory,
+        });
+      }
+
+      transaction.commit();
+      resolve(update);
+    });
+  });
 }
 
 export default router;

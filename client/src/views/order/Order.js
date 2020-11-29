@@ -1,61 +1,70 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import OrderTable from './OrderTable';
-import Box from '../../assets/images/box.png';
+import OrderSummary from './OrderSummary';
 import './order.scss';
+import OrderShipment from './OrderShipment';
 
 function Order() {
   const { customerId } = useParams();
+  const history = useHistory();
   const [order, setOrder] = useState();
+  const [errorJSX, setErrorJSX] = useState();
   const [orderJSX, setOrderJSX] = useState();
+  const [shipmentJSX, setShipmentJSX] = useState();
 
   const completeOrder = () => {
     let params = new URLSearchParams('customerId=' + customerId);
-    axios.get('http://localhost:3001/order?' + params, { withCredentials: true }).then((res) => {
-      setOrder(res.data);
-    });
+    axios
+      .get('http://localhost:3001/order?' + params, { withCredentials: true })
+      .then((res) => {
+        setOrder(res.data);
+      });
   };
 
   const renderOrder = () => {
     if (order) {
-      if (order.err) {
-        setOrderJSX(<div>{order.err}</div>);
-      } else {
-        setOrderJSX(
-          <div>
-            <OrderTable products={order.products}></OrderTable>
-            <p>Order completed. Will be shipped soon...</p>
-            <img alt='box' src={Box} />
-            <p>
-              Order reference number: <span className='enlighten'>{order.id}</span>
-            </p>
-            <p>
-              Customer id: &nbsp;
-              <span className='enlighten'>{order.customer.id} </span>
-            </p>
-            <p>
-              Shipped to{' '}
-              <span className='enlighten'>
-                {order.customer.firstName} {order.customer.lastName}{' '}
-              </span>
-              <br />{' '}
-            </p>
-          </div>
-        );
+      if (!order.err) {
+        setOrderJSX(<OrderSummary order={order} />);
       }
     } else {
       setOrderJSX(<div>Failed to load order!</div>);
     }
   };
 
+  const renderError = () => {
+    if (order && order.err) {
+      setErrorJSX(<div>{order.err}</div>);
+    } else {
+      setErrorJSX();
+    }
+  };
+
+  const renderShipment = () => {
+    if (order && !order.err) {
+      setShipmentJSX(<OrderShipment shipment={order.shipment} />);
+    } else {
+      setShipmentJSX();
+    }
+  };
+
+  const handleFinish = () => {
+    history.push('/');
+  };
+
   useEffect(completeOrder, [customerId]);
   useEffect(renderOrder, [order]);
+  useEffect(renderError, [order]);
+  useEffect(renderShipment, [order]);
 
   return (
     <div>
       <h1>Your Order Summary</h1>
       {orderJSX}
+      {errorJSX}
+      <br />
+      {shipmentJSX}
+      <button onClick={handleFinish}>Finish</button>
     </div>
   );
 }
