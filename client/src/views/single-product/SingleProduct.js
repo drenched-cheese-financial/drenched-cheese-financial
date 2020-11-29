@@ -35,7 +35,7 @@ function SingleProduct() {
 			})
 			.then((res) => {
 				setProduct(res.data);
-			});
+			})
 	};
 
 	function continueShopping() {
@@ -50,8 +50,8 @@ function SingleProduct() {
 				<div>
 					<h1>{product.productName}</h1>
 					<img
-						alt={product.productImageURL}
-						src={`./products/${product.productImageURL}`}
+						alt={product.productImage}
+						src={`localhost:3001/displayimage?id=1`}
 					/>
 					<table>
 						<thead>
