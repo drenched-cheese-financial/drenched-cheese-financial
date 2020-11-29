@@ -1,0 +1,21 @@
+$money: #30663b;
+$onHover: rgb(204, 177, 109);
+$headerText: rgb(236, 235, 191);
+
+.enlighten{
+
+    text-shadow: 2px 2px 2px $money;
+    font-weight: bold;
+    color: $onHover;
+
+  
+}
+
+p{
+  margin-bottom: 20px;
+}
+
+.productNames{
+
+  color: $headerText !important;
+}

@@ -8,7 +8,6 @@ function SingleProduct() {
 	const [product, setProduct] = useState();
 
 	function addCart() {
-		console.log(product + ' is prod');
 		axios
 			.post(
 				`http://localhost:3001/addcart`,
