@@ -13,7 +13,7 @@ function Login() {
 
   const fetchError = () => {
     let params = new URLSearchParams('route=' + comingFrom);
-    setShowError(params.get('route') == 'custInfo');
+    setShowError(params.get('route') === 'custInfo');
   };
 
   useEffect(fetchError, [comingFrom]);
