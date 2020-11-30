@@ -20,7 +20,7 @@ function Login() {
 
   return (
     <div>
-      <h1>Customer Login</h1>
+      <h1> Login</h1>
       {showError && (
         <h6>Credentials required for access to customer info page</h6>
       )}
