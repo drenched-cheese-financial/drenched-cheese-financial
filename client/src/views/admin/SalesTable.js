@@ -8,7 +8,7 @@ function SalesTable(props) {
     for (var sale of props.sales) {
       generatedData.push(
         <tr key={sale.orderDate}>
-          <td>${sale.orderDate}</td>
+          <td>{sale.orderDate}</td>
           <td>${sale.amount.toFixed(2)}</td>
         </tr>
       );
