@@ -41,6 +41,8 @@ app.use(
   })
 );
 
+app.use(express.static('public'));
+
 // Setup routes
 app.use('/order', order);
 app.use('/loaddata', loaddata);
