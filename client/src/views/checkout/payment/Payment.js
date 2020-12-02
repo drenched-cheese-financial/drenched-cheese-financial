@@ -3,31 +3,28 @@ import './payment.scss';
 import axios from 'axios';
 var valid = require('card-validator');
 
-// paymentMethodId     INT IDENTITY,
-// paymentType         VARCHAR(20),
-// paymentNumber       VARCHAR(30),
-// paymentExpiryDate   DATE,
-// customerId          INT,
-
-function Payment() {
+function Payment(props) {
   const [creditValid, setCreditValid] = useState(false);
   const [expiryValid, setExpiryValid] = useState(false);
   const [creditData, setCreditData] = useState({
     expiry: false,
     creditType: false,
     creditNumber: false,
+    customerId: props.custId,
   });
   const [creditDataReceived, setCreditDataReceived] = useState(false);
-  var tempExpiry, tempCredit;
 
   const handleCreditNumber = (event) => {
-    setCreditValid(valid.number(event.target.value).isValid);
+    try {
+      setCreditValid(valid.number(event.target.value).isValid);
 
-    setCreditData({
-      expiry: creditData.expiry,
-      creditType: valid.number(event.target.value, 20).card.type,
-      creditNumber: event.target.value,
-    });
+      setCreditData({
+        expiry: creditData.expiry,
+        creditType: valid.number(event.target.value, 20).card.type,
+        creditNumber: event.target.value,
+        customerId: props.custId,
+      });
+    } catch {}
   };
   const handleExpiryDate = (event) => {
     setExpiryValid(valid.expirationDate(event.target.value, 20).isValid);
@@ -39,6 +36,7 @@ function Payment() {
       },
       creditType: creditData.creditType,
       creditNumber: creditData.creditNumber,
+      customerId: props.custId,
     });
   };
 
@@ -51,6 +49,7 @@ function Payment() {
       )
       .then((res) => {
         setCreditDataReceived(res);
+        alert(res);
       });
   };
 
@@ -69,7 +68,6 @@ function Payment() {
           Credit Card Number:
           <input
             className={creditValid && 'valid'}
-            value={tempCredit}
             onChange={handleCreditNumber}
             type='text'
           />
@@ -82,17 +80,26 @@ function Payment() {
           <input
             className={expiryValid && 'valid'}
             placeholder='MM/YYYY'
-            value={tempExpiry}
             onChange={handleExpiryDate}
             type='text'
           />
         </label>
       </span>
-      <span>
-        <button className='submit' onClick={handleSubmit}>
-          Submit {creditDataReceived && <p>Payment Data Received 👍</p>}
-        </button>
-      </span>
+
+      {!creditDataReceived ? (
+        <span>
+          <br />
+          <button className='submit' onClick={handleSubmit}>
+            Submit
+          </button>
+        </span>
+      ) : (
+        <div>
+          <p className='textMoney'>
+            Payment Data Received<span className='opacity'> 👍</span>
+          </p>
+        </div>
+      )}
     </div>
   );
 }

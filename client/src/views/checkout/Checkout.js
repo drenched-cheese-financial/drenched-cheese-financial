@@ -23,7 +23,10 @@ function Checkout() {
     <div>
       {!showPayShip && (
         <div>
-          <h1>Enter your customer ID to complete the transaction:</h1>
+          <h1>
+            Enter your login info to
+            <br /> complete the transaction
+          </h1>
           <ValidationForm onValidate={handleValidate} />
         </div>
       )}
@@ -31,7 +34,7 @@ function Checkout() {
       {showPayShip && (
         <div>
           <h1>Payment</h1>
-          <Payment />
+          <Payment custId={authId} />
         </div>
       )}
       {showPayShip && <ShipInfo />}

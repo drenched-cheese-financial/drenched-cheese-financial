@@ -126,3 +126,14 @@ transform: translateX(0px);
 cursor:default;
 }
 
+.textMoney{
+  color:$money;
+  text-shadow: 1px 1px 3px $dropdownBackground;
+  font-weight: 600;
+}
+
+p.textMoney > span.opacity{
+  filter: opacity(0.5);
+  display: inline !important;
+  margin:0px !important;
+}
