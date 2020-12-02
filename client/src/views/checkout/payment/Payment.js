@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './payment.scss';
+import './../payShip.scss';
 import axios from 'axios';
 var valid = require('card-validator');
 
@@ -16,28 +16,32 @@ function Payment(props) {
 
   const handleCreditNumber = (event) => {
     try {
-      setCreditValid(valid.number(event.target.value).isValid);
+      if (valid.number(event.target.value).isPotentiallyValid) {
+        setCreditValid(valid.number(event.target.value).isValid);
 
-      setCreditData({
-        expiry: creditData.expiry,
-        creditType: valid.number(event.target.value, 20).card.type,
-        creditNumber: event.target.value,
-        customerId: props.custId,
-      });
+        setCreditData({
+          expiry: creditData.expiry,
+          creditType: valid.number(event.target.value, 20).card.type,
+          creditNumber: event.target.value,
+          customerId: props.custId,
+        });
+      }
     } catch {}
   };
   const handleExpiryDate = (event) => {
-    setExpiryValid(valid.expirationDate(event.target.value, 20).isValid);
+    try {
+      setExpiryValid(valid.expirationDate(event.target.value, 20).isValid);
 
-    setCreditData({
-      expiry: {
-        month: valid.expirationDate(event.target.value, 20).month,
-        year: valid.expirationDate(event.target.value, 20).year,
-      },
-      creditType: creditData.creditType,
-      creditNumber: creditData.creditNumber,
-      customerId: props.custId,
-    });
+      setCreditData({
+        expiry: {
+          month: valid.expirationDate(event.target.value, 20).month,
+          year: valid.expirationDate(event.target.value, 20).year,
+        },
+        creditType: creditData.creditType,
+        creditNumber: creditData.creditNumber,
+        customerId: props.custId,
+      });
+    } catch {}
   };
 
   const sendCreditInfoToDB = () => {
@@ -49,15 +53,15 @@ function Payment(props) {
       )
       .then((res) => {
         setCreditDataReceived(res.data);
-        alert(res.data);
+        setTimeout(function () {
+          props.paymentComplete(res.data);
+        }, 1700);
       });
   };
 
   const handleSubmit = () => {
     if (expiryValid && creditValid) {
       sendCreditInfoToDB();
-      //TODO: showCreditCardSubmitted checkmark
-      //TODO: show optional "update shipment info button" as well as a "next"  button
     }
   };
 

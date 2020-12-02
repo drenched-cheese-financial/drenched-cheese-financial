@@ -28,7 +28,6 @@ const insertPaymentDeets = async (creditData) => {
       );
       throw 'this is past the year 2100, update the credit validator because inaccuracies may exist';
     }
-    console.log(creditData.expiry.year);
     let conn = await sql.connect(dbConfig);
     const queryString = `INSERT into paymentmethod (paymentType,paymentNumber,paymentExpiryDate,customerId)
             VALUES (@cType,@cNum,EOMONTH(@expDate),@custId)`;
