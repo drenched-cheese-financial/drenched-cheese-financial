@@ -5,7 +5,6 @@ import dbConfig from '../dbconfig.js';
 const router = express.Router();
 
 router.post('/', function (req, res) {
-  console.log(req.body.creditData);
   insertPaymentDeets(req.body.creditData)
     .then(() => {
       res.send(true);
@@ -18,10 +17,22 @@ router.post('/', function (req, res) {
 });
 const insertPaymentDeets = async (creditData) => {
   try {
+    var d = new Date();
+    var thisYear = d.getFullYear();
+    if (creditData.expiry.year < 100) {
+      creditData.expiry.year =
+        thisYear.toString().substring(0, 2) + creditData.expiry.year;
+    } else if (creditData.expiry.year < 20) {
+      console.log(
+        'this is past the year 2100, update the credit validator because inaccuracies may exist'
+      );
+      throw 'this is past the year 2100, update the credit validator because inaccuracies may exist';
+    }
+    console.log(creditData.expiry.year);
     let conn = await sql.connect(dbConfig);
     const queryString = `INSERT into paymentmethod (paymentType,paymentNumber,paymentExpiryDate,customerId)
             VALUES (@cType,@cNum,EOMONTH(@expDate),@custId)`;
-    let productsData = await conn
+    await conn
       .request()
       .input('cNum', sql.VarChar, creditData.creditNumber)
       .input('custId', sql.VarChar, creditData.customerId)
@@ -32,7 +43,7 @@ const insertPaymentDeets = async (creditData) => {
         creditData.expiry.year + '-' + creditData.expiry.month + '-01'
       )
       .query(queryString);
-    return productsData.recordset;
+    return true;
   } catch (err) {
     throw err;
   }

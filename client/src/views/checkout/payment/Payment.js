@@ -48,8 +48,8 @@ function Payment(props) {
         { withCredentials: true }
       )
       .then((res) => {
-        setCreditDataReceived(res);
-        alert(res);
+        setCreditDataReceived(res.data);
+        alert(res.data);
       });
   };
 
@@ -67,7 +67,7 @@ function Payment(props) {
         <label>
           Credit Card Number:
           <input
-            className={creditValid && 'valid'}
+            className={creditValid ? 'valid' : ''}
             onChange={handleCreditNumber}
             type='text'
           />
@@ -78,7 +78,7 @@ function Payment(props) {
         <label>
           Expiry Date:
           <input
-            className={expiryValid && 'valid'}
+            className={expiryValid ? 'valid' : ''}
             placeholder='MM/YYYY'
             onChange={handleExpiryDate}
             type='text'
