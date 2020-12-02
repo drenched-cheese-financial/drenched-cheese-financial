@@ -16,6 +16,7 @@ import showcart from './routes/showcart.js';
 import updatecart from './routes/updatecart.js';
 import product from './routes/product.js';
 import displayimage from './routes/displayimage.js';
+import payment from './routes/payment.js';
 
 // Setup express
 const app = express();
@@ -56,6 +57,7 @@ app.use('/showcart', showcart);
 app.use('/updatecart', updatecart);
 app.use('/product', product);
 app.use('/displayimage', displayimage);
+app.use('/payment', payment);
 
 // Setup server on port
 app.listen(3001, () => {
