@@ -118,9 +118,11 @@ box-shadow: 1px 1px 3px black;}
   box-shadow: 1px 1px 3px $boxShadowValid;
   color:$textValid;
   min-width: 174px;
+  
 }
 
 .payment span label div.dropdown button.valid:hover{
 transform: translateX(0px);
+cursor:default;
 }
 

@@ -12,24 +12,32 @@ var valid = require('card-validator');
 function Payment() {
   const [creditValid, setCreditValid] = useState(false);
   const [expiryValid, setExpiryValid] = useState(false);
-  const [creditData, setCreditData] = useState(false);
+  const [creditData, setCreditData] = useState({
+    expiry: false,
+    creditType: false,
+    creditNumber: false,
+  });
   const [creditDataReceived, setCreditDataReceived] = useState(false);
-
   var tempExpiry, tempCredit;
 
   const handleCreditNumber = (event) => {
     setCreditValid(valid.number(event.target.value).isValid);
+
     setCreditData({
       expiry: creditData.expiry,
-      credit: valid.number(event.target.value, 20),
+      creditType: valid.number(event.target.value, 20).card.type,
       creditNumber: event.target.value,
     });
   };
   const handleExpiryDate = (event) => {
     setExpiryValid(valid.expirationDate(event.target.value, 20).isValid);
+
     setCreditData({
-      expiry: valid.expirationDate(event.target.value, 20),
-      credit: creditData.credit,
+      expiry: {
+        month: valid.expirationDate(event.target.value, 20).month,
+        year: valid.expirationDate(event.target.value, 20).year,
+      },
+      creditType: creditData.creditType,
       creditNumber: creditData.creditNumber,
     });
   };
