@@ -10,6 +10,7 @@
     "card-validator": "^8.1.0",
     "country-code-lookup": "0.0.18",
     "node-sass": "^4.14.1",
+    "postal-codes-js": "^2.5.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
