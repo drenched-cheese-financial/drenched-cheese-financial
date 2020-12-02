@@ -58,10 +58,6 @@ app.use('/product', product);
 app.use('/displayimage', displayimage);
 
 // Setup server on port
-let port = process.server.PORT;
-if (port == null || port == '') {
-  port = 3001;
-}
-app.listen(port, () => {
+app.listen(3001, () => {
   console.log('Server started on port 3001');
 });
