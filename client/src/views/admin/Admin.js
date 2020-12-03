@@ -9,7 +9,7 @@ function Admin() {
   const [tableJSX, setTableJSX] = useState();
 
   const fetchAdminInfo = () => {
-    axios.get('http://localhost:3001/admin', { withCredentials: true }).then((res) => {
+    axios.get(process.env.APP_NAME + '/admin', { withCredentials: true }).then((res) => {
       if (res.data) {
         setAdminInfo(res.data);
       } else {

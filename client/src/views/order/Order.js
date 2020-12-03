@@ -16,7 +16,7 @@ function Order() {
   const completeOrder = () => {
     let params = new URLSearchParams('customerId=' + customerId);
     axios
-      .get('http://localhost:3001/order?' + params, { withCredentials: true })
+      .get('https://process.env.APP_NAME/:process.env.PORT/order?' + params, { withCredentials: true })
       .then((res) => {
         setOrder(res.data);
       });

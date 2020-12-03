@@ -11,7 +11,7 @@ function SingleProduct() {
   const fetchProduct = () => {
     let params = new URLSearchParams('id=' + productId);
     axios
-      .get('http://localhost:3001/product?' + params, {
+      .get('https://process.env.APP_NAME/:process.env.PORT/product?' + params, {
         withCredentials: true,
       })
       .then((res) => {
@@ -26,7 +26,7 @@ function SingleProduct() {
   const handleAddCart = () => {
     axios
       .post(
-        `http://localhost:3001/addcart`,
+        `https://process.env.APP_NAME/:process.env.PORT/addcart`,
         {
           id: product.id,
           name: product.name,
@@ -52,7 +52,7 @@ function SingleProduct() {
           {product.image && (
             <img
               alt="product example"
-              src={`http://localhost:3001/displayimage?id=${product.id}`}
+              src={`https://process.env.APP_NAME/:process.env.PORT/displayimage?id=${product.id}`}
             />
           )}
           <table>
