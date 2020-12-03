@@ -7,7 +7,7 @@ function Shop() {
 
   const fetchUsername = () => {
     axios
-      .get('https://the-drenched-cheese-financial.herokuapp.comshop', {
+      .get('https://the-drenched-cheese-financial.herokuapp.com/shop', {
         withCredentials: true,
       })
       .then((res) => {
