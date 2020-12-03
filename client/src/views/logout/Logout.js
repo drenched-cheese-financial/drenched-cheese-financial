@@ -6,7 +6,7 @@ function Logout() {
   const history = useHistory();
 
   const logoutAndRedirect = () => {
-    axios.get(process.env.APP_URL + '/logout', { withCredentials: true }).then(() => {
+    axios.get('https://the-drenched-cheese-financial.herokuapp.com/logout', { withCredentials: true }).then(() => {
       history.push('/');
     });
   };

@@ -11,7 +11,7 @@ function SingleProduct() {
   const fetchProduct = () => {
     let params = new URLSearchParams('id=' + productId);
     axios
-      .get(process.env.APP_URL + '/product?' + params, {
+      .get('https://the-drenched-cheese-financial.herokuapp.com/product?' + params, {
         withCredentials: true,
       })
       .then((res) => {
@@ -26,7 +26,7 @@ function SingleProduct() {
   const handleAddCart = () => {
     axios
       .post(
-        process.env.APP_URL + '/addcart',
+        'https://the-drenched-cheese-financial.herokuapp.com/addcart',
         {
           id: product.id,
           name: product.name,
@@ -52,7 +52,7 @@ function SingleProduct() {
           {product.image && (
             <img
               alt="product example"
-              src={process.env.APP_URL + `/displayimage?id=${product.id}`}
+              src={`https://the-drenched-cheese-financial.herokuapp.com/displayimage?id=${product.id}`}
             />
           )}
           <table>

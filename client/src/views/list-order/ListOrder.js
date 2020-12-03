@@ -8,7 +8,7 @@ function ListOrder() {
 
   useEffect(() => {
     // Fetch the data on load
-    axios.get(process.env.APP_URL + '/listorder', { withCredentials: true }).then((response) => {
+    axios.get('https://the-drenched-cheese-financial.herokuapp.com/listorder', { withCredentials: true }).then((response) => {
       setOrderList(response.data);
     });
   }, []);

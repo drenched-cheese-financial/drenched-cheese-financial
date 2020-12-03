@@ -16,7 +16,7 @@ function Order() {
   const completeOrder = () => {
     let params = new URLSearchParams('customerId=' + customerId);
     axios
-      .get(process.env.APP_URL + '/order?' + params, { withCredentials: true })
+      .get('https://the-drenched-cheese-financial.herokuapp.com/order?' + params, { withCredentials: true })
       .then((res) => {
         setOrder(res.data);
       });

@@ -6,9 +6,8 @@ function Shop() {
   const [usernameJSX, setUsernameJSX] = useState();
 
   const fetchUsername = () => {
-    console.log(process.env.APP_URL);
     axios
-      .get('https://the-drenched-cheese-financial.herokuapp.com/shop', {
+      .get('https://the-drenched-cheese-financial.herokuapp.comshop', {
         withCredentials: true,
       })
       .then((res) => {

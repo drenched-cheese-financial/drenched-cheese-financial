@@ -7,7 +7,7 @@ function LoadData() {
 
   useEffect(() => {
     // Fetch the data on load
-    axios.get(process.env.APP_URL + '/loaddata', {}).then((response) => {
+    axios.get('https://the-drenched-cheese-financial.herokuapp.com/loaddata', {}).then((response) => {
       setLoadedData(JSON.stringify(response));
     });
   }, []);

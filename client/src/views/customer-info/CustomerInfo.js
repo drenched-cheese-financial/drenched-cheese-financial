@@ -9,7 +9,7 @@ function CustomerInfo() {
   useEffect(() => {
     // Fetch the data on load
     axios
-      .get(process.env.APP_URL + '/customer', {
+      .get('https://the-drenched-cheese-financial.herokuapp.com/customer', {
         withCredentials: true,
       })
       .then((response) => {

@@ -11,7 +11,7 @@ function ListProduct() {
   const fetchProductList = () => {
     let params = new URLSearchParams('filter=' + filter);
     axios
-      .get(process.env.APP_URL + '/listprod?' + params, {
+      .get('https://the-drenched-cheese-financial.herokuapp.com/listprod?' + params, {
         withCredentials: true,
       })
       .then((res) => {
@@ -23,7 +23,7 @@ function ListProduct() {
     let product = productList[event.target.value];
     axios
       .post(
-        process.env.APP_URL + '/addcart',
+        'https://the-drenched-cheese-financial.herokuapp.com/addcart',
         {
           id: product.id,
           name: product.name,

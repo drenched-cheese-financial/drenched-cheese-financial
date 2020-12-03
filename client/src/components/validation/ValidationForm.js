@@ -12,7 +12,7 @@ function ValidationForm(props) {
     event.preventDefault();
     axios
       .post(
-        process.env.APP_URL + '/validate',
+        'https://the-drenched-cheese-financial.herokuapp.com/validate',
         {
           username: credentials.username,
           password: credentials.password,

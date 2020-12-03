@@ -9,7 +9,7 @@ function Admin() {
   const [tableJSX, setTableJSX] = useState();
 
   const fetchAdminInfo = () => {
-    axios.get(process.env.APP_URL + '/admin', { withCredentials: true }).then((res) => {
+    axios.get('https://the-drenched-cheese-financial.herokuapp.com/admin', { withCredentials: true }).then((res) => {
       if (res.data) {
         setAdminInfo(res.data);
       } else {
