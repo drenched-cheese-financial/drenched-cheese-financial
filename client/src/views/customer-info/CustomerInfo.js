@@ -9,7 +9,7 @@ function CustomerInfo() {
   useEffect(() => {
     // Fetch the data on load
     axios
-      .get('https://process.env.APP_NAME/:process.env.PORT/customer', {
+      .get('http://localhost:3001/customer', {
         withCredentials: true,
       })
       .then((response) => {

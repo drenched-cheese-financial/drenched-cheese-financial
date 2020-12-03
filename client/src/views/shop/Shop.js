@@ -7,7 +7,7 @@ function Shop() {
 
   const fetchUsername = () => {
     axios
-      .get('https://process.env.APP_NAME/:process.env.PORT/shop', {
+      .get('http://localhost:3001/shop', {
         withCredentials: true,
       })
       .then((res) => {
