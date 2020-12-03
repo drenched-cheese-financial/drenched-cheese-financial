@@ -17,7 +17,7 @@ function Shop() {
 
   const renderUsername = () => {
     if (username) {
-      setUsernameJSX(<p>You are signed in as {username}</p>);
+      setUsernameJSX(<p>This is a test {username}</p>);
     } else {
       setUsernameJSX();
     }
