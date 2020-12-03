@@ -17,7 +17,7 @@ import updatecart from './routes/updatecart.js';
 import product from './routes/product.js';
 import displayimage from './routes/displayimage.js';
 
-// Setup express
+// Setup express 
 const app = express();
 app.use(
   cors({
