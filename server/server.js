@@ -21,7 +21,7 @@ import displayimage from './routes/displayimage.js';
 const app = express();
 app.use(
   cors({
-    origin: 'https://process.env.APP_NAME/:3000',
+    origin: 'http://localhost:3000',
     credentials: true,
   })
 );
