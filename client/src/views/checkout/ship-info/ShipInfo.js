@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './../payShip.scss';
 import {
   canadianProvinces,
@@ -8,10 +8,6 @@ import {
   alphabet,
 } from './addressData';
 const validator = require('validator');
-const cities = require('all-the-cities');
-const postalJS = require('postal-codes-js');
-//postalJS eg:
-//postalJS.validate('bg', '1003');
 
 //need these for shipment
 //address
@@ -21,9 +17,20 @@ const postalJS = require('postal-codes-js');
 // country
 //custId
 
-function ShipInfo() {
+function ShipInfo(props) {
   const [shipData, setShipData] = useState();
   const [addressValid, setAddressValid] = useState();
+  const [cityValid, setCityValid] = useState();
+  const [postalCodeValid, setPostalCodeValid] = useState();
+  const [postalCode, setPostalCode] = useState();
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState();
+  const [cityPlaceHolder, setCityPlaceHolder] = useState('Kelowna');
+  const [addressPlaceHolder, setAddressPlaceHolder] = useState(
+    '5050 Dab-dat way'
+  );
+  const [postalCodePlaceHolder, setPostalCodePlaceHolder] = useState('V1R 1C3');
+
   const [country, setCountry] = useState({
     name: 'Canada',
     abbreviation: 'CA',
@@ -53,21 +60,92 @@ function ShipInfo() {
   }
 
   const handleSubmit = () => {
-    //implement me
-    alert('You working?');
+    if (addressValid && postalCodeValid && cityValid) {
+      setShipData({
+        address: address,
+        city: city,
+        state: region,
+        postalCode: postalCode,
+        country: country.abbreviation,
+        custId: props.custId,
+      });
+    }
   };
 
-  const handleCities = (event) => {
-    alert(cities.filter((city) => city.name.match(event.target.value)));
+  const handleCity = (event) => {
+    setCity(event.target.value);
+
+    if (validator.isLength(event.target.value, { min: 2 })) setCityValid(true);
+    else {
+      setCityValid(false);
+    }
+  };
+
+  const handlePostalCode = (event) => {
+    setPostalCode(event.target.value);
+    if (event)
+      if (country.abbreviation === 'CA') {
+        if (
+          validator.isLength(event.target.value, { min: 6, max: 7 }) &&
+          customValidation(event.target.value)
+        ) {
+          setPostalCodeValid(true);
+        } else {
+          setPostalCodeValid(false);
+        }
+      } else if (country.abbreviation === 'US') {
+        if (
+          validator.isLength(event.target.value, { min: 5, max: 5 }) &&
+          validator.isNumeric(event.target.value)
+        ) {
+          setPostalCodeValid(true);
+        } else {
+          setPostalCodeValid(false);
+        }
+      }
+  };
+
+  const handleCanada = () => {
+    setCountry({ name: 'Canada', abbreviation: 'CA' });
+    setRegion({ name: 'Alberta', abbreviation: 'AB' });
+    handleCountryOrRegion();
+    setCityPlaceHolder('Kelowna');
+    setAddressPlaceHolder('5050 Dab-dat way');
+    setPostalCodePlaceHolder('V1R 1C3');
+  };
+
+  const handleMurica = () => {
+    setCountry({ name: 'United States', abbreviation: 'US' });
+    setRegion({ name: 'Alabama', abbreviation: 'AL' });
+    handleCountryOrRegion();
+    setCityPlaceHolder('Kansas');
+    setAddressPlaceHolder('714 Gumbo Street');
+    setPostalCodePlaceHolder('16661');
   };
 
   const handleAddress = (event) => {
+    setAddress(event.target.value);
     if (
       validator.isLength(event.target.value, { min: 4 }) &&
       customValidation(event.target.value)
-    )
-      setAddressValid(event.target.value);
+    ) {
+      setAddressValid(true);
+    } else {
+      setAddressValid(false);
+    }
   };
+
+  const handleCountryOrRegion = (event) => {
+    setAddress('');
+    setAddressValid(false);
+    setPostalCode('');
+    setPostalCodeValid(false);
+    setCity('');
+    setCityValid(false);
+  };
+
+  useEffect(handleCountryOrRegion, [country, region]);
+
   return (
     <div className='payment'>
       <h1>Shipment Info</h1>
@@ -77,22 +155,8 @@ function ShipInfo() {
           <div className='dropdown'>
             <button className='valid'>{country.name}</button>
             <div className='dropdown-content'>
-              <button
-                onClick={() => {
-                  setCountry({ name: 'Canada', abbreviation: 'CA' });
-                  setRegion({ name: 'Alberta', abbreviation: 'AB' });
-                }}
-              >
-                Canada
-              </button>
-              <button
-                onClick={() => {
-                  setCountry({ name: 'United States', abbreviation: 'US' });
-                  setRegion({ name: 'Alabama', abbreviation: 'AL' });
-                }}
-              >
-                United States
-              </button>
+              <button onClick={handleCanada}>Canada</button>
+              <button onClick={handleMurica}>United States</button>
             </div>
           </div>
         </label>
@@ -109,6 +173,7 @@ function ShipInfo() {
                     <button
                       onClick={() => {
                         setRegion(province);
+                        handleCountryOrRegion();
                       }}
                     >
                       {province.name}
@@ -121,6 +186,7 @@ function ShipInfo() {
                     <button
                       onClick={() => {
                         setRegion(state);
+                        handleCountryOrRegion();
                       }}
                     >
                       {state.name}
@@ -136,22 +202,36 @@ function ShipInfo() {
           Address:
           <input
             className={addressValid ? 'valid' : ''}
-            placeholder='2525 Glenmore Rd'
+            placeholder={addressPlaceHolder}
             onChange={handleAddress}
             type='text'
+            value={address}
+            name='address'
           />
         </label>
       </span>
       <span>
         <label>
           City:
-          <input onChange={handleCities} placeHolder='Kelowna' />
+          <input
+            className={cityValid ? 'valid' : ''}
+            onChange={handleCity}
+            placeHolder={cityPlaceHolder}
+            value={city}
+            name='city'
+          />
         </label>
       </span>
       <span>
         <label>
           Postal Code:
-          <input placeHolder='V1V 1C7' />
+          <input
+            className={postalCodeValid ? 'valid' : ''}
+            onChange={handlePostalCode}
+            placeHolder={postalCodePlaceHolder}
+            name='postalCode'
+            value={postalCode}
+          />
         </label>
       </span>
       <button className='submit' onClick={handleSubmit}>
