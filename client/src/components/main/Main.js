@@ -10,6 +10,7 @@ import Order from '../../views/order/Order';
 import Login from '../../views/login/Login';
 import Logout from '../../views/logout/Logout';
 import Profile from '../../views/profile/Profile';
+import EditProfile from '../../views/edit-profile/EditProfile';
 import Admin from '../../views/admin/Admin';
 import SingleProduct from '../../views/single-product/SingleProduct';
 
@@ -32,6 +33,7 @@ function Main(props) {
       <Route exact path='/logout' component={Logout} />
       <Route exact path='/admin' component={Admin} />
       <Route exact path='/profile' component={Profile} />
+      <Route exact path='/profile/edit' component={EditProfile} />
       <Route exact path='/showcart' component={ShowCart} />
       <Route exact path='/product/:productId' component={SingleProduct} />
     </Switch>
