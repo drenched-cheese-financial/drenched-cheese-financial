@@ -7,11 +7,11 @@ function Shop() {
 
   const fetchUsername = () => {
     axios
-      .get('http://localhost:3001/shop', {
+      .get('http://localhost:3001/customer', {
         withCredentials: true,
       })
       .then((res) => {
-        setUsername(res.data);
+        setUsername(res.data.username);
       });
   };
 

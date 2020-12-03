@@ -1,11 +1,16 @@
 $background :  rgb(36, 36, 32);
 $links: rgb(71, 71, 60);
 $money: #30663b;
-$onHover: rgb(153, 137, 97);
+$shadow: rgb(153, 137, 97);
 $logo: rgb(163, 134, 60);
 
-.rightLinks li{
-  margin-left:20px;
+.rightLinks {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.linkGroup {
+  display: flex;
 }
 
 .logo a{
@@ -36,21 +41,17 @@ $logo: rgb(163, 134, 60);
 
 ul {
   list-style-type: none;
+  text-decoration: none;
   margin: 0px;
-  text-decoration: none;
-  text-decoration: none;
-  padding: 20px 20px;
+  padding: 20px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   background-color: $background;
-  box-shadow: 0px 1px 3px $onHover;
+  box-shadow: 0px 1px 3px $shadow;
 }
 
-
-li{
+li {
   text-decoration: none;
-  
-  float: left;
+  margin: 0px 10px;
 }

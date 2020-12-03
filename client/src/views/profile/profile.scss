@@ -1,0 +1,43 @@
+$background :  rgb(36, 36, 32);
+$money: #30663b;
+$highlight: rgb(204, 177, 109);
+
+.profile {
+  display: flex;
+  justify-content: center;
+}
+
+.customer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 62%;
+  margin: 30px;
+  padding: 20px;
+  background-color: $background;
+  box-shadow: 0px 1px 3px $highlight;
+}
+
+.split {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.highlight {
+  text-shadow: 2px 2px 2px $money;
+  font-weight: bold;
+  color: $highlight;
+}
+
+h1, h3, p {
+  margin: 10px;
+}
+
+hr {
+  width: 100%;
+  border: 1px solid $background;
+  box-shadow: 0px 1px $highlight;
+}
