@@ -4,7 +4,7 @@
   "description": "## About Us ### What we are going to sell: Merch for the band Drenched Cheese Financial.",
   "main": "index.js",
   "scripts": {
-    "heroku-deploy": "node server/server.js",
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
