@@ -1,0 +1,20 @@
+{
+  "name": "drenched-cheese-financial",
+  "version": "1.0.0",
+  "description": "## About Us ### What we are going to sell: Merch for the band Drenched Cheese Financial.",
+  "main": "index.js",
+  "scripts": {
+    "heroku-deploy": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drenched-cheese-financial/drenched-cheese-financial.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drenched-cheese-financial/drenched-cheese-financial/issues"
+  },
+  "homepage": "https://github.com/drenched-cheese-financial/drenched-cheese-financial#readme"
+}
