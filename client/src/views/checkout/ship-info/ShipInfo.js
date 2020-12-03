@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './../payShip.scss';
 import {
   canadianProvinces,
-  countries,
   americanStates,
   nums,
   alphabet,
@@ -30,6 +30,7 @@ function ShipInfo(props) {
     '5050 Dab-dat way'
   );
   const [postalCodePlaceHolder, setPostalCodePlaceHolder] = useState('V1R 1C3');
+  const [shipDataReceived, setShipDataReceived] = useState(false);
 
   const [country, setCountry] = useState({
     name: 'Canada',
@@ -59,18 +60,35 @@ function ShipInfo(props) {
     return addrValid;
   }
 
+  const sendShipDataToDB = () => {
+    axios
+      .post(
+        'http://localhost:3001/shipinfo',
+        { shipData },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        setShipDataReceived(res.data);
+        setTimeout(function () {
+          props.shipComplete(res.data);
+        }, 1700);
+      });
+  };
+
   const handleSubmit = () => {
     if (addressValid && postalCodeValid && cityValid) {
       setShipData({
         address: address,
         city: city,
-        state: region,
+        state: region.abbreviation,
         postalCode: postalCode,
-        country: country.abbreviation,
-        custId: props.custId,
+        country: country.name,
+        customerId: props.custId,
       });
     }
   };
+
+  useEffect(sendShipDataToDB, [shipData, props, shipDataReceived]);
 
   const handleCity = (event) => {
     setCity(event.target.value);
@@ -234,9 +252,20 @@ function ShipInfo(props) {
           />
         </label>
       </span>
-      <button className='submit' onClick={handleSubmit}>
-        Submit
-      </button>
+      {!shipDataReceived ? (
+        <span>
+          <br />
+          <button className='submit' onClick={handleSubmit}>
+            Submit
+          </button>
+        </span>
+      ) : (
+        <div>
+          <p className='textMoney'>
+            Shipment Data Received<span className='opacity'> 👍</span>
+          </p>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ValidationForm from '../../components/validation/ValidationForm';
 import Payment from './payment/Payment';
@@ -26,22 +26,23 @@ function Checkout() {
     setShipComplete(shipComplete);
   };
 
-  // history.push('/order/' + authId);
+  const sendToOrderPage = () => {
+    if (shipComplete) history.push('/order/' + authId);
+  };
+
+  useEffect(sendToOrderPage, [shipComplete, authId, history]);
 
   return (
     <div>
-      {
-        //should be !showPayShip
-        showPayShip && (
-          <div>
-            <h1>
-              Enter your login info to
-              <br /> complete the transaction
-            </h1>
-            <ValidationForm onValidate={handleValidate} />
-          </div>
-        )
-      }
+      {!showPayShip && (
+        <div>
+          <h1>
+            Enter your login info to
+            <br /> complete the transaction
+          </h1>
+          <ValidationForm onValidate={handleValidate} />
+        </div>
+      )}
 
       {showPayShip && !payComplete && (
         <div>
@@ -49,12 +50,9 @@ function Checkout() {
           <Payment paymentComplete={handlePaymentComplete} custId={authId} />
         </div>
       )}
-      {
-        //should be payCompete
-        !payComplete && (
-          <ShipInfo shipComplete={handleShipComplete} custId={authId} />
-        )
-      }
+      {payComplete && (
+        <ShipInfo shipComplete={handleShipComplete} custId={authId} />
+      )}
     </div>
   );
 }
