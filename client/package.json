@@ -17,7 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "react-scripts build; rm -rf ../server/public/; cp -a build/. ../server/public/; cd ../server ; git add .; git commit -m 'Deploy front-end changes'; git push heroku master; cd ../client",
+    "deploy": "react-scripts build; rm -rf ../server/public/; cp -a build/. ../server/public/;",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
