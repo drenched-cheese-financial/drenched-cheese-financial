@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function ValidationForm(props) {
@@ -36,6 +36,14 @@ function ValidationForm(props) {
     }));
   };
 
+  const onLoad = () => {
+    if (props.isFromRedirect) {
+      setErrorJSX(<p>Credentials are required for access to this page.</p>);
+    }
+  };
+
+  useEffect(onLoad, [props.isFromRedirect]);
+
   return (
     <div>
       {errorJSX}
@@ -46,6 +54,7 @@ function ValidationForm(props) {
           Password: <input type='password' name='password' value={credentials.password} onChange={handleChange} />
           <br />
         </label>
+        <br />
         <input type='submit' value='Login' />
       </form>
     </div>
