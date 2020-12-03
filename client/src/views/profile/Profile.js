@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import ValidationForm from '../../components/validation/ValidationForm';
+import './profile.scss';
 
 function Profile() {
+  const history = useHistory();
   const [customer, setCustomer] = useState();
   const [loginJSX, setLoginJSX] = useState();
   const [customerJSX, setCustomerJSX] = useState();
@@ -22,8 +25,13 @@ function Profile() {
   };
 
   const renderLoginJSX = () => {
+    const handleValidate = () => {
+      history.push('/profile');
+      fetchCustomer();
+    };
+
     if (isPageLoaded && !customer) {
-      setLoginJSX(<ValidationForm isFromRedirect={true} onValidate={fetchCustomer} />);
+      setLoginJSX(<ValidationForm isFromRedirect={true} onValidate={handleValidate} />);
     } else {
       setLoginJSX();
     }
@@ -32,56 +40,31 @@ function Profile() {
   const renderCustomerJSX = () => {
     if (customer) {
       setCustomerJSX(
-        <div>
-          <h1>Customer Profile</h1>
-          <table border='1'>
-            <tbody>
-              <tr>
-                <th>First Name</th>
-                <td>{customer.firstName}</td>
-              </tr>
-              <tr>
-                <th>Last Name</th>
-                <td>{customer.lastName}</td>
-              </tr>
-              <tr>
-                <th>Id</th>
-                <td>{customer.customerId}</td>
-              </tr>
-              <tr>
-                <th>Email</th>
-                <td>{customer.email}</td>
-              </tr>
-              <tr>
-                <th>Phone</th>
-                <td>{customer.phonenum}</td>
-              </tr>
-              <tr>
-                <th>Address</th>
-                <td>{customer.address}</td>
-              </tr>
-              <tr>
-                <th>City</th>
-                <td>{customer.city}</td>
-              </tr>
-              <tr>
-                <th>State</th>
-                <td>{customer.state}</td>
-              </tr>
-              <tr>
-                <th>Postal Code</th>
-                <td>{customer.postalCode}</td>
-              </tr>
-              <tr>
-                <th>Country</th>
-                <td>{customer.country}</td>
-              </tr>
-              <tr>
-                <th>User id</th>
-                <td>{customer.userid}</td>
-              </tr>
-            </tbody>
-          </table>
+        <div className='customer'>
+          <div className='split'>
+            <h1>
+              {customer.firstName} {customer.lastName}'s Profile
+            </h1>
+            <h3>
+              ID: <span className='highlight'>{customer.id}</span>
+            </h3>
+          </div>
+          <hr />
+          <p>
+            Username: <span className='highlight'>{customer.username}</span>
+          </p>
+          <p>
+            Email: <span className='highlight'>{customer.email}</span>
+          </p>
+          <p>
+            Phone: <span className='highlight'>{customer.phone}</span>
+          </p>
+          <p>
+            Address:{' '}
+            <span className='highlight'>
+              {customer.address} - {customer.city}, {customer.state}, {customer.country} - {customer.postalCode}
+            </span>
+          </p>
         </div>
       );
     } else {
@@ -90,11 +73,11 @@ function Profile() {
   };
 
   useEffect(fetchCustomer, []);
-  useEffect(renderLoginJSX, [customer, isPageLoaded]);
+  useEffect(renderLoginJSX, [customer, isPageLoaded, history]);
   useEffect(renderCustomerJSX, [customer]);
 
   return (
-    <div>
+    <div className='profile'>
       {loginJSX}
       {customerJSX}
     </div>
