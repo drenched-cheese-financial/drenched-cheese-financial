@@ -15,7 +15,7 @@ function ShowCart() {
 
   const fetchProductList = () => {
     axios
-      .get('http://localhost:3001/showcart', { withCredentials: true })
+      .get(process.env.APP_URL + '/showcart', { withCredentials: true })
       .then((response) => {
         setProductList(response.data);
       });
@@ -24,7 +24,7 @@ function ShowCart() {
   const updateCart = () => {
     if (!isFirstRender.current) {
       axios.post(
-        'http://localhost:3001/updatecart',
+        process.env.APP_URL + '/updatecart',
         { productList: productList },
         {
           withCredentials: true,

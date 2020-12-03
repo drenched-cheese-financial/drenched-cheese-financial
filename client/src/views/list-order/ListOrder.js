@@ -8,7 +8,7 @@ function ListOrder() {
 
   useEffect(() => {
     // Fetch the data on load
-    axios.get('http://localhost:3001/listorder', { withCredentials: true }).then((response) => {
+    axios.get(process.env.APP_URL + '/listorder', { withCredentials: true }).then((response) => {
       setOrderList(response.data);
     });
   }, []);

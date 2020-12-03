@@ -10,16 +10,20 @@ function ListProduct() {
 
   const fetchProductList = () => {
     let params = new URLSearchParams('filter=' + filter);
-    axios.get('http://localhost:3001/listprod?' + params, { withCredentials: true }).then((res) => {
-      setProductList(res.data);
-    });
+    axios
+      .get(process.env.APP_URL + '/listprod?' + params, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setProductList(res.data);
+      });
   };
 
   function handleAddCart(event) {
     let product = productList[event.target.value];
     axios
       .post(
-        `http://localhost:3001/addcart`,
+        process.env.APP_URL + '/addcart',
         {
           id: product.id,
           name: product.name,
@@ -55,16 +59,22 @@ function ListProduct() {
                 <th>Product ID</th>
                 <th>Product Name</th>
                 <th>Price</th>
-                <th className='noBackground'></th>
+                <th className="noBackground"></th>
               </tr>
             </thead>
             <tbody>
               {productList.map((product, index) => {
                 return (
-                  <tr key={index} className={index % 2 === 0 ? 'rowPrimary' : ''}>
+                  <tr
+                    key={index}
+                    className={index % 2 === 0 ? 'rowPrimary' : ''}
+                  >
                     <td>{product.id}</td>
                     <td>
-                      <span className='product' onClick={() => handleProductClick(product.id)}>
+                      <span
+                        className="product"
+                        onClick={() => handleProductClick(product.id)}
+                      >
                         {product.name}
                       </span>
                     </td>

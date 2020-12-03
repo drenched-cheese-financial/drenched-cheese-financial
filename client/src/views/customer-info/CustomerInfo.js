@@ -9,7 +9,7 @@ function CustomerInfo() {
   useEffect(() => {
     // Fetch the data on load
     axios
-      .get('http://localhost:3001/customer', {
+      .get(process.env.APP_URL + '/customer', {
         withCredentials: true,
       })
       .then((response) => {
