@@ -21,12 +21,13 @@ const getFilteredProducts = async (filter) => {
     let conn = await sql.connect(dbConfig);
     let productsData = await conn.request().input('filter', sql.VarChar, filter).query(
       `SELECT
-					productID AS id,
-					productName AS name,
-					productPrice AS price
-				FROM product
-				WHERE productName LIKE @filter`
+          productID AS id,
+          productName AS name,
+          productPrice AS price
+        FROM product JOIN category ON product.categoryId = category.categoryId
+        WHERE productName LIKE @filter OR categoryName LIKE @filter`
     );
+
     return productsData.recordset;
   } catch (err) {
     throw err;

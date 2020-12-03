@@ -45,8 +45,19 @@ function ListProduct() {
   return (
     <div>
       <h1>Search for Products</h1>
-      <input value={filter} onChange={handleFilterChange} />
+      <input list="ProdCategory" value={filter} onChange={handleFilterChange} />
+      <datalist id="ProdCategory">
+        <option value="Beverages" />
+        <option value="Condiments" />
+        <option value="Dairy Products" />
+        <option value="Produce" />
+        <option value="Meat/Poultry" />
+        <option value="Seafood" />
+        <option value="Confections" />
+        <option value="Grains/Cereals" />
+      </datalist>
       <button onClick={fetchProductList}>Search</button>
+      <br></br>
       {productList ? (
         <div>
           <table>
@@ -74,6 +85,10 @@ function ListProduct() {
                         🛒
                       </button>
                     </td>
+                    <td>
+                        <img alt ={product.name + " thumbnail"} 
+                        src={"/products/img/" + product.id + ".jpg"} />
+                    </td>
                   </tr>
                 );
               })}
@@ -81,10 +96,11 @@ function ListProduct() {
           </table>
         </div>
       ) : (
-        <p>Failed to fetch product list from server.</p>
-      )}
+          <p>Failed to fetch product list from server.</p>
+        )}
     </div>
   );
 }
+
 
 export default ListProduct;
