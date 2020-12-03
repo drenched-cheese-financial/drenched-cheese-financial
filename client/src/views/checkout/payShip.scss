@@ -113,6 +113,12 @@ box-shadow: 1px 1px 3px black;}
   color:$textValid;
 }
 
+.dropdown-content >button.valid{
+  background-color: $backgroundValid ;
+  box-shadow: 1px 1px 3px $boxShadowValid;
+  color:$textValid;
+}
+
  .payment span label div.dropdown button.valid{
   background-color: $backgroundValid ;
   box-shadow: 1px 1px 3px $boxShadowValid;

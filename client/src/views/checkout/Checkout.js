@@ -32,7 +32,7 @@ function Checkout() {
     <div>
       {
         //should be !showPayShip
-        !showPayShip && (
+        showPayShip && (
           <div>
             <h1>
               Enter your login info to
@@ -51,7 +51,7 @@ function Checkout() {
       )}
       {
         //should be payCompete
-        payComplete && (
+        !payComplete && (
           <ShipInfo shipComplete={handleShipComplete} custId={authId} />
         )
       }
