@@ -105,3 +105,4 @@ dist
 
 # Manually added
 .vscode/launch.json
+.DS_Store
