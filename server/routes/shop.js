@@ -5,6 +5,7 @@ import dbConfig from '../dbconfig.js';
 const router = express.Router();
 
 router.get('/', function (req, res) {
+  res.send("Hey, this is the shop server file!")
   if (!req.session.authenticatedUser) {
     res.end();
     return;
