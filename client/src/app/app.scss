@@ -33,7 +33,7 @@ a:hover {
   cursor: pointer;
 }
 
-button,input{
+button,input,select, textarea{
 
   color:$primary;
   background-color: $backgroundPrimary;
@@ -43,10 +43,11 @@ button,input{
   border-color: $backgroundPrimary;
   box-shadow: 2px 2px 2px $boxShadowBlend;
   outline:none;
+
   
 }
 
-button:hover,input:hover{
+button:hover,input:hover, select:hover{
 
   background-color: $backgroundSecondary;
   box-shadow: 2px 2px 2px $onHover;
@@ -68,7 +69,13 @@ button:active:after{
 
 
 }
+::selection{
+  background-color: $secondary;
+}
 
+label{
+  color:$primary;
+}
 
 table{
   margin-left: auto;
@@ -136,3 +143,6 @@ tr:hover{
     transform: rotate(360deg);
   }
 }
+
+
+
