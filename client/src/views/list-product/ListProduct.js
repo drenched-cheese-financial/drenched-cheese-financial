@@ -87,7 +87,9 @@ function ListProduct() {
                     </td>
                     <td>
                         <img alt ={product.name + " thumbnail"} 
-                        src={"/products/img/" + product.id + ".jpg"} />
+                        src={"/products/img/" + product.id + ".jpg"}
+                        onError={(e)=>{e.target.onerror = null; 
+                        e.target.src="/products/img/noimg.jpg"}}/>
                     </td>
                   </tr>
                 );
