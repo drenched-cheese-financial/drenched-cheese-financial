@@ -15,7 +15,7 @@ function ShowCart() {
 
   const fetchProductList = () => {
     axios
-      .get('http://localhost:3001/showcart', { withCredentials: true })
+      .get('https://process.env.APP_NAME/:process.env.PORT/showcart', { withCredentials: true })
       .then((response) => {
         setProductList(response.data);
       });
@@ -24,7 +24,7 @@ function ShowCart() {
   const updateCart = () => {
     if (!isFirstRender.current) {
       axios.post(
-        'http://localhost:3001/updatecart',
+        'https://process.env.APP_NAME/:process.env.PORT/updatecart',
         { productList: productList },
         {
           withCredentials: true,

@@ -10,7 +10,7 @@ function ListProduct() {
 
   const fetchProductList = () => {
     let params = new URLSearchParams('filter=' + filter);
-    axios.get('http://localhost:3001/listprod?' + params, { withCredentials: true }).then((res) => {
+    axios.get(process.env.APP_NAME + '/listprod?' + params, { withCredentials: true }).then((res) => {
       setProductList(res.data);
     });
   };
@@ -19,7 +19,7 @@ function ListProduct() {
     let product = productList[event.target.value];
     axios
       .post(
-        `http://localhost:3001/addcart`,
+        `https://process.env.APP_NAME/:process.env.PORT/addcart`,
         {
           id: product.id,
           name: product.name,

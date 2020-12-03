@@ -6,7 +6,7 @@ function Logout() {
   const history = useHistory();
 
   const logoutAndRedirect = () => {
-    axios.get('http://localhost:3001/logout', { withCredentials: true }).then(() => {
+    axios.get(process.env.APP_NAME + '/logout', { withCredentials: true }).then(() => {
       history.push('/');
     });
   };

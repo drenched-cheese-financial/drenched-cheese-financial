@@ -12,7 +12,7 @@ function ValidationForm(props) {
     event.preventDefault();
     axios
       .post(
-        'http://localhost:3001/validate',
+        'https://process.env.APP_NAME/:process.env.PORT/validate',
         {
           username: credentials.username,
           password: credentials.password,

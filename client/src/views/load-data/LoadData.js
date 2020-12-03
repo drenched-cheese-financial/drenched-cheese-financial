@@ -7,7 +7,7 @@ function LoadData() {
 
   useEffect(() => {
     // Fetch the data on load
-    axios.get('http://localhost:3001/loaddata', {}).then((response) => {
+    axios.get(process.env.APP_NAME + '/loaddata', {}).then((response) => {
       setLoadedData(JSON.stringify(response));
     });
   }, []);
