@@ -1,7 +1,7 @@
 $background :  rgb(36, 36, 32);
 $links: rgb(71, 71, 60);
 $money: #30663b;
-$onHover: rgb(153, 137, 97);
+$shadow: rgb(153, 137, 97);
 $logo: rgb(163, 134, 60);
 
 .rightLinks {
@@ -48,7 +48,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   background-color: $background;
-  box-shadow: 0px 1px 3px $onHover;
+  box-shadow: 0px 1px 3px $shadow;
 }
 
 li {
