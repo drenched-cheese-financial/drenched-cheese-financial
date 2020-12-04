@@ -22,7 +22,7 @@ function Navbar(props) {
   const renderUsernameJSX = () => {
     if (customer) {
       setUsernameJSX(
-        <div className='linkGroup'>
+        <div className="linkGroup">
           <li>{customer.username}</li>
           <li>-</li>
         </div>
@@ -35,9 +35,9 @@ function Navbar(props) {
   const renderAdminJSX = () => {
     if (customer && customer.isAdmin) {
       setAdminJSX(
-        <div className='linkGroup'>
+        <div className="linkGroup">
           <li>
-            <NavLink to='/admin'>Admin View</NavLink>
+            <NavLink to="/admin">Admin View</NavLink>
           </li>
           <li>-</li>
         </div>
@@ -50,21 +50,25 @@ function Navbar(props) {
   const renderAccountJSX = () => {
     if (customer) {
       setAccountJSX(
-        <div className='linkGroup'>
+        <div className="linkGroup">
           <li>
-            <NavLink to='/profile'>My Profile</NavLink>
+            <NavLink to="/profile">My Profile</NavLink>
           </li>
           <li>-</li>
           <li>
-            <NavLink to='/logout'>Logout</NavLink>
+            <NavLink to="/orders">My Orders</NavLink>
+          </li>
+          <li>-</li>
+          <li>
+            <NavLink to="/logout">Logout</NavLink>
           </li>
         </div>
       );
     } else {
       setAccountJSX(
-        <div className='linkGroup'>
+        <div className="linkGroup">
           <li>
-            <NavLink to='/login'>Login</NavLink>
+            <NavLink to="/login">Login</NavLink>
           </li>
         </div>
       );
@@ -79,21 +83,23 @@ function Navbar(props) {
   return (
     <nav>
       <ul>
-        <li className='logo'>
-          <NavLink to='/'>
-            <span className='emojis'>💰 🧀</span> <span className='tallLetter'>D</span>renched{' '}
-            <span className='tallLetter'>C</span>heese <span className='tallLetter'>F</span>inancial{' '}
-            <span className='emojis'>🧀 💰</span>
+        <li className="logo">
+          <NavLink to="/">
+            <span className="emojis">💰 🧀</span>{' '}
+            <span className="tallLetter">D</span>renched{' '}
+            <span className="tallLetter">C</span>heese{' '}
+            <span className="tallLetter">F</span>inancial{' '}
+            <span className="emojis">🧀 💰</span>
           </NavLink>
         </li>
-        <div className='rightLinks'>
+        <div className="rightLinks">
           {usernameJSX}
           <li>
-            <NavLink to='/listprod'>Begin Shopping</NavLink>
+            <NavLink to="/listprod">Begin Shopping</NavLink>
           </li>
           <li>-</li>
           <li>
-            <NavLink to='/listorder'>List Orders</NavLink>
+            <NavLink to="/listorder">List Orders</NavLink>
           </li>
           <li>-</li>
           {adminJSX}

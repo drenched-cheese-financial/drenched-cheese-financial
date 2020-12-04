@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './listOrder.scss';
 
-function ListOrder() {
+function ListOrder(props) {
   // Declare a new state variable, which we'll call "count"
   const [orderList, setOrderList] = useState();
 
   useEffect(() => {
     // Fetch the data on load
-    axios.get('http://localhost:3001/listorder', { withCredentials: true }).then((response) => {
+    const parameters = props.customerId? ('?customerId=' + props.customerId) : '';
+    axios.get('http://localhost:3001/listorder' + parameters, { withCredentials: true }).then((response) => {
       setOrderList(response.data);
     });
-  }, []);
+  }, [props.customerId]);
 
   return (
     <div>

@@ -6,19 +6,30 @@ const require = createRequire(import.meta.url);
 const router = express.Router();
 
 router.get('/', (req, res) => {
+  const reqCustomerId = req.query.customerId;
   var allData = [];
 
   const getOrderData = async function () {
     try {
       //get db connection
       let pool = await sql.connect(dbConfig);
-
-      let orderResults = await pool
-        .request()
-        .query(
-          '  SELECT orderId,orderDate, ordersummary.customerId, customer.firstName,customer.lastName, totalAmount ' +
-            'from ordersummary left join customer on ordersummary.customerId = customer.customerId order by orderId'
-        );
+      let orderResults;
+      if (reqCustomerId) {
+        orderResults = await pool
+          .request()
+          .input('reqCustomerId', sql.VarChar, reqCustomerId)
+          .query(
+            'SELECT orderId,orderDate, ordersummary.customerId, customer.firstName,customer.lastName, totalAmount ' +
+              'from ordersummary left join customer on ordersummary.customerId = customer.customerId WHERE ordersummary.customerId = @reqCustomerId order by orderId'
+          );
+      } else {
+        orderResults = await pool
+          .request()
+          .query(
+            '  SELECT orderId,orderDate, ordersummary.customerId, customer.firstName,customer.lastName, totalAmount ' +
+              'from ordersummary left join customer on ordersummary.customerId = customer.customerId order by orderId'
+          );
+      }
 
       for (let i = 0; i < orderResults.recordset.length; i++) {
         var orderData = [];
@@ -34,7 +45,9 @@ router.get('/', (req, res) => {
         let productResults = await pool
           .request()
           .input('safeOrderId', sql.VarChar, record.orderId)
-          .query(`select productId, quantity, price from orderproduct where orderId=@safeOrderId order by productId`);
+          .query(
+            `select productId, quantity, price from orderproduct where orderId=@safeOrderId order by productId`
+          );
 
         var productData = [];
         productResults.recordset.forEach((productRecord) => {
