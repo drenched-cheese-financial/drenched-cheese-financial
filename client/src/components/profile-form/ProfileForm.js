@@ -45,7 +45,6 @@ function ProfileForm(props) {
   const renderFormJSX = () => {
     const handleConfirm = (event) => {
       let confirm = event.target.value;
-      console.log(customer.password === confirm);
       setValidation((validation) => ({ ...validation, confirmPassword: customer.password === confirm }));
       setConfirmPassword(confirm);
     };

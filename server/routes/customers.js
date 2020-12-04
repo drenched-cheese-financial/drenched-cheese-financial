@@ -12,7 +12,6 @@ router.get('/', function (req, res) {
 
   getCustomers()
     .then((customers) => {
-      console.log(customers);
       res.send(customers);
     })
     .catch((err) => {

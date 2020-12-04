@@ -22,7 +22,6 @@ function ValidationForm(props) {
       .then((res) => {
         let authId = res.data.authId;
         let isAdmin = res.data.isAdmin;
-        console.log(isAdmin);
         if (authId >= 0 && (!props.requireAdmin || isAdmin)) {
           props.onValidate(authId);
         } else {
