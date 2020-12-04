@@ -1,4 +1,5 @@
-import { Switch, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import Shop from '../../views/shop/Shop';
 import ListProduct from '../../views/list-product/ListProduct';
 import ListOrder from '../../views/list-order/ListOrder';
@@ -8,11 +9,18 @@ import Checkout from '../../views/checkout/Checkout';
 import Order from '../../views/order/Order';
 import Login from '../../views/login/Login';
 import Logout from '../../views/logout/Logout';
-import CustomerInfo from '../../views/customer-info/CustomerInfo';
+import Profile from '../../views/profile/Profile';
+import Orders from '../../views/orders/Orders';
 import Admin from '../../views/admin/Admin';
 import SingleProduct from '../../views/single-product/SingleProduct';
 
-function Main() {
+function Main(props) {
+  const history = useHistory();
+
+  useEffect(() => {
+    return history.listen((location) => props.onRouteUpdate(location));
+  }, [history, props]);
+
   return (
     <Switch>
       <Route exact path='/' component={Shop} />
@@ -22,10 +30,10 @@ function Main() {
       <Route exact path='/checkout' component={Checkout} />
       <Route exact path='/order/:customerId' component={Order} />
       <Route exact path='/login' component={Login} />
-      <Route exact path='/login/:comingFrom' component={Login} />
       <Route exact path='/logout' component={Logout} />
       <Route exact path='/admin' component={Admin} />
-      <Route exact path='/customer' component={CustomerInfo} />
+      <Route exact path='/profile' component={Profile} />
+      <Route exact path='/orders' component={Orders} />
       <Route exact path='/showcart' component={ShowCart} />
       <Route exact path='/product/:productId' component={SingleProduct} />
     </Switch>
