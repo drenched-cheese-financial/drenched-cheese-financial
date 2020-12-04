@@ -19,14 +19,17 @@ router.get('/', (req, res) => {
 const getFilteredProducts = async (filter) => {
   try {
     let conn = await sql.connect(dbConfig);
-    let productsData = await conn.request().input('filter', sql.VarChar, filter).query(
-      `SELECT
+    let productsData = await conn
+      .request()
+      .input('filter', sql.VarChar, filter)
+      .query(
+        `SELECT
 					productID AS id,
 					productName AS name,
 					productPrice AS price
 				FROM product
 				WHERE productName LIKE @filter`
-    );
+      );
     return productsData.recordset;
   } catch (err) {
     throw err;
