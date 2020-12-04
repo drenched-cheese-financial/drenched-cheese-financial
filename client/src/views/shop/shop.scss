@@ -1,0 +1,25 @@
+$money: #3c5238;
+$text: rgb(187, 166, 50);
+
+.shop{
+  #logo{
+width:300px;
+  }
+  
+  #daBoys{
+    width:450px;
+
+  }
+  button{
+    font-weight: bolder;
+    font-size:2rem;
+    background-color: $money;
+    border-radius: 10px;
+    margin: 20px 10px;
+    color:$text;
+    padding: 0.9rem 1.5rem;
+  }
+  button:hover{
+    background-color: $money;
+  }
+}
