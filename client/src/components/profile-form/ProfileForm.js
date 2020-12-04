@@ -64,9 +64,13 @@ function ProfileForm(props) {
         <form className='customer' onSubmit={handleSubmit}>
           <div className='split'>
             <h1>{props.title}</h1>
-            <h3>
-              ID: <span className='highlight'>{customer.id}</span>
-            </h3>
+            {props.showId ? (
+              <h3>
+                ID: <span className='highlight'>{customer.id}</span>
+              </h3>
+            ) : (
+              ''
+            )}
           </div>
           <hr />
           {!isFormValid ? <h4 className='error'>Some values entered are invalid!</h4> : ''}

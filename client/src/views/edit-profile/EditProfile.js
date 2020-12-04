@@ -39,19 +39,9 @@ function EditProfile() {
 
   const renderProfileJSX = () => {
     const handleSubmit = (customer) => {
-      axios
-        .post(
-          'http://localhost:3001/editprofile',
-          {
-            customer: customer,
-          },
-          {
-            withCredentials: true,
-          }
-        )
-        .then(() => {
-          history.push('/profile');
-        });
+      axios.post('http://localhost:3001/editprofile', { customer: customer }, { withCredentials: true }).then(() => {
+        history.push('/profile');
+      });
     };
 
     if (customer) {
@@ -60,6 +50,7 @@ function EditProfile() {
           customer={customer}
           title='Edit your profile information'
           buttonLabel='Save'
+          showId={true}
           onSubmit={handleSubmit}
         />
       );

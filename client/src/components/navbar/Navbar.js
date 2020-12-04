@@ -70,6 +70,10 @@ function Navbar(props) {
           <li>
             <NavLink to='/login'>Login</NavLink>
           </li>
+          <li>-</li>
+          <li>
+            <NavLink to='/register'>Register</NavLink>
+          </li>
         </div>
       );
     }
