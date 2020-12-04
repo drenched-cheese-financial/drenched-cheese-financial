@@ -85,11 +85,8 @@ function Navbar(props) {
       <ul>
         <li className='logo'>
           <NavLink to='/'>
-            <span className='emojis'>💰 🧀</span>{' '}
-            <span className='tallLetter'>D</span>renched{' '}
-            <span className='tallLetter'>C</span>heese{' '}
-            <span className='tallLetter'>F</span>inancial{' '}
-            <span className='emojis'>🧀 💰</span>
+          <span className='emojis'>💰 🧀</span> <span className='tallLetter'>D</span>renched{' '}
+            <span className='tallLetter'>C</span>heese <span className='tallLetter'>F</span>inancial{' '}
           </NavLink>
         </li>
         <div className='rightLinks'>
