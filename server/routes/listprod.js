@@ -7,7 +7,6 @@ const router = express.Router();
 router.get('/', (req, res) => {
   const filter = '%' + req.query.filter + '%';
   const category = req.query.category;
-  console.log(category);
   getFilteredProducts(filter, category)
     .then((products) => {
       res.send(products);
