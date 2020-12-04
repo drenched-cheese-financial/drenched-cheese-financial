@@ -32,14 +32,12 @@ function Shop() {
 
   return (
     <div className='shop'>
-      {/* <button
-        onClick={() => {
-          history.push('/listprod');
-        }}
-      >
-        Get Drenched
-      </button>
-      <img id='daBoys' alt='da boys' src={DaBoys} /> */}
+
+      <br />
+      <img id='daBoys' src={DaBoys} />
+      <br />
+
+
       <button
         onClick={() => {
           history.push('/listprod');
@@ -50,7 +48,7 @@ function Shop() {
       <div className='bois'>
       </div>
 
-      {usernameJSX}
+      {/* {usernameJSX} */}
     </div>
   );
 }
