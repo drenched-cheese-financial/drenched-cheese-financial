@@ -219,7 +219,10 @@ async function updateInventory(conn, products) {
           .request()
           .input('productId', sql.Int, product.id)
           .query(`SELECT quantity FROM productinventory WHERE productId = @productId AND warehouseId = 1`);
-        let prevInventory = result.recordset[0].quantity;
+        let prevInventory = 0;
+        if (result.recordset.length > 0) {
+          prevInventory = result.recordset[0].quantity;
+        }
         let newInventory = prevInventory - product.quantity;
 
         if (newInventory < 0) {

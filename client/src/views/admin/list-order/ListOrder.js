@@ -8,7 +8,7 @@ function ListOrder(props) {
 
   useEffect(() => {
     // Fetch the data on load
-    const parameters = props.customerId? ('?customerId=' + props.customerId) : '';
+    const parameters = props.customerId ? '?customerId=' + props.customerId : '';
     axios.get('http://localhost:3001/listorder' + parameters, { withCredentials: true }).then((response) => {
       setOrderList(response.data);
     });
@@ -16,7 +16,7 @@ function ListOrder(props) {
 
   return (
     <div>
-      <h1>{props.customerId && "Your "}Orders</h1>
+      <h1>{props.customerId && 'Your '}Orders</h1>
 
       {orderList
         ? orderList.map((value, index) => {

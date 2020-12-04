@@ -38,6 +38,10 @@ function Profile() {
   };
 
   const renderCustomerJSX = () => {
+    const handleEditClick = () => {
+      history.push('/profile/edit');
+    };
+
     if (customer) {
       setCustomerJSX(
         <div className='customer'>
@@ -65,6 +69,10 @@ function Profile() {
               {customer.address} - {customer.city}, {customer.state}, {customer.country} - {customer.postalCode}
             </span>
           </p>
+          <br />
+          <div className='center'>
+            <button onClick={handleEditClick}>Edit Profile</button>
+          </div>
         </div>
       );
     } else {
@@ -74,7 +82,7 @@ function Profile() {
 
   useEffect(fetchCustomer, []);
   useEffect(renderLoginJSX, [customer, isPageLoaded, history]);
-  useEffect(renderCustomerJSX, [customer]);
+  useEffect(renderCustomerJSX, [customer, history]);
 
   return (
     <div className='profile'>
