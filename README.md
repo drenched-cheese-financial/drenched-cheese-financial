@@ -64,8 +64,5 @@ Our website also supports an administrator type of user. Administrators can:
 
 In addition, some pages use AJAX for an enhanced user experience. Also, our website runs on an actual cloud server, and can be accessed [here](https://the-drenched-cheese-financial.herokuapp.com/). 
 
-
-Cloud server
-
 ## Our Team
 Jean-Philippe Abadir, Jaden Balogh, Shawn Mountenay, Jordan Pike
