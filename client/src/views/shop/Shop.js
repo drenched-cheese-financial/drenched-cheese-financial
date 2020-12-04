@@ -45,7 +45,7 @@ function Shop() {
         Get Drenched
       </button>
 
-      {usernameJSX}
+      {/* {usernameJSX} */}
     </div>
   );
 }

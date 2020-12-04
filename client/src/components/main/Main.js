@@ -12,6 +12,7 @@ import Logout from '../../views/logout/Logout';
 import Profile from '../../views/profile/Profile';
 import Orders from '../../views/orders/Orders';
 import Admin from '../../views/admin/Admin';
+import Enter from '../../views/enter/Enter';
 import SingleProduct from '../../views/single-product/SingleProduct';
 import Video from '../../assets/videos/raining-money.mp4';
 import './main.scss';
