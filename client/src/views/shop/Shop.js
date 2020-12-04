@@ -34,8 +34,6 @@ function Shop() {
   return (
     <div className='shop'>
       <br />
-      <img id='logo' src={Logo} />
-      <br />
       <img id='daBoys' src={DaBoys} />
       <br />
 

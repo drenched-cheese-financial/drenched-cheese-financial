@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import './navbar.scss';
+import Logo from '../../assets/images/daBoys/dcf-mold-money-flat.png';
 
 function Navbar(props) {
   const [customer, setCustomer] = useState();
@@ -84,15 +85,36 @@ function Navbar(props) {
     <div className='navbar'>
       <nav>
         <ul>
-          <li className='logo'>
-            <NavLink to='/'>
-              <span className='emojis'>💰 🧀</span>{' '}
-              <span className='tallLetter'>D</span>renched{' '}
-              <span className='tallLetter'>C</span>heese{' '}
-              <span className='tallLetter'>F</span>inancial{' '}
-              <span className='emojis'>🧀 💰</span>
-            </NavLink>
-          </li>
+          <div className='leftLinks'>
+            <li className='logo'>
+              <NavLink to='/'>
+                <img src={Logo} />
+              </NavLink>
+            </li>
+            <li>
+              <iframe
+                width='150%'
+                height='65'
+                scrolling='no'
+                frameborder='no'
+                allow='autoplay'
+                src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/941014264&color=%233c5238&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true'
+              ></iframe>
+              <div>
+                <a
+                  href='https://soundcloud.com/shawnmountenay'
+                  title='Drenched Cheese Financial'
+                  target='_blank'
+                ></a>
+
+                <a
+                  href='https://soundcloud.com/shawnmountenay/hey-ramone-v3'
+                  title='Hey Ramone'
+                  target='_blank'
+                ></a>
+              </div>
+            </li>
+          </div>
           <div className='rightLinks'>
             {usernameJSX}
             <li>

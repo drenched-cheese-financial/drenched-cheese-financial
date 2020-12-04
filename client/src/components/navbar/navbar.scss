@@ -4,7 +4,24 @@ $money: #30663b;
 $shadow: rgb(153, 137, 97);
 $logo: rgb(163, 134, 60);
 
+.soundCountainer{
+  background-color: blue;
+}
+
 .navbar{
+
+  .logo img{
+    height:75px;
+    margin-top: auto;
+    margin-bottom: auto;
+    display:flex;
+    align-self: center;
+  }
+
+  .leftLinks{
+    display: flex;
+    justify-content: flex-start;
+  }
 
   .rightLinks {
     display: flex;
