@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import Shop from '../../views/shop/Shop';
+import ListOrder from '../../views/admin/list-order/ListOrder';
 import ListProduct from '../../views/list-product/ListProduct';
 import LoadData from '../../views/load-data/LoadData';
 import ShowCart from '../../views/showcart/ShowCart';
