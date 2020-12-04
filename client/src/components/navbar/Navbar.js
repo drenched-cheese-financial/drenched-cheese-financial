@@ -91,9 +91,9 @@ function Navbar(props) {
                 <img src={Logo} />
               </NavLink>
             </li>
-            <li>
+            <li className='soundListItem'>
               <iframe
-                width='150%'
+                width='50%'
                 height='65'
                 scrolling='no'
                 frameborder='no'
