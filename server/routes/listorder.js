@@ -45,9 +45,7 @@ router.get('/', (req, res) => {
         let productResults = await pool
           .request()
           .input('safeOrderId', sql.VarChar, record.orderId)
-          .query(
-            `select productId, quantity, price from orderproduct where orderId=@safeOrderId order by productId`
-          );
+          .query(`select productId, quantity, price from orderproduct where orderId=@safeOrderId order by productId`);
 
         var productData = [];
         productResults.recordset.forEach((productRecord) => {
