@@ -56,6 +56,10 @@ function Navbar(props) {
           </li>
           <li>-</li>
           <li>
+            <NavLink to='/orders'>My Orders</NavLink>
+          </li>
+          <li>-</li>
+          <li>
             <NavLink to='/logout'>Logout</NavLink>
           </li>
         </div>
