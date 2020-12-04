@@ -45,18 +45,19 @@ function ListProduct() {
   return (
     <div>
       <h1>Search for Products</h1>
-      <input list="ProdCategory" value={filter} onChange={handleFilterChange} />
-      <datalist id="ProdCategory">
-        <option value="Beverages" />
-        <option value="Condiments" />
-        <option value="Dairy Products" />
-        <option value="Produce" />
-        <option value="Meat/Poultry" />
-        <option value="Seafood" />
-        <option value="Confections" />
-        <option value="Grains/Cereals" />
-      </datalist>
-      <button onClick={fetchProductList}>Search</button>
+      <input value={filter} onChange={handleFilterChange} placeholder="Search by Name"/>
+      <button onClick={fetchProductList}>Search</button><br></br>
+      <select class="selectBar" onChange={handleFilterChange}>
+        <option value="" disabled selected>Search by Category</option>
+        <option value="Beverages">Beverages</option>
+        <option value="Condiments">Condiments</option>
+        <option value="Dairy Products">Dairy Products</option>
+        <option value="Produce">Produce</option>
+        <option value="Meat/Poultry">Meat/Poultry</option>
+        <option value="Seafood">Seafood</option>
+        <option value="Confections">Confections</option>
+        <option value="Grains/Cereals">Grains/Cereals</option>
+      </select>
       <br></br>
       {productList ? (
         <div>
@@ -86,10 +87,12 @@ function ListProduct() {
                       </button>
                     </td>
                     <td>
-                        <img alt ={product.name + " thumbnail"} 
+                      <img alt={product.name + " thumbnail"}
                         src={"/products/img/" + product.id + ".jpg"}
-                        onError={(e)=>{e.target.onerror = null; 
-                        e.target.src="/products/img/noimg.jpg"}}/>
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "/products/img/noimg.jpg"
+                        }} />
                     </td>
                   </tr>
                 );
