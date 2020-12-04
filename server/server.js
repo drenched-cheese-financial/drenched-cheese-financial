@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import order from './routes/order.js';
 import loaddata from './routes/loaddata.js';
 import listprod from './routes/listprod.js';
+import categories from './routes/categories.js';
 import listorder from './routes/listorder.js';
 import customer from './routes/customer.js';
 import validate from './routes/validate.js';
@@ -49,6 +50,7 @@ app.use(
 app.use('/order', order);
 app.use('/loaddata', loaddata);
 app.use('/listprod', listprod);
+app.use('/categories', categories);
 app.use('/listorder', listorder);
 app.use('/customer', customer);
 app.use('/validate', validate);
