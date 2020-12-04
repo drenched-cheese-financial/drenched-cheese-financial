@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import ValidationForm from '../../components/validation/ValidationForm';
-import ListOrder from '../admin/list-order/ListOrder';
+import ProfileForm from '../../components/profile-form/ProfileForm';
 
-function Orders() {
+function EditProfile() {
   const history = useHistory();
   const [customer, setCustomer] = useState();
   const [loginJSX, setLoginJSX] = useState();
-  const [ordersJSX, setOrdersJSX] = useState();
+  const [profileJSX, setProfileJSX] = useState();
   const [isPageLoaded, setIsPageLoaded] = useState(false);
 
   const fetchCustomer = () => {
@@ -26,37 +26,49 @@ function Orders() {
 
   const renderLoginJSX = () => {
     const handleValidate = () => {
-      history.push('/orders');
+      history.push('/profile/edit');
       fetchCustomer();
     };
 
     if (isPageLoaded && !customer) {
-      setLoginJSX(
-        <ValidationForm isFromRedirect={true} onValidate={handleValidate} />
-      );
+      setLoginJSX(<ValidationForm isFromRedirect={true} onValidate={handleValidate} />);
     } else {
       setLoginJSX();
     }
   };
 
-  const renderOrdersJSX = () => {
+  const renderProfileJSX = () => {
+    const handleSubmit = (customer) => {
+      axios.post('http://localhost:3001/editprofile', { customer: customer }, { withCredentials: true }).then(() => {
+        history.push('/profile');
+      });
+    };
+
     if (customer) {
-      setOrdersJSX(<ListOrder customerId={customer.id} />);
+      setProfileJSX(
+        <ProfileForm
+          customer={customer}
+          title='Edit your profile information'
+          buttonLabel='Save'
+          showId={true}
+          onSubmit={handleSubmit}
+        />
+      );
     } else {
-      setOrdersJSX();
+      setProfileJSX();
     }
   };
 
   useEffect(fetchCustomer, []);
   useEffect(renderLoginJSX, [customer, isPageLoaded, history]);
-  useEffect(renderOrdersJSX, [customer]);
+  useEffect(renderProfileJSX, [customer, history]);
 
   return (
     <div>
       {loginJSX}
-      {ordersJSX}
+      {profileJSX}
     </div>
   );
 }
 
-export default Orders;
+export default EditProfile;

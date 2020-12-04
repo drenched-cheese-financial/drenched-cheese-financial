@@ -1,0 +1,94 @@
+$background: rgb(36, 36, 32);
+$primary: rgb(160, 160, 97);
+$backgroundPrimary: rgb(58, 58, 52);
+$backgroundSecondary: rgb(86, 86, 77);
+$money: #30663b;
+$error: rgb(211, 24, 24);
+$highlight: rgb(204, 177, 109);
+$inputText: #797958;
+$inputBackground: #222220;
+$inputShadowValid: #30663b;
+$inputShadowInvalid: #db1919;
+$dropdownBackground: #33332e;
+
+.profile {
+  display: flex;
+  justify-content: center;
+}
+
+.customer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 62%;
+  margin: 30px;
+  padding: 20px;
+  background-color: $background;
+  box-shadow: 0px 1px 3px $highlight;
+}
+
+.split {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.highlight {
+  text-shadow: 2px 2px 2px $money;
+  font-weight: bold;
+  color: $highlight;
+}
+
+.valid {
+  background-color: $inputBackground;
+  box-shadow: 1px 1px 4px $inputShadowValid;
+  color: $inputText;
+}
+
+.valid:hover {
+  background-color: $inputBackground;
+  box-shadow: 2px 2px 5px $inputShadowValid;
+  color: $inputText;
+}
+
+.invalid {
+  background-color: $inputBackground;
+  box-shadow: 1px 1px 4px $inputShadowInvalid;
+  color: $inputText;
+}
+
+.invalid:hover {
+  background-color: $inputBackground;
+  box-shadow: 2px 2px 5px $inputShadowInvalid;
+  color: $inputText;
+}
+
+.error {
+  color: $error;
+}
+
+h1,
+h4,
+h5,
+p {
+  margin: 5px;
+}
+
+hr {
+  width: 100%;
+  border: 1px solid $background;
+  box-shadow: 0px 1px $highlight;
+}
