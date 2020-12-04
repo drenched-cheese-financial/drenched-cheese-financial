@@ -52,6 +52,7 @@ function Main(props) {
           <Route exact path='/profile' component={Profile} />
           <Route exact path='/orders' component={Orders} />
           <Route exact path='/showcart' component={ShowCart} />
+          <Route exact path='/enter' component={Enter} />
           <Route exact path='/product/:productId' component={SingleProduct} />
         </Switch>
       </div>

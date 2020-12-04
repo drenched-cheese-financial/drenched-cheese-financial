@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Main from '../components/main/Main';
 import Navbar from '../components/navbar/Navbar';
+import Enter from '../views/enter/Enter';
 import './app.scss';
 
 function App() {
@@ -8,12 +9,13 @@ function App() {
 
   const handleRouteUpdate = (location) => {
     setLocation(location);
-  }
+  };
 
   return (
     <div className='App'>
       <Navbar location={location} />
       <Main onRouteUpdate={handleRouteUpdate} />
+      
     </div>
   );
 }
