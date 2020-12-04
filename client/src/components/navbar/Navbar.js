@@ -81,30 +81,34 @@ function Navbar(props) {
   useEffect(renderAccountJSX, [customer]);
 
   return (
-    <nav>
-      <ul>
-        <li className='logo'>
-          <NavLink to='/'>
-            <span className='emojis'>💰 🧀</span> <span className='tallLetter'>D</span>renched{' '}
-            <span className='tallLetter'>C</span>heese <span className='tallLetter'>F</span>inancial{' '}
-            <span className='emojis'>🧀 💰</span>
-          </NavLink>
-        </li>
-        <div className='rightLinks'>
-          {usernameJSX}
-          <li>
-            <NavLink to='/listprod'>Begin Shopping</NavLink>
+    <div className='navbar'>
+      <nav>
+        <ul>
+          <li className='logo'>
+            <NavLink to='/'>
+              <span className='emojis'>💰 🧀</span>{' '}
+              <span className='tallLetter'>D</span>renched{' '}
+              <span className='tallLetter'>C</span>heese{' '}
+              <span className='tallLetter'>F</span>inancial{' '}
+              <span className='emojis'>🧀 💰</span>
+            </NavLink>
           </li>
-          <li>-</li>
-          <li>
-            <NavLink to='/listorder'>List Orders</NavLink>
-          </li>
-          <li>-</li>
-          {adminJSX}
-          {accountJSX}
-        </div>
-      </ul>
-    </nav>
+          <div className='rightLinks'>
+            {usernameJSX}
+            <li>
+              <NavLink to='/listprod'>Begin Shopping</NavLink>
+            </li>
+            <li>-</li>
+            <li>
+              <NavLink to='/listorder'>List Orders</NavLink>
+            </li>
+            <li>-</li>
+            {adminJSX}
+            {accountJSX}
+          </div>
+        </ul>
+      </nav>
+    </div>
   );
 }
 
