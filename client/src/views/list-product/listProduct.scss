@@ -2,37 +2,41 @@ $headerText: rgb(236, 235, 191);
 $money: #30663b;
 $onHover: rgb(204, 177, 109);
 
-.noBackground th {
-  background: none;
-}
+.listProduct{
 
-.product {
-  color: $headerText;
-  text-decoration: none;
-  left: 3px;
-  right: 3px;
+  .noBackground th {
+    background: none;
+  }
+  
+  .product {
+    color: $headerText;
+    text-decoration: none;
+    left: 3px;
+    right: 3px;
+  }
+  
+  .product:hover {
+    text-shadow: 2px 2px 2px $money;
+    font-weight: bold;
+    color: $onHover;
+    cursor: pointer;
+  }
+  
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  select.selectBar {
+    width: 270px;
+    height: 30px;
+    background: rgb(58, 58, 52);
+    color: rgb(204, 177, 109);
+  }
+  
+  ::placeholder {
+    color: rgb(204, 177, 109);
+  }
 }
-
-.product:hover {
-  text-shadow: 2px 2px 2px $money;
-  font-weight: bold;
-  color: $onHover;
-  cursor: pointer;
-}
-
-img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-}
-
-select.selectBar {
-  width: 270px;
-  height: 30px;
-  background: rgb(58, 58, 52);
-  color: rgb(204, 177, 109);
-}
-
-::placeholder {
-  color: rgb(204, 177, 109);
-}
+  

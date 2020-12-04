@@ -11,16 +11,24 @@ function ListProduct() {
   const [categoryOptions, setCategoryOptions] = useState([]);
 
   const fetchProductList = () => {
-    let params = new URLSearchParams('filter=' + filter + '&category=' + category);
-    axios.get('http://localhost:3001/listprod?' + params, { withCredentials: true }).then((res) => {
-      setProductList(res.data);
-    });
+    let params = new URLSearchParams(
+      'filter=' + filter + '&category=' + category
+    );
+    axios
+      .get('http://localhost:3001/listprod?' + params, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setProductList(res.data);
+      });
   };
 
   const fetchCategoryOptions = () => {
-    axios.get('http://localhost:3001/categories', { withCredentials: true }).then((res) => {
-      setCategoryOptions([{ id: 0, name: 'Show All' }, ...res.data]);
-    });
+    axios
+      .get('http://localhost:3001/categories', { withCredentials: true })
+      .then((res) => {
+        setCategoryOptions([{ id: 0, name: 'Show All' }, ...res.data]);
+      });
   };
 
   function handleAddCart(event) {
@@ -56,9 +64,13 @@ function ListProduct() {
   useEffect(fetchCategoryOptions, []);
 
   return (
-    <div>
+    <div className='listProduct'>
       <h1>Search for Products</h1>
-      <input value={filter} onChange={handleFilterChange} placeholder='Search by Name' />
+      <input
+        value={filter}
+        onChange={handleFilterChange}
+        placeholder='Search by Name'
+      />
       <button onClick={fetchProductList}>Search</button>
       <br />
       <select className='selectBar' onChange={handleCategoryChange}>
@@ -85,10 +97,16 @@ function ListProduct() {
             <tbody>
               {productList.map((product, index) => {
                 return (
-                  <tr key={index} className={index % 2 === 0 ? 'rowPrimary' : ''}>
+                  <tr
+                    key={index}
+                    className={index % 2 === 0 ? 'rowPrimary' : ''}
+                  >
                     <td>{product.id}</td>
                     <td>
-                      <span className='product' onClick={() => handleProductClick(product.id)}>
+                      <span
+                        className='product'
+                        onClick={() => handleProductClick(product.id)}
+                      >
                         {product.name}
                       </span>
                     </td>
