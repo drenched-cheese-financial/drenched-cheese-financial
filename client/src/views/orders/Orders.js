@@ -52,7 +52,7 @@ function Orders() {
   useEffect(renderOrdersJSX, [customer]);
 
   return (
-    <div className="profile">
+    <div className='profile'>
       {loginJSX}
       {ordersJSX}
     </div>
