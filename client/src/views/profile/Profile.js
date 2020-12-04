@@ -40,7 +40,7 @@ function Profile() {
   const renderCustomerJSX = () => {
     const handleEditClick = () => {
       history.push('/profile/edit');
-    }
+    };
 
     if (customer) {
       setCustomerJSX(
@@ -69,6 +69,7 @@ function Profile() {
               {customer.address} - {customer.city}, {customer.state}, {customer.country} - {customer.postalCode}
             </span>
           </p>
+          <br />
           <div className='center'>
             <button onClick={handleEditClick}>Edit Profile</button>
           </div>

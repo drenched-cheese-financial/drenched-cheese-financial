@@ -194,6 +194,7 @@ function ProfileForm(props) {
             onChange={handleChange}
             validateOptions={{ min: 5, max: 7, isAlphanumeric: true }}
           />
+          <br />
           <div className='center'>
             <input type='submit' value={props.buttonLabel} />
           </div>
