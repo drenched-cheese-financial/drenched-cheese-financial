@@ -35,5 +35,37 @@ To run the website locally, complete the following steps:
 5. Go to http://localhost:3000
 6. Profit
 
+## Currently-supported Features
+Currently, any user can:
+- Search for a product by name
+- Browse products by category
+- List all the products we sell, and view an image of each product on the same page if an image is present
+- Navigate the website using a navbar
+- Login using a username and a password
+- View their current login status at all times on the website on the navbar (either the option to login if they are not logged in, or their username if they are)
+- Interact with the website trough an aesthetically pleasing UI
+- Add items to their shopping cart
+- View their shopping cart
+- Update the quantity of an item that is already in their shopping cart
+- Remove items from their shopping cart
+- Order all the products currently in their shopping cart
+- Login upon checkout
+- Input their credit card number and expiry date upon checkout. These fields will only accept valid credit card numbers and expiration dates
+- For each product, view a page with the details of that product, with an image and description (if applicable)
+- Create an account. The account will only be created if valid data is provided by the user. 
+- View their account information in a specific page
+- Edit their address and password
+- View all the orders they have passed in a specific page
+
+Our website also supports an administrator type of user. Administrators can:
+- Login using their username and password
+- View a list of all the customers registered in the system
+- Obtain a report containing a summary of all sales 
+
+In addition, some pages use AJAX for an enhanced user experience. Also, our website runs on an actual cloud server, and can be accessed [here](https://the-drenched-cheese-financial.herokuapp.com/). 
+
+
+Cloud server
+
 ## Our Team
 Jean-Philippe Abadir, Jaden Balogh, Shawn Mountenay, Jordan Pike
