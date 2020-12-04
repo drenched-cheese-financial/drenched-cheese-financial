@@ -21,7 +21,9 @@ function ValidationForm(props) {
       )
       .then((res) => {
         let authId = res.data.authId;
-        if (authId >= 0) {
+        let isAdmin = res.data.isAdmin;
+        console.log(isAdmin);
+        if (authId >= 0 && (!props.requireAdmin || isAdmin)) {
           props.onValidate(authId);
         } else {
           setErrorJSX(<p>Failed to connect using entered credentials.</p>);

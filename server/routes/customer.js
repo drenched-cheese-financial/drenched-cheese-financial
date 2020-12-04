@@ -39,7 +39,7 @@ function getCustomer(customerId) {
             postalCode,
             country,
             userid AS username,
-            password
+            isAdmin
           FROM customer
           WHERE customerId = @customerId`
         )

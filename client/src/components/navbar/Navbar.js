@@ -37,7 +37,7 @@ function Navbar(props) {
       setAdminJSX(
         <div className='linkGroup'>
           <li>
-            <NavLink to='/admin'>Admin View</NavLink>
+            <NavLink to='/admin'>Admin Panel</NavLink>
           </li>
           <li>-</li>
         </div>
@@ -96,15 +96,11 @@ function Navbar(props) {
         </li>
         <div className='rightLinks'>
           {usernameJSX}
+          {adminJSX}
           <li>
             <NavLink to='/listprod'>Begin Shopping</NavLink>
           </li>
           <li>-</li>
-          <li>
-            <NavLink to='/listorder'>List Orders</NavLink>
-          </li>
-          <li>-</li>
-          {adminJSX}
           {accountJSX}
         </div>
       </ul>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import ValidationForm from '../../components/validation/ValidationForm';
-import ListOrder from '../list-order/ListOrder';
+import ListOrder from '../admin/list-order/ListOrder';
 
 function Orders() {
   const history = useHistory();
