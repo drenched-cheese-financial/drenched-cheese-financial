@@ -32,11 +32,9 @@ function Shop() {
 
   return (
     <div className='shop'>
-
       <br />
       <img id='daBoys' src={DaBoys} />
       <br />
-
 
       <button
         onClick={() => {
@@ -45,8 +43,6 @@ function Shop() {
       >
         Get Drenched
       </button>
-      <div className='bois'>
-      </div>
 
       {/* {usernameJSX} */}
     </div>
