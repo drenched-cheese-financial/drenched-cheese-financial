@@ -23,7 +23,7 @@ function ListProduct() {
 
   const fetchCategoryOptions = () => {
     axios.get('http://localhost:3001/categories', { withCredentials: true }).then((res) => {
-      setCategoryOptions([{ id: 0, name: 'Show All' }, ...res.data]);
+      setCategoryOptions([{ id: 0, name: 'All Categories' }, ...res.data]);
     });
   };
 
