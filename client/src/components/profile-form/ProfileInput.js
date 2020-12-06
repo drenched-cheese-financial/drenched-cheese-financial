@@ -15,7 +15,7 @@ function ProfileInput(props) {
         className={props.isValid !== undefined ? (props.isValid ? 'valid' : 'invalid') : ''}
         type={props.type}
         name={props.name}
-        value={props.value}
+        value={props.value || ''}
         onChange={handleChange}
       />
     </p>
