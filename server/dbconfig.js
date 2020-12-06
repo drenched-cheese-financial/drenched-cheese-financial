@@ -1,8 +1,13 @@
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+require('dotenv').config();
+
 const dbConfig = {
-  user: 'uhs119rputynmdn',
-  password: 'l#kLdfI1nP9nVnF&VEXY0aT9p',
-  server: 'eu-az-sql-serv1.database.windows.net',
-  database: 'dk0gz9ahvwvdnsr',
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  server: process.env.DB_SERVER,
+
   options: {
     enableArithAbort: true,
     encrypt: true,
