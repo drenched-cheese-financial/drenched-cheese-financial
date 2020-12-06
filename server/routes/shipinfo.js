@@ -5,6 +5,11 @@ import dbConfig from '../dbconfig.js';
 const router = express.Router();
 
 router.post('/', function (req, res) {
+  if (!req.body || !req.body.shipData) {
+    res.send(false);
+    return;
+  }
+
   insertShipInfo(req.body.shipData)
     .then(() => {
       res.send(true);
@@ -12,7 +17,6 @@ router.post('/', function (req, res) {
     .catch((err) => {
       console.dir(err);
       res.send(false);
-      res.end();
     });
 });
 const insertShipInfo = async (shipData) => {

@@ -11,9 +11,7 @@ function ListProduct() {
   const [categoryOptions, setCategoryOptions] = useState([]);
 
   const fetchProductList = () => {
-    let params = new URLSearchParams(
-      'filter=' + filter + '&category=' + category
-    );
+    let params = new URLSearchParams('filter=' + filter + '&category=' + category);
     axios
       .get('https://the-drenched-cheese-financial.herokuapp.com/listprod?' + params, {
         withCredentials: true,
@@ -24,11 +22,9 @@ function ListProduct() {
   };
 
   const fetchCategoryOptions = () => {
-    axios
-      .get('https://the-drenched-cheese-financial.herokuapp.com/categories', { withCredentials: true })
-      .then((res) => {
-        setCategoryOptions([{ id: 0, name: 'Show All' }, ...res.data]);
-      });
+    axios.get('https://the-drenched-cheese-financial.herokuapp.com/categories', { withCredentials: true }).then((res) => {
+      setCategoryOptions([{ id: 0, name: 'All Categories' }, ...res.data]);
+    });
   };
 
   function handleAddCart(event) {
@@ -66,11 +62,7 @@ function ListProduct() {
   return (
     <div className='listProduct'>
       <h1>Search for Products</h1>
-      <input
-        value={filter}
-        onChange={handleFilterChange}
-        placeholder='Search by Name'
-      />
+      <input value={filter} onChange={handleFilterChange} placeholder='Search by Name' />
       <button onClick={fetchProductList}>Search</button>
       <br />
       <select className='selectBar' onChange={handleCategoryChange}>
@@ -97,16 +89,10 @@ function ListProduct() {
             <tbody>
               {productList.map((product, index) => {
                 return (
-                  <tr
-                    key={index}
-                    className={index % 2 === 0 ? 'rowPrimary' : ''}
-                  >
+                  <tr key={index} className={index % 2 === 0 ? 'rowPrimary' : ''}>
                     <td>{product.id}</td>
                     <td>
-                      <span
-                        className='product'
-                        onClick={() => handleProductClick(product.id)}
-                      >
+                      <span className='product' onClick={() => handleProductClick(product.id)}>
                         {product.name}
                       </span>
                     </td>
@@ -119,8 +105,9 @@ function ListProduct() {
                     <td>
                       <img
                         alt={product.name + ' thumbnail'}
-                        src={'/products/img/' + product.id + '.jpg'}
+                        src={`/products/${product.imageURL}`}
                         onError={(e) => {
+                          console.log('error lol');
                           e.target.onerror = null;
                           e.target.src = '/products/img/noimg.jpg';
                         }}

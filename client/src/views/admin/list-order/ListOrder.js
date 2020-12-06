@@ -53,7 +53,7 @@ function ListOrder(props) {
                   <tbody>
                     {value[1].map((product, productIndex) => {
                       return (
-                        <tr key={productIndex} className={index % 2 !== 0 ? 'rowPrimary' : ''}>
+                        <tr key={productIndex} className={productIndex % 2 !== 0 ? 'rowPrimary' : ''}>
                           <td>{product.productId}</td>
                           <td>{product.quantity}</td>
                           <td>{product.price}</td>

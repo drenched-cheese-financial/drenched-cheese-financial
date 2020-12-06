@@ -55,6 +55,7 @@ function SingleProduct() {
               src={`https://the-drenched-cheese-financial.herokuapp.com/displayimage?id=${product.id}`}
             />
           )}
+          <p>{product.description}</p>
           <table>
             <thead>
               <tr>
