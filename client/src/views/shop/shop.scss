@@ -15,11 +15,15 @@ $highlight: rgb(204, 177, 109);
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    align-content: center;
+    margin-left:auto;
+    margin-right:auto;
     height: 92vh;
     width: 100%;
     max-width: 1400px;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
+    background-position: center;
     background-image: url('../../assets/images/daBoys/daBoysFlat.png');
   }
 
