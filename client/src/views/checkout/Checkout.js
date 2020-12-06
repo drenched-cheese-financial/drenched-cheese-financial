@@ -12,9 +12,9 @@ function Checkout() {
   const [shipComplete, setShipComplete] = useState(false);
 
   const handleValidate = (authId) => {
+    history.push('/checkout');
     setAuthId(authId);
     setShowPayShip(true);
-
     //after validation, show "login credentials valid"
     //then show payment form and shipment form components
   };
@@ -50,9 +50,7 @@ function Checkout() {
           <Payment paymentComplete={handlePaymentComplete} custId={authId} />
         </div>
       )}
-      {payComplete && (
-        <ShipInfo shipComplete={handleShipComplete} custId={authId} />
-      )}
+      {payComplete && <ShipInfo shipComplete={handleShipComplete} custId={authId} />}
     </div>
   );
 }
