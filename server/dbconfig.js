@@ -1,6 +1,4 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-require('dotenv').config();
+import dotenv from 'dotenv';
 
 const dbConfig = {
   user: process.env.DB_USER,
