@@ -55,6 +55,7 @@ function SingleProduct() {
               src={`http://localhost:3001/displayimage?id=${product.id}`}
             />
           )}
+          <p>{product.description}</p>
           <table>
             <thead>
               <tr>

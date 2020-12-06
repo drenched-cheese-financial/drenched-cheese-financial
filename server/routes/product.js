@@ -14,6 +14,7 @@ router.get('/', function (req, res) {
 						productId AS id,
 						productName AS name,
 						productPrice AS price,
+						productDesc AS description,
 						productImageURL AS imageURL,
 						productImage AS image
 					FROM product
