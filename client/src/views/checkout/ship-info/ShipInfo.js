@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './../payShip.scss';
-import {
-  canadianProvinces,
-  americanStates,
-  nums,
-  alphabet,
-} from './addressData';
+import { canadianProvinces, americanStates, nums, alphabet } from './addressData';
 const validator = require('validator');
 
 //need these for shipment
@@ -22,13 +17,11 @@ function ShipInfo(props) {
   const [addressValid, setAddressValid] = useState();
   const [cityValid, setCityValid] = useState();
   const [postalCodeValid, setPostalCodeValid] = useState();
-  const [postalCode, setPostalCode] = useState();
+  const [postalCode, setPostalCode] = useState('');
   const [address, setAddress] = useState('');
-  const [city, setCity] = useState();
+  const [city, setCity] = useState('');
   const [cityPlaceHolder, setCityPlaceHolder] = useState('Kelowna');
-  const [addressPlaceHolder, setAddressPlaceHolder] = useState(
-    '5050 Dab-dat way'
-  );
+  const [addressPlaceHolder, setAddressPlaceHolder] = useState('5050 Dab-dat way');
   const [postalCodePlaceHolder, setPostalCodePlaceHolder] = useState('V1R 1C3');
   const [shipDataReceived, setShipDataReceived] = useState(false);
 
@@ -61,18 +54,12 @@ function ShipInfo(props) {
   }
 
   const sendShipDataToDB = () => {
-    axios
-      .post(
-        'http://localhost:3001/shipinfo',
-        { shipData },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        setShipDataReceived(res.data);
-        setTimeout(function () {
-          props.shipComplete(res.data);
-        }, 1700);
-      });
+    axios.post('http://localhost:3001/shipinfo', { shipData }, { withCredentials: true }).then((res) => {
+      setShipDataReceived(res.data);
+      setTimeout(function () {
+        props.shipComplete(res.data);
+      }, 1700);
+    });
   };
 
   const handleSubmit = () => {
@@ -103,19 +90,13 @@ function ShipInfo(props) {
     setPostalCode(event.target.value);
     if (event)
       if (country.abbreviation === 'CA') {
-        if (
-          validator.isLength(event.target.value, { min: 6, max: 7 }) &&
-          customValidation(event.target.value)
-        ) {
+        if (validator.isLength(event.target.value, { min: 6, max: 7 }) && customValidation(event.target.value)) {
           setPostalCodeValid(true);
         } else {
           setPostalCodeValid(false);
         }
       } else if (country.abbreviation === 'US') {
-        if (
-          validator.isLength(event.target.value, { min: 5, max: 5 }) &&
-          validator.isNumeric(event.target.value)
-        ) {
+        if (validator.isLength(event.target.value, { min: 5, max: 5 }) && validator.isNumeric(event.target.value)) {
           setPostalCodeValid(true);
         } else {
           setPostalCodeValid(false);
@@ -143,10 +124,7 @@ function ShipInfo(props) {
 
   const handleAddress = (event) => {
     setAddress(event.target.value);
-    if (
-      validator.isLength(event.target.value, { min: 4 }) &&
-      customValidation(event.target.value)
-    ) {
+    if (validator.isLength(event.target.value, { min: 4 }) && customValidation(event.target.value)) {
       setAddressValid(true);
     } else {
       setAddressValid(false);
@@ -189,6 +167,7 @@ function ShipInfo(props) {
                 canadianProvinces.map((province, index) => {
                   return (
                     <button
+                      key={index}
                       onClick={() => {
                         setRegion(province);
                         handleCountryOrRegion();
@@ -202,6 +181,7 @@ function ShipInfo(props) {
                 americanStates.map((state, index) => {
                   return (
                     <button
+                      key={index}
                       onClick={() => {
                         setRegion(state);
                         handleCountryOrRegion();
@@ -234,7 +214,7 @@ function ShipInfo(props) {
           <input
             className={cityValid ? 'valid' : ''}
             onChange={handleCity}
-            placeHolder={cityPlaceHolder}
+            placeholder={cityPlaceHolder}
             value={city}
             name='city'
           />
@@ -246,7 +226,7 @@ function ShipInfo(props) {
           <input
             className={postalCodeValid ? 'valid' : ''}
             onChange={handlePostalCode}
-            placeHolder={postalCodePlaceHolder}
+            placeholder={postalCodePlaceHolder}
             name='postalCode'
             value={postalCode}
           />

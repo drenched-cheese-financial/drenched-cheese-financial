@@ -24,8 +24,12 @@ function Navbar(props) {
     if (customer) {
       setUsernameJSX(
         <div className='linkGroup'>
-          <li>{customer.username}</li>
-          <li>-</li>
+          <li>
+            <h3>{customer.username}</h3>
+          </li>
+          <li>
+            <h3>-</h3>
+          </li>
         </div>
       );
     } else {
@@ -38,9 +42,13 @@ function Navbar(props) {
       setAdminJSX(
         <div className='linkGroup'>
           <li>
-            <NavLink to='/admin'>Admin Panel</NavLink>
+            <NavLink to='/admin'>
+              <h3>Admin Panel</h3>
+            </NavLink>
           </li>
-          <li>-</li>
+          <li>
+            <h3>-</h3>
+          </li>
         </div>
       );
     } else {
@@ -53,15 +61,25 @@ function Navbar(props) {
       setAccountJSX(
         <div className='linkGroup'>
           <li>
-            <NavLink to='/profile'>My Profile</NavLink>
+            <NavLink to='/profile'>
+              <h3>My Profile</h3>
+            </NavLink>
           </li>
-          <li>-</li>
           <li>
-            <NavLink to='/orders'>My Orders</NavLink>
+            <h3>-</h3>
           </li>
-          <li>-</li>
           <li>
-            <NavLink to='/logout'>Logout</NavLink>
+            <NavLink to='/orders'>
+              <h3>My Orders</h3>
+            </NavLink>
+          </li>
+          <li>
+            <h3>-</h3>
+          </li>
+          <li>
+            <NavLink to='/logout'>
+              <h3>Logout</h3>
+            </NavLink>
           </li>
         </div>
       );
@@ -69,11 +87,17 @@ function Navbar(props) {
       setAccountJSX(
         <div className='linkGroup'>
           <li>
-            <NavLink to='/login'>Login</NavLink>
+            <NavLink to='/login'>
+              <h3>Login</h3>
+            </NavLink>
           </li>
-          <li>-</li>
           <li>
-            <NavLink to='/register'>Register</NavLink>
+            <h3>-</h3>
+          </li>
+          <li>
+            <NavLink to='/register'>
+              <h3>Register</h3>
+            </NavLink>
           </li>
         </div>
       );
@@ -92,44 +116,21 @@ function Navbar(props) {
           <div className='leftLinks'>
             <li className='logo'>
               <NavLink to='/'>
-                <img src={Logo} />
+                <img alt='logo' src={Logo} />
               </NavLink>
-            </li>
-            <li className='soundListItem'>
-              <iframe
-                width='50%'
-                height='65'
-                scrolling='no'
-                frameborder='no'
-                allow='autoplay'
-                src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/941014264&color=%233c5238&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true'
-              ></iframe>
-              <div>
-                <a
-                  href='https://soundcloud.com/shawnmountenay'
-                  title='Drenched Cheese Financial'
-                  target='_blank'
-                ></a>
-
-                <a
-                  href='https://soundcloud.com/shawnmountenay/hey-ramone-v3'
-                  title='Hey Ramone'
-                  target='_blank'
-                ></a>
-              </div>
             </li>
           </div>
           <div className='rightLinks'>
             {usernameJSX}
-            <li>
-              <NavLink to='/listprod'>Begin Shopping</NavLink>
-            </li>
-            <li>-</li>
-            <li>
-              <NavLink to='/listorder'>List Orders</NavLink>
-            </li>
-            <li>-</li>
             {adminJSX}
+            <li>
+              <NavLink to='/listprod'>
+                <h3>Begin Shopping</h3>
+              </NavLink>
+            </li>
+            <li>
+              <h3>-</h3>
+            </li>
             {accountJSX}
           </div>
         </ul>

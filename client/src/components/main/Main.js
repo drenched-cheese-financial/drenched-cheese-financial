@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import Shop from '../../views/shop/Shop';
-import ListOrder from '../../views/admin/list-order/ListOrder';
 import ListProduct from '../../views/list-product/ListProduct';
 import LoadData from '../../views/load-data/LoadData';
 import ShowCart from '../../views/showcart/ShowCart';
@@ -35,15 +34,12 @@ function Main(props) {
           loop
           src={Video}
           type='video/mp4'
-          // see SCSS for styles
-          // onclick="playVideo()"
         />
       </div>
 
       <div className='mainContent'>
         <Switch>
           <Route exact path='/' component={Shop} />
-          <Route exact path='/listorder' component={ListOrder} />
           <Route exact path='/listprod' component={ListProduct} />
           <Route exact path='/loaddata' component={LoadData} />
           <Route exact path='/checkout' component={Checkout} />
@@ -52,6 +48,8 @@ function Main(props) {
           <Route exact path='/logout' component={Logout} />
           <Route exact path='/admin' component={Admin} />
           <Route exact path='/profile' component={Profile} />
+          <Route exact path='/profile/edit' component={EditProfile} />
+          <Route exact path='/register' component={Register} />
           <Route exact path='/orders' component={Orders} />
           <Route exact path='/showcart' component={ShowCart} />
           <Route exact path='/enter' component={Enter} />
