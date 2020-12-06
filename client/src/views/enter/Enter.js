@@ -9,7 +9,7 @@ function Enter() {
     <div className='enter'>
       <br />
       <br />
-      <img src={Ramone} />
+      <img alt='Ramone' src={Ramone} />
       <br />
       <button
         onClick={() => {
