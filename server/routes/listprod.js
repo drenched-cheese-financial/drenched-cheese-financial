@@ -30,7 +30,8 @@ const getFilteredProducts = async (filter, category) => {
           `SELECT
             productID AS id,
             productName AS name,
-            productPrice AS price
+            productPrice AS price,
+            productImageURL AS imageURL
           FROM product JOIN category ON product.categoryId = category.categoryId
           WHERE productName LIKE @filter AND category.categoryId = @category`
         );
@@ -39,7 +40,9 @@ const getFilteredProducts = async (filter, category) => {
         `SELECT
           productID AS id,
           productName AS name,
-          productPrice AS price
+          productPrice AS price,
+          productImageURL AS imageURL,
+          productImage AS image
         FROM product
         WHERE productName LIKE @filter`
       );
