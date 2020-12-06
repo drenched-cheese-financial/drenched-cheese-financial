@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import DaBoys from '../../assets/images/daBoys/daBoysFlat.png';
+import './shop.scss';
 
 function Shop() {
+  const history = useHistory();
   const [username, setUsername] = useState();
   const [usernameJSX, setUsernameJSX] = useState();
 
   const fetchUsername = () => {
     axios
-      .get('https://the-drenched-cheese-financial.herokuapp.com/shop', {
+      .get('https://the-drenched-cheese-financial.herokuapp.com/customer', {
         withCredentials: true,
       })
       .then((res) => {
-        setUsername(res.data);
+        setUsername(res.data.username);
       });
   };
 
@@ -27,9 +31,24 @@ function Shop() {
   useEffect(renderUsername, [username]);
 
   return (
-    <div>
-      <h1>Drenched Cheese Financial</h1>
-      {usernameJSX}
+    <div className='shop'>
+
+      <br />
+      <img id='daBoys' src={DaBoys} />
+      <br />
+
+
+      <button
+        onClick={() => {
+          history.push('/listprod');
+        }}
+      >
+        Get Drenched
+      </button>
+      <div className='bois'>
+      </div>
+
+      {/* {usernameJSX} */}
     </div>
   );
 }
