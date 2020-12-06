@@ -2,6 +2,8 @@ $text: rgb(187, 166, 50);
 $background: rgb(36, 36, 32);
 $highlight: rgb(204, 177, 109);
 
+
+
 .shop {
   display: flex;
   flex-direction: column;
@@ -9,11 +11,22 @@ $highlight: rgb(204, 177, 109);
   align-items: center;
   background-repeat: no-repeat;
 
+
+
+
   .bois {
+
+    button{
+      opacity: 0.1;
+      margin-top:32vh;
+    }
+
     position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    opacity: 0.9;
+  
     align-items: center;
     align-content: center;
     margin-left:auto;
@@ -27,10 +40,11 @@ $highlight: rgb(204, 177, 109);
     background-image: url('../../assets/images/daBoys/daBoysFlat.png');
   }
 
+
   button {
     width: 300px;
     font-weight: bolder;
-    font-size: 2rem;
+    font-size: 1.5rem;
     border-radius: 10px;
     margin: 20px 10px;
     color: $text;
