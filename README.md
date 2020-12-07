@@ -9,7 +9,7 @@ Too many people are living their lives in mediocrity, undrenched and underwhelme
 
 
 ### Executive summary:
-The project we have outlined below is an stylish and sophisticated e-commerce website for the selling and shipping of Drenched Cheese Financial merchandise. This website uses React on the front-end, allowing for a sleek, efficient interface as well as flexibility and versatility. This website model can be applied easily to any other bands looking to connect their fanbase to their wares. We’ve hosted this project on Heroku where it can be easily accessed[by clicking here.](https://the-drenched-cheese-financial.herokuapp.com)
+The project we have outlined below is an stylish and sophisticated e-commerce website for the selling and shipping of Drenched Cheese Financial merchandise. This website uses React on the front-end, allowing for a sleek, efficient interface as well as flexibility and versatility. This website model can be applied easily to any other bands looking to connect their fanbase to their wares. We’ve hosted this project on Heroku where it can be easily accessed [by clicking here.](https://the-drenched-cheese-financial.herokuapp.com)
 
 Our website design prioritizes ease of use, and boasts an intuitive flow for the consumer. An initial landing page can be used to promote current projects or events. From there, our login page allows the consumer to sign in and easily edit their account details. If a user is granted administrator access, once logged in they can view sales totals, customer details, and a list of all orders.
 
