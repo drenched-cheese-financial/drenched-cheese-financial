@@ -17,8 +17,8 @@ When shopping on our website our customer can quickly  find the items they need 
 
 We have many steps in place to ensure the ordering process happens seamlessly without any issues. Data validation occurs, only allowing a user to submit their credit card and address information if it is complete and valid. Finally, once an order is placed, the current warehouse inventory is checked to ensure we have enough product to ship, either completing the shipment request, or letting the consumer know that the transaction can’t be completed at this time.
 
-### Project Design Document
-View our [Project Design Document](./documentation/dcf-project-design-document.pdf) to read more.
+### Project design document
+View our [project design document](./documentation/dcf-project-design-document.pdf) to read more.
 
 ## Installation Instructions
 To run the website locally, complete the following steps:
