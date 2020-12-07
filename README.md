@@ -15,7 +15,7 @@ When shopping on our website our customer can quickly  find the items they need 
 We have many steps in place to ensure the ordering process happens seamlessly without any issues. Data validation occurs, only allowing a user to submit their credit card and address information if it is complete and valid. Finally, once an order is placed, the current warehouse inventory is checked to ensure we have enough product to ship, either completing the shipment request, or letting the consumer know that the transaction can’t be completed at this time.
 
 ### Project design document
-View our [project design document](./documentation/dcf-project-design-document.pdf) to read more.
+Download our [project design document](./documentation/dcf-project-design-document.pdf) to read more (document does not display correctly within GitHub).
 
 ## Installation Instructions
 To run the website locally, complete the following steps:
@@ -37,35 +37,6 @@ To run the website locally, complete the following steps:
 4. Connect to UBCO network via VPN
 5. Go to http://localhost:3000
 6. Profit
-
-## Supported Features
-Currently, any user can:
-- Search for a product by name
-- Browse products by category
-- List all the products we sell, and view an image of each product on the same page if an image is present
-- Navigate the website using a navbar
-- Login using a username and a password
-- View their current login status at all times on the website on the navbar (either the option to login if they are not logged in, or their username if they are)
-- Interact with the website trough an aesthetically pleasing UI
-- Add items to their shopping cart
-- View their shopping cart
-- Update the quantity of an item that is already in their shopping cart
-- Remove items from their shopping cart
-- Order all the products currently in their shopping cart
-- Login upon checkout
-- Input their credit card number and expiry date upon checkout. These fields will only accept valid credit card numbers and expiration dates
-- For each product, view a page with the details of that product, with an image and description (if applicable)
-- Create an account. The account will only be created if valid data is provided by the user. 
-- View their account information in a specific page
-- Edit their address and password
-- View all the orders they have passed in a specific page
-
-Our website also supports an administrator type of user. Administrators can:
-- Login using their username and password
-- View a list of all the customers registered in the system
-- Obtain a report containing a summary of all sales 
-
-In addition, some pages use AJAX for an enhanced user experience. Also, our website runs on an actual cloud server, and can be accessed [here](https://the-drenched-cheese-financial.herokuapp.com/). 
 
 ## Our Team
 Jean-Philippe Abadir, Jaden Balogh, Shawn Mountenay, Jordan Pike
