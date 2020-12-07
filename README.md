@@ -5,14 +5,20 @@
 Merch for the band Drenched Cheese Financial.
 
 ### Mission statement:
-We aim to create a platform for selling music and merchandise for the group Drenched Cheese Financial.
+Too many people are living their lives in mediocrity, undrenched and underwhelmed.  We’ve made it our goal with Drenched Cheese Financial to provide only the best in database-themed music spanning every genre from rock to R&B. Our website connects our users with the sweet sounds and sick merch that we have to offer, elevating their life from dry to drenched.
+
 
 ### Executive summary:
-Our website aims at selling music and merch for a band. We have built a store for Drenched Cheese Financial, but this is a versatile solution, which can be applied to any band. Some of the features it provides include:
+The project we have outlined below is an stylish and sophisticated e-commerce website for the selling and shipping of Drenched Cheese Financial merchandise. This website uses React on the front-end, allowing for a sleek, efficient interface as well as flexibility and versatility. This website model can be applied easily to any other bands looking to connect their fanbase to their wares. We’ve hosted this project on Heroku where it can be easily accessed[by clicking here.](https://the-drenched-cheese-financial.herokuapp.com)
 
-Selling physical merch (T shirts as an example)
-Selling digital music albums
-Viewing pictures of the band and event dates
+Our website design prioritizes ease of use, and boasts an intuitive flow for the consumer. An initial landing page can be used to promote current projects or events. From there, our login page allows the consumer to sign in and easily edit their account details. If a user is granted administrator access, once logged in they can view sales totals, customer details, and a list of all orders.
+
+When shopping on our website our customer can quickly  find the items they need through category selections, as well as text box input, that both automatically filter the available options on the page. The sleek shopping cart system allows for increasing and decreasing the number of items in your cart, as well as deleting items completely if they’re no longer needed.
+
+We have many steps in place to ensure the ordering process happens seamlessly without any issues. Data validation occurs, only allowing a user to submit their credit card and address information if it is complete and valid. Finally, once an order is placed, the current warehouse inventory is checked to ensure we have enough product to ship, either completing the shipment request, or letting the consumer know that the transaction can’t be completed at this time.
+
+### Project Design Document
+View our [Project Design Document](./documentation/dcf-project-design-document.pdf) to read more.
 
 ## Installation Instructions
 To run the website locally, complete the following steps:
