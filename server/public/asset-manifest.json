@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.798b9852.chunk.css",
-    "main.js": "/static/js/main.6875cf79.chunk.js",
-    "main.js.map": "/static/js/main.6875cf79.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.c012fedc.js",
-    "runtime-main.js.map": "/static/js/runtime-main.c012fedc.js.map",
-    "static/js/2.3989ba6e.chunk.js": "/static/js/2.3989ba6e.chunk.js",
-    "static/js/2.3989ba6e.chunk.js.map": "/static/js/2.3989ba6e.chunk.js.map",
+    "main.css": "/static/css/main.a29a9fd5.chunk.css",
+    "main.js": "/static/js/main.9f9cca4e.chunk.js",
+    "main.js.map": "/static/js/main.9f9cca4e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.120840cb.js",
+    "runtime-main.js.map": "/static/js/runtime-main.120840cb.js.map",
+    "static/js/2.03e7d355.chunk.js": "/static/js/2.03e7d355.chunk.js",
+    "static/js/2.03e7d355.chunk.js.map": "/static/js/2.03e7d355.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.798b9852.chunk.css.map": "/static/css/main.798b9852.chunk.css.map",
-    "static/js/2.3989ba6e.chunk.js.LICENSE.txt": "/static/js/2.3989ba6e.chunk.js.LICENSE.txt",
+    "static/css/main.a29a9fd5.chunk.css.map": "/static/css/main.a29a9fd5.chunk.css.map",
+    "static/js/2.03e7d355.chunk.js.LICENSE.txt": "/static/js/2.03e7d355.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/static/media/carbonFiber.f3368df3.jpg",
     "static/media/shop.scss": "/static/media/daBoysFlat.11de3cff.png",
     "static/media/dcf-mold-money-flat.62b3eb5a.png": "/static/media/dcf-mold-money-flat.62b3eb5a.png",
@@ -17,9 +17,9 @@
     "static/media/ramone-jesus.b0235566.png": "/static/media/ramone-jesus.b0235566.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.c012fedc.js",
-    "static/js/2.3989ba6e.chunk.js",
-    "static/css/main.798b9852.chunk.css",
-    "static/js/main.6875cf79.chunk.js"
+    "static/js/runtime-main.120840cb.js",
+    "static/js/2.03e7d355.chunk.js",
+    "static/css/main.a29a9fd5.chunk.css",
+    "static/js/main.9f9cca4e.chunk.js"
   ]
 }
