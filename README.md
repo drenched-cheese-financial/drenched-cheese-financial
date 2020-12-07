@@ -1,12 +1,9 @@
 # Drenched Cheese Financial
 
 ## About Us
-### What we are going to sell:
-Merch for the band Drenched Cheese Financial.
 
 ### Mission statement:
 Too many people are living their lives in mediocrity, undrenched and underwhelmed.  We’ve made it our goal with Drenched Cheese Financial to provide only the best in database-themed music spanning every genre from rock to R&B. Our website connects our users with the sweet sounds and sick merch that we have to offer, elevating their life from dry to drenched.
-
 
 ### Executive summary:
 The project we have outlined below is an stylish and sophisticated e-commerce website for the selling and shipping of Drenched Cheese Financial merchandise. This website uses React on the front-end, allowing for a sleek, efficient interface as well as flexibility and versatility. This website model can be applied easily to any other bands looking to connect their fanbase to their wares. We’ve hosted this project on Heroku where it can be easily accessed [by clicking here.](https://the-drenched-cheese-financial.herokuapp.com)
@@ -41,7 +38,7 @@ To run the website locally, complete the following steps:
 5. Go to http://localhost:3000
 6. Profit
 
-## Currently-supported Features
+## Supported Features
 Currently, any user can:
 - Search for a product by name
 - Browse products by category
