@@ -39,4 +39,4 @@ To run the website locally, complete the following steps:
 6. Profit
 
 ## Our Team
-Jean-Philippe Abadir, Jaden Balogh, Shawn Mountenay, Jordan Pike
+Jean-Philippe Abadir, Jaden Balogh, Cyan Berg, Jordan Pike
